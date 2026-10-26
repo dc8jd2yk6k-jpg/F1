@@ -101,7 +101,7 @@ export class Threads implements Act {
   setup(_e: Engine) {}
 
   render(f: FrameCtx) {
-    const { t, bar, post, ui } = f;
+    const { t, bar, post } = f;
     post.letterbox = 1;
     post.bloom = 1.0;
     post.bloomThreshold = 0.8;
@@ -118,7 +118,6 @@ export class Threads implements Act {
     if (bar < 10) this.runaway(f, low);
     else this.braid(f, low, kick);
     f.draw(this.scene, this.cam);
-    void ui;
   }
 
   // ---- 6–9: the runaway ----------------------------------------------------

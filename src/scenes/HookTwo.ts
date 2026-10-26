@@ -255,7 +255,6 @@ export class HookTwo implements Act {
       post.ca = 0.004;
       post.grain = 0.05;
     }
-    void feat;
   }
 
   private splitFrame(ui: FrameCtx['ui'], bar: number) {

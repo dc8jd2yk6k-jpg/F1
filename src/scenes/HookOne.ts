@@ -227,7 +227,6 @@ export class HookOne implements Act {
     }
     // Slow the world down into bar 37 (Charge): let the image breathe.
     post.exposure *= 1 - 0.2 * smoothstep(36, 37, bar);
-    void feat;
   }
 
   private canopy(t: number, mode: number, kick: number) {
