@@ -1,0 +1,1489 @@
+{
+ "season": 2026,
+ "asOf": "2026-10-25",
+ "note": "Points scorers per event (races: top 10, sprints: top 8). Verified: per-driver sums equal the official standings after the United States GP for every driver; post-Singapore checkpoint also matches.",
+ "events": [
+  {
+   "round": 1,
+   "code": "AUS",
+   "name": "Australian Grand Prix",
+   "venue": "Albert Park, Melbourne",
+   "date": "2026-03-08",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "RUS",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "ANT",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "LEC",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "HAM",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "NOR",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "VER",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "BEA",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "LIN",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "BOR",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "GAS",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/racing/2026/australia",
+    "https://www.motorsport.com/f1/results/2026/australian-gp-661639/",
+    "https://www.crash.net/f1/results/1091033/1/2026-f1-australian-grand-prix-race-results"
+   ]
+  },
+  {
+   "round": 2,
+   "code": "CHN",
+   "name": "Chinese Grand Prix",
+   "venue": "Shanghai International Circuit",
+   "date": "2026-03-14",
+   "type": "sprint",
+   "classification": [
+    {
+     "driver": "RUS",
+     "pos": 1,
+     "pts": 8
+    },
+    {
+     "driver": "LEC",
+     "pos": 2,
+     "pts": 7
+    },
+    {
+     "driver": "HAM",
+     "pos": 3,
+     "pts": 6
+    },
+    {
+     "driver": "NOR",
+     "pos": 4,
+     "pts": 5
+    },
+    {
+     "driver": "ANT",
+     "pos": 5,
+     "pts": 4
+    },
+    {
+     "driver": "PIA",
+     "pos": 6,
+     "pts": 3
+    },
+    {
+     "driver": "LAW",
+     "pos": 7,
+     "pts": 2
+    },
+    {
+     "driver": "BEA",
+     "pos": 8,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1280/china/sprint-results",
+    "https://speedcafe.com/f1-news-2026-chinese-grand-prix-shanghai-sprint-race-results/"
+   ]
+  },
+  {
+   "round": 2,
+   "code": "CHN",
+   "name": "Chinese Grand Prix",
+   "venue": "Shanghai International Circuit",
+   "date": "2026-03-15",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "RUS",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "HAM",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "LEC",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "BEA",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "GAS",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "LAW",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "HAD",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "SAI",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "COL",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1280/china/race-result",
+    "https://www.formula1points.com/grandprix/China-2026"
+   ]
+  },
+  {
+   "round": 3,
+   "code": "JPN",
+   "name": "Japanese Grand Prix",
+   "venue": "Suzuka",
+   "date": "2026-03-29",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "PIA",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "LEC",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "RUS",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "NOR",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAM",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "GAS",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "VER",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "LAW",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "OCO",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1281/japan/race-result",
+    "https://www.crash.net/f1/results/1092631/1/full-2026-f1-japanese-grand-prix-race-results"
+   ]
+  },
+  {
+   "round": 4,
+   "code": "MIA",
+   "name": "Miami Grand Prix",
+   "venue": "Miami International Autodrome",
+   "date": "2026-05-02",
+   "type": "sprint",
+   "classification": [
+    {
+     "driver": "NOR",
+     "pos": 1,
+     "pts": 8
+    },
+    {
+     "driver": "PIA",
+     "pos": 2,
+     "pts": 7
+    },
+    {
+     "driver": "LEC",
+     "pos": 3,
+     "pts": 6
+    },
+    {
+     "driver": "RUS",
+     "pos": 4,
+     "pts": 5
+    },
+    {
+     "driver": "VER",
+     "pos": 5,
+     "pts": 4
+    },
+    {
+     "driver": "ANT",
+     "pos": 6,
+     "pts": 3
+    },
+    {
+     "driver": "HAM",
+     "pos": 7,
+     "pts": 2
+    },
+    {
+     "driver": "GAS",
+     "pos": 8,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1284/miami/sprint-results",
+    "https://www.crash.net/f1/results/1094098/1/2026-f1-miami-grand-prix-full-sprint-results"
+   ]
+  },
+  {
+   "round": 4,
+   "code": "MIA",
+   "name": "Miami Grand Prix",
+   "venue": "Miami International Autodrome",
+   "date": "2026-05-03",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "NOR",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "PIA",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "RUS",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "VER",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAM",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "COL",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "LEC",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "SAI",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "ALB",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/racing/2026/miami",
+    "https://www.silverstone.co.uk/news/f1-2026-miami-grand-prix-results-antonelli-holds-norris-secure-third-win-season"
+   ]
+  },
+  {
+   "round": 5,
+   "code": "CAN",
+   "name": "Canadian Grand Prix",
+   "venue": "Circuit Gilles Villeneuve, Montréal",
+   "date": "2026-05-23",
+   "type": "sprint",
+   "classification": [
+    {
+     "driver": "RUS",
+     "pos": 1,
+     "pts": 8
+    },
+    {
+     "driver": "NOR",
+     "pos": 2,
+     "pts": 7
+    },
+    {
+     "driver": "ANT",
+     "pos": 3,
+     "pts": 6
+    },
+    {
+     "driver": "PIA",
+     "pos": 4,
+     "pts": 5
+    },
+    {
+     "driver": "LEC",
+     "pos": 5,
+     "pts": 4
+    },
+    {
+     "driver": "HAM",
+     "pos": 6,
+     "pts": 3
+    },
+    {
+     "driver": "VER",
+     "pos": 7,
+     "pts": 2
+    },
+    {
+     "driver": "LIN",
+     "pos": 8,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.silverstone.co.uk/news/f1-2026-canadian-grand-prix-results-mercedes-clash-montreal",
+    "https://www.motorsport.com/f1/news/all-results-and-standings-from-the-2026-canadian-f1-grand-prix/10823970/"
+   ]
+  },
+  {
+   "round": 5,
+   "code": "CAN",
+   "name": "Canadian Grand Prix",
+   "venue": "Circuit Gilles Villeneuve, Montréal",
+   "date": "2026-05-24",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "HAM",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "VER",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "LEC",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "HAD",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "COL",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "LAW",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "GAS",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "SAI",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "BEA",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1285/canada/race-result",
+    "https://www.skysports.com/f1/grandprix/canada/results/2026/race"
+   ]
+  },
+  {
+   "round": 6,
+   "code": "MON",
+   "name": "Monaco Grand Prix",
+   "venue": "Circuit de Monaco",
+   "date": "2026-06-07",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "HAM",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "HAD",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "PIA",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "LAW",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "LIN",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "GAS",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "ALB",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "OCO",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "ALO",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1286/monaco/race-result",
+    "https://www.crash.net/f1/results/1097534/1/2026-f1-monaco-grand-prix-full-race-results-after-antonelli-equals-hamilton"
+   ]
+  },
+  {
+   "round": 7,
+   "code": "BAR",
+   "name": "Barcelona-Catalunya Grand Prix",
+   "venue": "Circuit de Barcelona-Catalunya",
+   "date": "2026-06-14",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "HAM",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "RUS",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "NOR",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "VER",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "PIA",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAD",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "GAS",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "LAW",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "LIN",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "COL",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1287/barcelona-catalunya/race-result",
+    "https://www.racefans.net/2026/06/14/2026-barcelona-catalunya-grand-prix-race-result-and-championship-points/"
+   ]
+  },
+  {
+   "round": 8,
+   "code": "AUT",
+   "name": "Austrian Grand Prix",
+   "venue": "Red Bull Ring, Spielberg",
+   "date": "2026-06-28",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "RUS",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "VER",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "ANT",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "PIA",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "HAM",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAD",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "NOR",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "LEC",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "LAW",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "LIN",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1288/austria/race-result",
+    "https://www.skysports.com/f1/grandprix/austria/results/2026/race"
+   ]
+  },
+  {
+   "round": 9,
+   "code": "GBR",
+   "name": "British Grand Prix",
+   "venue": "Silverstone",
+   "date": "2026-07-04",
+   "type": "sprint",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 8
+    },
+    {
+     "driver": "HAM",
+     "pos": 2,
+     "pts": 7
+    },
+    {
+     "driver": "NOR",
+     "pos": 3,
+     "pts": 6
+    },
+    {
+     "driver": "RUS",
+     "pos": 4,
+     "pts": 5
+    },
+    {
+     "driver": "LEC",
+     "pos": 5,
+     "pts": 4
+    },
+    {
+     "driver": "VER",
+     "pos": 6,
+     "pts": 3
+    },
+    {
+     "driver": "PIA",
+     "pos": 7,
+     "pts": 2
+    },
+    {
+     "driver": "LAW",
+     "pos": 8,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1289/great-britain/sprint-results",
+    "https://www.racefans.net/2026/07/04/2026-british-grand-prix-sprint-race-result-and-championship-points/"
+   ]
+  },
+  {
+   "round": 9,
+   "code": "GBR",
+   "name": "British Grand Prix",
+   "venue": "Silverstone",
+   "date": "2026-07-05",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "LEC",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "RUS",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "HAM",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "NOR",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "HAD",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "LAW",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "LIN",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "BOR",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "COL",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "GAS",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1289/great-britain/race-result",
+    "https://www.crash.net/f1/results/1100262/1/2026-f1-silverstone-full-british-gp-results"
+   ]
+  },
+  {
+   "round": 10,
+   "code": "BEL",
+   "name": "Belgian Grand Prix",
+   "venue": "Spa-Francorchamps",
+   "date": "2026-07-19",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "LEC",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "VER",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "HAM",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "PIA",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAD",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "NOR",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "BOR",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "LIN",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "COL",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.gpfans.com/en/f1-news/1087986/f1-belgian-grand-prix-2026-results-final-classification-penalties-applied/",
+    "https://www.silverstone.co.uk/news/f1-2026-belgian-grand-prix-results-antonelli-overhauls-leclerc-win-spa"
+   ]
+  },
+  {
+   "round": 11,
+   "code": "HUN",
+   "name": "Hungarian Grand Prix",
+   "venue": "Hungaroring",
+   "date": "2026-07-26",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "NOR",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "VER",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "ANT",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "LEC",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "HAM",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAD",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "RUS",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "LAW",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "HUL",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "LIN",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1291/hungary/race-result",
+    "https://www.espn.com/f1/results/_/id/600057440"
+   ]
+  },
+  {
+   "round": 12,
+   "code": "NED",
+   "name": "Dutch Grand Prix",
+   "venue": "Zandvoort",
+   "date": "2026-08-22",
+   "type": "sprint",
+   "classification": [
+    {
+     "driver": "RUS",
+     "pos": 1,
+     "pts": 8
+    },
+    {
+     "driver": "LEC",
+     "pos": 2,
+     "pts": 7
+    },
+    {
+     "driver": "NOR",
+     "pos": 3,
+     "pts": 6
+    },
+    {
+     "driver": "ANT",
+     "pos": 4,
+     "pts": 5
+    },
+    {
+     "driver": "PIA",
+     "pos": 5,
+     "pts": 4
+    },
+    {
+     "driver": "VER",
+     "pos": 6,
+     "pts": 3
+    },
+    {
+     "driver": "HAM",
+     "pos": 7,
+     "pts": 2
+    },
+    {
+     "driver": "GAS",
+     "pos": 8,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1292/netherlands/sprint-results",
+    "https://www.si.com/onsi/f1/news/f1-sprint-results-and-standings-at-the-2026-dutch-grand-prix"
+   ]
+  },
+  {
+   "round": 12,
+   "code": "NED",
+   "name": "Dutch Grand Prix",
+   "venue": "Zandvoort",
+   "date": "2026-08-23",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "NOR",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "ANT",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "RUS",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "HAM",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "LEC",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "PIA",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "LAW",
+     "pos": 7,
+     "pts": 6,
+     "team": "redbull"
+    },
+    {
+     "driver": "HUL",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "ALO",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "GAS",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1292/netherlands/race-result",
+    "https://www.motorsport.com/f1/results/2026/dutch-gp-661681/"
+   ]
+  },
+  {
+   "round": 13,
+   "code": "ITA",
+   "name": "Italian Grand Prix",
+   "venue": "Monza",
+   "date": "2026-09-06",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "RUS",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "VER",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "NOR",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "PIA",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAM",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "GAS",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "LIN",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "COL",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "TSU",
+     "pos": 10,
+     "pts": 1,
+     "team": "racingbulls"
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1293/italy/race-result",
+    "https://www.fia.com/system/files/decision-document/2026_italian_grand_prix_-_final_race_classification.pdf"
+   ]
+  },
+  {
+   "round": 14,
+   "code": "MAD",
+   "name": "Spanish Grand Prix",
+   "venue": "Madring, Madrid",
+   "date": "2026-09-13",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "VER",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "NOR",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "LEC",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "RUS",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "LAW",
+     "pos": 6,
+     "pts": 8,
+     "team": "redbull"
+    },
+    {
+     "driver": "COL",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "PIA",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "LIN",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "HUL",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1294/spain/race-result",
+    "https://www.gpfans.com/en/f1-news/1090243/f1-spanish-grand-prix-2026-results-final-classification-all-penalties-applied-at-madring/"
+   ]
+  },
+  {
+   "round": 15,
+   "code": "AZE",
+   "name": "Azerbaijan Grand Prix",
+   "venue": "Baku City Circuit",
+   "date": "2026-09-26",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "RUS",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "VER",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "HAD",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "LEC",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "ANT",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAM",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "LIN",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "OCO",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "BEA",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "SAI",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1295/azerbaijan/race-result",
+    "https://www.gpfans.com/en/f1-news/1090761/f1-azerbaijan-grand-prix-2026-results-final-classification-all-penalties-applied-baku/"
+   ]
+  },
+  {
+   "round": 16,
+   "code": "MAS",
+   "name": "Bahrain Grand Prix in Malaysia",
+   "venue": "Sepang International Circuit",
+   "date": "2026-10-04",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "VER",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "ANT",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "HAM",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "LEC",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "HAD",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "PIA",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "LAW",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "ALO",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "NOR",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "LIN",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1308/bahrain/race-result",
+    "https://www.crash.net/f1/results/1106501/1/f1-bahrain-grand-prix-malaysia-full-race-results"
+   ]
+  },
+  {
+   "round": 17,
+   "code": "SIN",
+   "name": "Singapore Grand Prix",
+   "venue": "Marina Bay",
+   "date": "2026-10-10",
+   "type": "sprint",
+   "classification": [
+    {
+     "driver": "VER",
+     "pos": 1,
+     "pts": 8
+    },
+    {
+     "driver": "HAM",
+     "pos": 2,
+     "pts": 7
+    },
+    {
+     "driver": "LEC",
+     "pos": 3,
+     "pts": 6
+    },
+    {
+     "driver": "ANT",
+     "pos": 4,
+     "pts": 5
+    },
+    {
+     "driver": "LAW",
+     "pos": 5,
+     "pts": 4
+    },
+    {
+     "driver": "BEA",
+     "pos": 6,
+     "pts": 3
+    },
+    {
+     "driver": "HUL",
+     "pos": 7,
+     "pts": 2
+    },
+    {
+     "driver": "NOR",
+     "pos": 8,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1296/singapore/sprint-results",
+    "https://www.crash.net/f1/results/1107073/1/f1-singapore-grand-prix-full-sprint-race-results"
+   ]
+  },
+  {
+   "round": 17,
+   "code": "SIN",
+   "name": "Singapore Grand Prix",
+   "venue": "Marina Bay",
+   "date": "2026-10-11",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "VER",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "LEC",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "ANT",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "NOR",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "PIA",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAM",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "LAW",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "HUL",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "RUS",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "HAD",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1296/singapore/race-result",
+    "https://en.wikipedia.org/wiki/2026_Singapore_Grand_Prix",
+    "https://sports.yahoo.com/articles/f1-standings-results-2026-singapore-140932200.html"
+   ]
+  },
+  {
+   "round": 18,
+   "code": "USA",
+   "name": "United States Grand Prix",
+   "venue": "Circuit of the Americas, Austin",
+   "date": "2026-10-25",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "ANT",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "LEC",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "VER",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "HAM",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "NOR",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "HAD",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "PIA",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "RUS",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "LAW",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "GAS",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.crash.net/f1/results/1108504/1/formula-1-us-grand-prix-full-race-results",
+    "https://www.gpfans.com/en/f1-news/1092007/f1-us-grand-prix-2026-results-final-classification-all-penalties-applied-cota/",
+    "https://www.racefans.net/2026/10/25/2026-united-states-grand-prix-race-result-and-championship-points/"
+   ]
+  }
+ ]
+}

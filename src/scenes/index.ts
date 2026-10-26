@@ -1,12 +1,8 @@
 import type { Act } from '../engine/Engine';
-import { Charge } from './Charge';
-import { Exposure } from './Exposure';
-import { Finale } from './Finale';
-import { Grid } from './Grid';
-import { HookOne } from './HookOne';
-import { HookTwo } from './HookTwo';
-import { Lights } from './Lights';
-import { Threads } from './Threads';
+import { Intro } from './Intro';
+import { Outro } from './Outro';
+import { P2Fight } from './P2Fight';
+import { Season } from './Season';
 
-// One act per musical section, in song order (see src/data/audio.json).
-export const ACTS: (new () => Act)[] = [Lights, Threads, Grid, HookOne, Charge, HookTwo, Exposure, Finale];
+// Acts in song order; each claims the musical sections it covers.
+export const ACTS: (new () => Act)[] = [Intro, Season, P2Fight, Outro];

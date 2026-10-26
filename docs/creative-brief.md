@@ -1,74 +1,66 @@
-# Creative brief: "F1" · Nine Points
+# Creative brief: "F1" · the 2026 championship, race by race
 
 ## The assignment
 
-This is a music video for **"F1"**, an instrumental track, about the 2026 Formula 1 season at the moment the title is all but gone and the fight for **second place** is wide open.
+This is a music video for **"F1"**, an instrumental track, about the 2026 Formula 1 season. The focus is the fight for second place, now that the title is all but gone.
+
+### Revision 2: what changed and why
+
+The first cut was a cinematic 3D race: an imagined Abu Dhabi decider. Review found three problems:
+
+1. **Geometry bugs.** Cars clipped through walls. A section of track ran inside one of the hotel buildings, and cars passed through each other in the photo finish.
+2. **Beat-synced camera shake.** It was distracting and fought the picture.
+3. **Wrong subject.** The real goal was to **follow every driver's score in every race of 2026**.
+
+So the video became a **dynamic leaderboard**: a bar-chart race of the whole drivers' championship, all 23 drivers who have raced, re-ranking round by round to the music.
+- There is no 3D camera. That removes both the clipping and the shake.
+- Nothing pulses on the beat. The music lands through *when* things change: every round starts on a downbeat, then eases.
 
 ## What the music says
 
-There are no lyrics, so the music itself is the text. It was analysed before any visuals were designed (`analysis/analyze_audio.py`).
+Measured by `analysis/analyze_audio.py`:
 
-| | |
-|---|---|
-| Tempo | **110 BPM**, 4/4. One bar = 2.1818 s |
-| Key | **D minor**. The breakdown is the purest D minor in the track (key-profile correlation 0.94). The **outro turns to D major** (F♯ and C♯ appear) |
-| Shape | Near-silent swell → bass verse → hi-hats build → two full-energy hooks → a long sparse breakdown that **never returns to full energy** → fade |
-| Groove | Mid-tempo and heavy. The drums are syncopated against the harmony, so most kicks and snares land on the off-beat |
+- **Tempo:** 110 BPM, 4/4. One bar = 2.1818 s.
+- **Key:** D minor, turning to D major in the outro.
+- **Shape:** a swell, a bass verse, two full-energy hooks, a three-bar dip between them, then a long, sparse breakdown that never returns to full energy, and a fade.
 
-How that reads emotionally:
+The season has a strikingly similar shape. It started fast, paused for the summer, and arrived at a tense, unresolved now.
 
-- **Brooding and determined, not frantic.** At 110 BPM with this much bass, the song walks heavily rather than runs.
-- **It peaks in the middle and ends reflective.** The climax is not the ending. The last minute belongs to the aftermath.
-- **It resolves to major.** The ending is unresolved but hopeful.
+## Structure: the season mapped onto the song
 
-That is the shape of a fight for second place:
+| Bars | Song | Leaderboard |
+|---|---|---|
+| 1–5 | Swell | 23 drivers on zero, in entry-list order. Five start lights come on, one per bar |
+| 6 | Bass drop | Lights out. **Round 1, Australia** |
+| 6–36 | Verse → Hook 1 | Rounds 1–11 with their sprints. A Grand Prix takes 2–3 bars, a sprint 1. Bars grow first, then rows re-sort |
+| 36–40 | **The dip** | **Summer break.** The table holds; Grand Prix wins so far; Antonelli leads by 50 |
+| 40–57 | Hook 2 | Rounds 12–18: Zandvoort to Austin, including the Bahrain GP held at Sepang |
+| 57–61 | Hook 2 end | **Today.** The P2 places are bracketed: 4 drivers, 9 points. The 5 rounds still to run are listed |
+| 61–82 | Breakdown | **The fight for P2.** Russell, Hamilton, Verstappen and Leclerc, each with a strip of every score they made this season. On the bass pulses (bars 67, 71, 75, 79) one driver at a time is brought forward with their record |
+| 83–end | D-major outro | The full table as it stands. The background warms to gold. **P2 — ?** Title card |
 
-- The crown is spoken for: Antonelli is on 365 points and needs P9 in Mexico.
-- Four drivers are left fighting for something only they care about this much, with **9 points** between them: 242 / 241 / 236 / 233.
-- The video does not pretend to know who wins. It ends on **P2 — ?**
+## Data
 
-### Decisions that follow from the music
+The data is the point of this video, so it has to be right.
 
-- **Edit weight.** Cuts fall on bars, and on half-bars only in the hooks. There is slow motion in the dips. The camera hits on detected kicks, not on the grid, because the groove is syncopated.
-- **The intro's five bars become five start lights.** They go out on the downbeat of bar 6, the exact moment the bass drops.
-- **The hats arriving (bar 16)** is when the place appears: Yas Marina at dusk and the LED gridshell, with one contender introduced per bar.
-- **Hook 1 begins with the real "lights out"** (bar 20).
-- **The three-bar dip (bars 37–39)** becomes bullet time. The stakes land one per bar: *5 races · 4 drivers · 9 points*.
-- **Hook 2 is the peak.** Projected P2 changes hands until all four drivers have held it, ending in a four-abreast photo finish that **freezes before the line**.
-- **The breakdown is the emotional core.** The cars are gone and only their light remains, like a long exposure. The four bass pulses (bars 67, 71, 75 and 79) each paint one contender as a neon numeral.
-- **The D-major turn** arrives as gold on the horizon. The final card is *P2 — ?*
+- `src/data/results.json` holds every points-scoring classification of 2026: **18 Grands Prix and 6 sprints**, with sources listed per event.
+- Each event was cross-checked between at least two outlets: formula1.com, motorsport.com, crash.net, GPFans, RaceFans, Sky Sports, ESPN and Formula1points.
 
-## Shot list (bar-locked)
+Integrity, enforced by `tests/results.test.ts`:
+- Each of the 23 drivers' summed points equals the official standings after the United States GP.
+- The Singapore checkpoint matches for the top six.
+- The Mercedes, Ferrari, McLaren and Red Bull constructor totals match, with Lawson's stand-in points counted to Red Bull.
+- Every event awards exactly 25-18-15-12-10-8-6-4-2-1 (races) or 8-7-6-5-4-3-2-1 (sprints).
+- The final order matches the official table, including the three-way countback on 7 points (Ocon, Alonso, Sainz).
 
-| Bars | Time | Act | Picture | Words |
-|---|---|---|---|---|
-| 1–5 | 0:00–0:10.8 | Five Lights | Behind the pole car, looking up at the gantry; 2.39:1 | `SEASON 2026 · ROUND 17 OF 22 COMPLETE` → `5 RACES LEFT` → `ONE TITLE ALL BUT DECIDED.` → `ONE FIGHT WIDE OPEN.` |
-| 6–9 | 0:10.8–0:19.5 | The Runaway | A gold thread tears past and away to the horizon | `ANTONELLI · 365 PTS · 9 WINS` · `THE CROWN IS ALL BUT HIS.` |
-| 10–15 | 0:19.5–0:32.6 | The Threads | Four threads braid through 17 gates (one per round, one per beat) into a knot | `BEHIND HIM —` · `17 ROUNDS OF CHANGING PLACES.` · `4 DRIVERS · 9 POINTS` |
-| 16–19 | 0:32.6–0:41.4 | The Grid | Dusk. A hero shot of each contender's car, one per bar; the five lights again, fast | Driver slams: number · name · points · gap to P2 |
-| 20–36 | 0:41.4–1:18.4 | Hook 1 | Standing start → HAM onboard pass → hotel section → RUS override on the back straight | `LIGHTS OUT` · Battle-for-P2 tower · lap counter |
-| 37–39 | 1:18.4–1:25.0 | Charge | Bullet-time orbit, sparks hanging in the air, energy store charging | `5 RACES / 4 DRIVERS / 9 POINTS` |
-| 40–60 | 1:25.0–2:10.8 | Hook 2 | VER charge → 2×2 onboards → RUS–HAM duel → Ferrari duel under the gridshell → LEC leads → four abreast → freeze | P2-change banners · `TOO CLOSE TO CALL` |
-| 61–82 | 2:10.8–2:58.8 | Long Exposure | Whiteout → light trails without cars → trails rise into the sky → four neon portraits | `THE CROWN IS SPOKEN FOR.` · `SECOND IS STILL A FIGHT.` · portraits |
-| 83–end | 2:58.8–3:13.7 | Yas Marina, 6 Dec | Trails stop at the line, gold horizon, title | `P2 — ?` · `DECIDED UNDER THE LIGHTS AT YAS MARINA` · `F1` |
+Facts this work surfaced and corrected:
+- **2026 has 23 rounds, not 22.** The Bahrain GP was re-run at Sepang, Malaysia, on 4 October as Round 16. Austin was Round 18. The first cut's "Round 17 of 22" was wrong.
+- **Stand-ins.** Isack Hadjar missed Zandvoort, Monza and Madrid with a wrist injury. Liam Lawson drove for Red Bull and reserve Yuki Tsunoda took the Racing Bulls seat. Tsunoda's point at Monza is why 23 drivers appear.
 
 ## Visual system
 
-- **Light is identity.** Each driver is a coloured light: Mercedes teal (Russell), Ferrari red (Hamilton with a white core, Leclerc solid), Red Bull blue (Verstappen), and **gold for Antonelli**, the champion-elect.
-- **Night race, sodium and LED.** The image is mostly dark. Saturation is reserved for the cars, their trails and the gridshell.
-- **2026 regulations, honoured.** The cars have narrow proportions, active-aero flaps that flatten on the straights, an energy-store meter, and Verstappen in #3 with Norris carrying #1.
-- **Broadcast typography, used sparingly.** Titillium Web for names, JetBrains Mono for data, and Big Shoulders Display for numerals.
-- **Honest data.**
-  - Every number on screen comes from `src/data/season.json`.
-  - The "threads" are stylised: only their endpoints are data.
-  - The race is imagined, and labelled as such.
-  - The projected tower is real arithmetic on real points.
-
-## What is real and what is imagined
-
-| Real (provisional after Austin, 25 Oct 2026) | Imagined |
-|---|---|
-| Standings: ANT 365, RUS 242, HAM 241, VER 236, LEC 233, NOR 211 | The race shown, its overtakes and its running order |
-| Round 17 of 22, 5 rounds left, finale at Yas Marina on 6 December | The car models and the stylised track |
-| 2026 driver numbers | The photo finish |
-| Career facts: 7× and 4× champions, Leclerc runner-up in 2022, Hamilton's last P2 in 2021, Russell's best finish P4 | |
+- **One table, always legible.** Each row has rank, team chip, car number, surname, the bar on a shared points axis, a count-up total, this round's **+N** chip, and ▲/▼ rank changes. The right-hand panel lists the weekend's points scorers in finishing order. Sprints carry a gold SPRINT tag.
+- **Team colours** are team-inspired, chosen so that neighbouring bars stay distinguishable.
+- **Calm motion.** Points ease up over the first part of a round, then rows glide to their new places, softening as they pass. Labels never fight.
+- **Background.** Out-of-focus floodlight bokeh drifting slowly, a pure function of time, turning gold for the D-major ending.
+- **Typography.** Titillium Web for names, JetBrains Mono for numbers and data, and Big Shoulders Display for big numerals.

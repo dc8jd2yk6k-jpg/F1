@@ -18,8 +18,8 @@ describe('timeline', () => {
   });
 
   it('covers the song with contiguous sections', () => {
-    expect(section('lights').t0).toBe(0);
-    expect(sectionAt(DURATION - 0.01).name).toBe('finale');
+    expect(section('intro').t0).toBe(0);
+    expect(sectionAt(DURATION - 0.01).name).toBe('outro');
     expect(sectionAt(barTime(40) + 0.01).name).toBe('hook2');
   });
 

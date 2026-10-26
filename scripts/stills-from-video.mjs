@@ -19,9 +19,8 @@ const ff = (args) => {
 };
 
 const hero = {
-  '01-lights': 4.6, '02-runaway': 8.4, '03-threads': 15.3, '04-grid': 17.5, '05-lights-out': 20.3, '06-onboard': 25.1,
-  '07-gridshell': 30.6, '08-bullet-time': 38.6, '09-split': 45, '10-ferrari-duel': 53, '11-too-close': 59.9,
-  '12-portrait': 72.5, '13-p2': 86.4,
+  '01-intro': 4.6, '02-australia': 7.6, '03-china': 11.6, '04-barcelona': 24.2, '05-summer-break': 38.6, '06-madrid': 46.6,
+  '07-austin': 56.4, '08-today': 59.6, '09-p2-fight': 66, '10-russell': 69.6, '11-verstappen': 77.6, '12-the-table': 84.6, '13-p2': 87,
 };
 for (const [name, bar] of Object.entries(hero)) {
   ff(['-ss', barTime(bar).toFixed(3), '-i', video, '-frames:v', '1', '-vf', 'scale=1280:-2', '-q:v', '4', path.join(outDir, `${name}.jpg`)]);

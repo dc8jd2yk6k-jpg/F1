@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { Overlay } from '../overlay/Overlay';
-import { World } from '../world/World';
 import { Compositor, type PostParams, defaultPost } from './Compositor';
 import { FPS, type SectionName, barAt, sectionAt } from './Timeline';
 
@@ -12,7 +11,6 @@ export interface FrameCtx {
   bar: number;
   post: PostParams;
   ui: Overlay;
-  world: World;
   width: number;
   height: number;
   aspect: number;
@@ -21,7 +19,8 @@ export interface FrameCtx {
 }
 
 export interface Act {
-  readonly name: SectionName;
+  /** The musical sections this act covers. */
+  readonly sections: readonly SectionName[];
   setup(engine: Engine): void;
   render(ctx: FrameCtx): void;
 }
@@ -30,7 +29,6 @@ export class Engine {
   readonly renderer: THREE.WebGLRenderer;
   readonly comp: Compositor;
   readonly ui: Overlay;
-  readonly world: World;
   private readonly acts = new Map<SectionName, Act>();
 
   constructor(readonly canvas: HTMLCanvasElement, readonly width: number, readonly height: number, opts: { samples?: number } = {}) {
@@ -42,13 +40,12 @@ export class Engine {
     this.renderer.autoClear = false;
     this.ui = new Overlay(width, height);
     this.comp = new Compositor(this.renderer, width, height, this.ui.texture, opts.samples ?? 0);
-    this.world = new World(this.renderer);
   }
 
   add(...acts: Act[]) {
     for (const a of acts) {
       a.setup(this);
-      this.acts.set(a.name, a);
+      for (const s of a.sections) this.acts.set(s, a);
     }
   }
 
@@ -59,7 +56,7 @@ export class Engine {
     this.ui.begin();
     this.comp.begin();
     const ctx: FrameCtx = {
-      t, frame, bar: barAt(t), post, ui: this.ui, world: this.world,
+      t, frame, bar: barAt(t), post, ui: this.ui,
       width: this.width, height: this.height, aspect: this.width / this.height,
       begin: (c) => this.comp.begin(new THREE.Color(c ?? 0x000000)),
       draw: (scene, camera, rect) => this.comp.draw(scene, camera, rect),

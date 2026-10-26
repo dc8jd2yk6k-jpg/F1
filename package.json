@@ -2,7 +2,7 @@
   "name": "f1-nine-points",
   "private": true,
   "version": "1.0.0",
-  "description": "Music video for the instrumental \"F1\" — the 2026 Formula 1 fight for P2. Deterministic Three.js renderer + offline frame capture.",
+  "description": "Music video for the instrumental \"F1\": the 2026 Formula 1 drivers championship as a dynamic leaderboard, race by race. Verified data, deterministic renderer, offline frame capture.",
   "type": "module",
   "scripts": {
     "dev": "vite",

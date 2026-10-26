@@ -32,14 +32,14 @@ NOMINAL_BPM = 110.0
 # energy (see docs/creative-brief.md); `check_sections` prints the loudness
 # step at each one (hook boundaries are texture changes at similar loudness).
 SECTIONS = [
-    ("lights", 1, 5),
-    ("threads", 6, 15),
-    ("grid", 16, 19),
+    ("intro", 1, 5),
+    ("verse", 6, 15),
+    ("build", 16, 19),
     ("hook1", 20, 36),
-    ("charge", 37, 39),
+    ("dip", 37, 39),
     ("hook2", 40, 60),
-    ("exposure", 61, 82),
-    ("finale", 83, 89),
+    ("breakdown", 61, 82),
+    ("outro", 83, 89),
 ]
 
 PITCH_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]

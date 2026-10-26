@@ -2,53 +2,77 @@
   "season": 2026,
   "asOf": "2026-10-25",
   "status": "provisional",
-  "afterRound": { "round": 17, "name": "United States Grand Prix", "venue": "Circuit of the Americas, Austin", "date": "2026-10-25" },
-  "totalRounds": 22,
+  "afterRound": { "round": 18, "name": "United States Grand Prix", "date": "2026-10-25" },
+  "totalRounds": 23,
+  "calendarNote": "Bahrain and Saudi Arabia were cancelled in March; the Bahrain Grand Prix was later run at Sepang, Malaysia (Round 16), making 23 rounds.",
   "remaining": [
-    { "round": 18, "name": "Mexico City Grand Prix", "code": "MEX", "date": "2026-11-01" },
-    { "round": 19, "name": "São Paulo Grand Prix", "code": "BRA", "date": "2026-11-08" },
-    { "round": 20, "name": "Las Vegas Grand Prix", "code": "LVG", "date": "2026-11-21" },
-    { "round": 21, "name": "Qatar Grand Prix", "code": "QAT", "date": "2026-11-29" },
-    { "round": 22, "name": "Abu Dhabi Grand Prix", "code": "ABU", "date": "2026-12-06", "venue": "Yas Marina Circuit", "laps": 58 }
+    { "round": 19, "code": "MEX", "name": "Mexico City Grand Prix", "date": "2026-11-01" },
+    { "round": 20, "code": "BRA", "name": "São Paulo Grand Prix", "date": "2026-11-08" },
+    { "round": 21, "code": "LVG", "name": "Las Vegas Grand Prix", "date": "2026-11-21" },
+    { "round": 22, "code": "QAT", "name": "Qatar Grand Prix", "date": "2026-11-29" },
+    { "round": 23, "code": "ABU", "name": "Abu Dhabi Grand Prix", "date": "2026-12-06", "venue": "Yas Marina Circuit" }
   ],
   "sprintsRemaining": 0,
   "racePoints": [25, 18, 15, 12, 10, 8, 6, 4, 2, 1],
-  "roundsRun": ["AUS", "CHN", "JPN", "MIA", "CAN", "MON", "ESP", "AUT", "GBR", "BEL", "HUN", "NED", "ITA", "MAD", "AZE", "SIN", "USA"],
-  "leader": {
-    "code": "ANT", "first": "Kimi", "last": "Antonelli", "number": 12, "team": "mercedes",
-    "points": 365, "wins": 9,
-    "championDecided": false,
-    "clinchNote": "Can clinch in Mexico with P9 or better"
-  },
-  "contenders": [
-    { "code": "RUS", "first": "George", "last": "Russell", "number": 63, "team": "mercedes", "points": 242,
-      "facts": ["Best championship finish to date: P4"] },
-    { "code": "HAM", "first": "Lewis", "last": "Hamilton", "number": 44, "team": "ferrari", "points": 241, "trail": "stripe",
-      "facts": ["7× World Champion", "Last finished P2 in 2021"] },
-    { "code": "VER", "first": "Max", "last": "Verstappen", "number": 3, "team": "redbull", "points": 236,
-      "facts": ["4× World Champion", "Racing as #3 in 2026"] },
-    { "code": "LEC", "first": "Charles", "last": "Leclerc", "number": 16, "team": "ferrari", "points": 233,
-      "facts": ["Championship runner-up in 2022"] }
-  ],
-  "others": [
-    { "code": "NOR", "first": "Lando", "last": "Norris", "number": 1, "team": "mclaren", "points": 211, "note": "2025 World Champion" }
-  ],
+  "sprintPoints": [8, 7, 6, 5, 4, 3, 2, 1],
+  "championDecided": false,
+  "clinchNote": "Antonelli can clinch in Mexico with P9 or better",
   "teams": {
-    "mercedes": { "name": "Mercedes", "color": "#22E6C8" },
-    "ferrari": { "name": "Ferrari", "color": "#F0112E" },
-    "redbull": { "name": "Red Bull", "color": "#3D6FFF" },
-    "mclaren": { "name": "McLaren", "color": "#FF8A1F" }
+    "mercedes": { "name": "Mercedes", "color": "#27F4D2" },
+    "ferrari": { "name": "Ferrari", "color": "#E8102E" },
+    "mclaren": { "name": "McLaren", "color": "#FF8000" },
+    "redbull": { "name": "Red Bull", "color": "#3B6FE0" },
+    "racingbulls": { "name": "Racing Bulls", "color": "#8FB4FF" },
+    "astonmartin": { "name": "Aston Martin", "color": "#1F9E73" },
+    "williams": { "name": "Williams", "color": "#3FC4F5" },
+    "haas": { "name": "Haas", "color": "#E4E7EA" },
+    "alpine": { "name": "Alpine", "color": "#FF7FB8" },
+    "audi": { "name": "Audi", "color": "#8E99A6" },
+    "cadillac": { "name": "Cadillac", "color": "#D6B66A" }
   },
-  "goldColor": "#F5C542",
+  "drivers": [
+    { "code": "ANT", "first": "Kimi", "last": "Antonelli", "number": 12, "team": "mercedes" },
+    { "code": "RUS", "first": "George", "last": "Russell", "number": 63, "team": "mercedes" },
+    { "code": "LEC", "first": "Charles", "last": "Leclerc", "number": 16, "team": "ferrari" },
+    { "code": "HAM", "first": "Lewis", "last": "Hamilton", "number": 44, "team": "ferrari" },
+    { "code": "NOR", "first": "Lando", "last": "Norris", "number": 1, "team": "mclaren" },
+    { "code": "PIA", "first": "Oscar", "last": "Piastri", "number": 81, "team": "mclaren" },
+    { "code": "VER", "first": "Max", "last": "Verstappen", "number": 3, "team": "redbull" },
+    { "code": "HAD", "first": "Isack", "last": "Hadjar", "number": 6, "team": "redbull" },
+    { "code": "LAW", "first": "Liam", "last": "Lawson", "number": 30, "team": "racingbulls", "note": "Raced for Red Bull at Zandvoort, Monza and Madrid while Hadjar recovered from a wrist injury" },
+    { "code": "LIN", "first": "Arvid", "last": "Lindblad", "number": 41, "team": "racingbulls" },
+    { "code": "ALO", "first": "Fernando", "last": "Alonso", "number": 14, "team": "astonmartin" },
+    { "code": "STR", "first": "Lance", "last": "Stroll", "number": 18, "team": "astonmartin" },
+    { "code": "ALB", "first": "Alex", "last": "Albon", "number": 23, "team": "williams" },
+    { "code": "SAI", "first": "Carlos", "last": "Sainz", "number": 55, "team": "williams" },
+    { "code": "OCO", "first": "Esteban", "last": "Ocon", "number": 31, "team": "haas" },
+    { "code": "BEA", "first": "Oliver", "last": "Bearman", "number": 87, "team": "haas" },
+    { "code": "GAS", "first": "Pierre", "last": "Gasly", "number": 10, "team": "alpine" },
+    { "code": "COL", "first": "Franco", "last": "Colapinto", "number": 43, "team": "alpine" },
+    { "code": "HUL", "first": "Nico", "last": "Hülkenberg", "number": 27, "team": "audi" },
+    { "code": "BOR", "first": "Gabriel", "last": "Bortoleto", "number": 5, "team": "audi" },
+    { "code": "PER", "first": "Sergio", "last": "Pérez", "number": 11, "team": "cadillac" },
+    { "code": "BOT", "first": "Valtteri", "last": "Bottas", "number": 77, "team": "cadillac" },
+    { "code": "TSU", "first": "Yuki", "last": "Tsunoda", "number": 22, "team": "racingbulls", "standIn": true, "note": "Reserve; raced for Racing Bulls at Zandvoort, Monza and Madrid" }
+  ],
+  "officialStandings": {
+    "ANT": 365, "RUS": 242, "HAM": 241, "VER": 236, "LEC": 233, "NOR": 211, "PIA": 144, "HAD": 105, "LAW": 77,
+    "GAS": 42, "LIN": 38, "COL": 27, "BEA": 23, "HUL": 13, "BOR": 10, "OCO": 7, "ALO": 7, "SAI": 7, "ALB": 5,
+    "TSU": 1, "STR": 0, "BOT": 0, "PER": 0
+  },
+  "checkpoints": {
+    "afterSingapore": { "ANT": 340, "RUS": 238, "HAM": 229, "VER": 221, "LEC": 215, "NOR": 201 }
+  },
+  "constructors": { "mercedes": 607, "ferrari": 474, "mclaren": 355, "redbull": 355 },
   "sources": [
+    "https://racingnews365.com/2026-f1-championship-standings-after-united-states-grand-prix",
     "https://www.racefans.net/2026/10/25/2026-united-states-grand-prix-race-result-and-championship-points/",
     "https://www.crash.net/f1/results/1108507/1/new-f1-championship-standings-after-united-states-grand-prix",
-    "https://racingnews365.com/2026-f1-championship-standings-after-united-states-grand-prix",
-    "https://www.si.com/onsi/f1/news/f1-standings-and-results-after-the-2026-united-states-grand-prix",
-    "https://www.gpfans.com/en/f1-news/1091908/f1-standings-2026-united-states-grand-prix/",
-    "https://www.grandprix.com/races/united-states-gp-2026-race-notes.html",
+    "https://sports.yahoo.com/articles/f1-standings-results-2026-united-220013689.html",
+    "https://sports.yahoo.com/articles/f1-standings-results-2026-singapore-140932200.html",
+    "https://www.formula1.com/en/latest/article/formula-1-and-fia-confirm-malaysia-will-join-2026-calendar-as-host-venue-for-bahrain-grand-prix.6lL7vjFEM2VVynRHvg1TCf",
     "https://www.skysports.com/f1/news/13519453/f1-confirms-cancellation-of-bahrain-and-saudi-arabian-grands-prix-due-to-war-in-middle-east-as-2026-calendar-reduced-to-22-races",
-    "https://www.espn.com/f1/schedule",
-    "https://www.formula1.com/en/latest/article/all-the-2026-f1-driver-numbers-confirmed-in-full.5rh7o9mPntG7NerzVk9onc"
+    "https://www.espn.com/f1/story/_/id/49803442/liam-lawson-red-bull-again-italian-grand-prix-isack-hadjar-max-verstappen",
+    "https://www.the-race.com/formula-1/f1-2026-entry-list-driver-numbers-chassis-engines/"
   ]
 }

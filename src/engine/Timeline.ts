@@ -11,7 +11,7 @@ export const BEAT = audio.beatPeriod;
 export const BAR = audio.barLength;
 export const ORIGIN = audio.barOrigin;
 
-export type SectionName = 'lights' | 'threads' | 'grid' | 'hook1' | 'charge' | 'hook2' | 'exposure' | 'finale';
+export type SectionName = 'intro' | 'verse' | 'build' | 'hook1' | 'dip' | 'hook2' | 'breakdown' | 'outro';
 
 export interface Section {
   name: SectionName;
