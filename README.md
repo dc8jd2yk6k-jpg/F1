@@ -14,6 +14,11 @@ After 18 rounds, Kimi Antonelli has 365 points and the title all but won. Behind
 | Renderer | Headless Chromium (software WebGL), parallel workers, resumable chunks, x264 |
 | Analysis | Python + librosa: 110 BPM bar grid, section map, envelopes |
 
+| | |
+|---|---|
+| ![Round 1, Australia](docs/stills/02-australia.jpg) | ![Summer break](docs/stills/05-summer-break.jpg) |
+| ![The fight for P2](docs/stills/10-russell.jpg) | ![P2 — ?](docs/stills/13-p2.jpg) |
+
 ## The data, verified
 
 All per-event data is in [`src/data/results.json`](src/data/results.json), with sources listed for every event. The roster, calendar and official standings are in [`src/data/season.json`](src/data/season.json). Nothing ships unless `npm test` passes these checks:
