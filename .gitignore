@@ -1,0 +1,10 @@
+node_modules/
+dist/
+out/
+*.mp4
+*.mov
+public/audio/*
+!public/audio/.gitkeep
+analysis/.venv/
+analysis/__pycache__/
+.DS_Store

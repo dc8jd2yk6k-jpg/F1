@@ -1,0 +1,54 @@
+{
+  "season": 2026,
+  "asOf": "2026-10-25",
+  "status": "provisional",
+  "afterRound": { "round": 17, "name": "United States Grand Prix", "venue": "Circuit of the Americas, Austin", "date": "2026-10-25" },
+  "totalRounds": 22,
+  "remaining": [
+    { "round": 18, "name": "Mexico City Grand Prix", "code": "MEX", "date": "2026-11-01" },
+    { "round": 19, "name": "São Paulo Grand Prix", "code": "BRA", "date": "2026-11-08" },
+    { "round": 20, "name": "Las Vegas Grand Prix", "code": "LVG", "date": "2026-11-21" },
+    { "round": 21, "name": "Qatar Grand Prix", "code": "QAT", "date": "2026-11-29" },
+    { "round": 22, "name": "Abu Dhabi Grand Prix", "code": "ABU", "date": "2026-12-06", "venue": "Yas Marina Circuit", "laps": 58 }
+  ],
+  "sprintsRemaining": 0,
+  "racePoints": [25, 18, 15, 12, 10, 8, 6, 4, 2, 1],
+  "roundsRun": ["AUS", "CHN", "JPN", "MIA", "CAN", "MON", "ESP", "AUT", "GBR", "BEL", "HUN", "NED", "ITA", "MAD", "AZE", "SIN", "USA"],
+  "leader": {
+    "code": "ANT", "first": "Kimi", "last": "Antonelli", "number": 12, "team": "mercedes",
+    "points": 365, "wins": 9,
+    "championDecided": false,
+    "clinchNote": "Can clinch in Mexico with P9 or better"
+  },
+  "contenders": [
+    { "code": "RUS", "first": "George", "last": "Russell", "number": 63, "team": "mercedes", "points": 242,
+      "facts": ["Best championship finish to date: P4"] },
+    { "code": "HAM", "first": "Lewis", "last": "Hamilton", "number": 44, "team": "ferrari", "points": 241, "trail": "stripe",
+      "facts": ["7× World Champion", "Last finished P2 in 2021"] },
+    { "code": "VER", "first": "Max", "last": "Verstappen", "number": 3, "team": "redbull", "points": 236,
+      "facts": ["4× World Champion", "Racing as #3 in 2026"] },
+    { "code": "LEC", "first": "Charles", "last": "Leclerc", "number": 16, "team": "ferrari", "points": 233,
+      "facts": ["Championship runner-up in 2022"] }
+  ],
+  "others": [
+    { "code": "NOR", "first": "Lando", "last": "Norris", "number": 1, "team": "mclaren", "points": 211, "note": "2025 World Champion" }
+  ],
+  "teams": {
+    "mercedes": { "name": "Mercedes", "color": "#22E6C8" },
+    "ferrari": { "name": "Ferrari", "color": "#F0112E" },
+    "redbull": { "name": "Red Bull", "color": "#3D6FFF" },
+    "mclaren": { "name": "McLaren", "color": "#FF8A1F" }
+  },
+  "goldColor": "#F5C542",
+  "sources": [
+    "https://www.racefans.net/2026/10/25/2026-united-states-grand-prix-race-result-and-championship-points/",
+    "https://www.crash.net/f1/results/1108507/1/new-f1-championship-standings-after-united-states-grand-prix",
+    "https://racingnews365.com/2026-f1-championship-standings-after-united-states-grand-prix",
+    "https://www.si.com/onsi/f1/news/f1-standings-and-results-after-the-2026-united-states-grand-prix",
+    "https://www.gpfans.com/en/f1-news/1091908/f1-standings-2026-united-states-grand-prix/",
+    "https://www.grandprix.com/races/united-states-gp-2026-race-notes.html",
+    "https://www.skysports.com/f1/news/13519453/f1-confirms-cancellation-of-bahrain-and-saudi-arabian-grands-prix-due-to-war-in-middle-east-as-2026-calendar-reduced-to-22-races",
+    "https://www.espn.com/f1/schedule",
+    "https://www.formula1.com/en/latest/article/all-the-2026-f1-driver-numbers-confirmed-in-full.5rh7o9mPntG7NerzVk9onc"
+  ]
+}

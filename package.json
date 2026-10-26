@@ -1,0 +1,29 @@
+{
+  "name": "f1-nine-points",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Music video for the instrumental \"F1\" — the 2026 Formula 1 fight for P2. Deterministic Three.js renderer + offline frame capture.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "analyze": "python3 analysis/analyze_audio.py",
+    "stills": "node scripts/stills.mjs",
+    "render": "node scripts/render.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.35",
+    "@types/three": "0.175.0",
+    "typescript": "5.8.3",
+    "vite": "6.4.5",
+    "vitest": "3.2.7"
+  },
+  "dependencies": {
+    "@fontsource/big-shoulders-display": "5.2.5",
+    "@fontsource/jetbrains-mono": "5.2.8",
+    "@fontsource/titillium-web": "5.2.8",
+    "three": "0.175.0"
+  }
+}
