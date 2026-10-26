@@ -2,6 +2,7 @@ import type { Act, Engine, FrameCtx } from '../engine/Engine';
 import { clamp, easeInOutCubic, easeOutCubic, lerp, smoothstep } from '../engine/math';
 import { EVENTS, RACES_LEFT, driver, driverColor } from '../leaderboard/data';
 import { drawBoard } from '../leaderboard/Board';
+import { drawTeamTile } from '../leaderboard/logos';
 import { FINAL, pointsByEvent, pointsSince } from '../leaderboard/model';
 import { drawTitleHeader } from '../leaderboard/Panels';
 import { stateAt } from '../leaderboard/schedule';
@@ -86,7 +87,8 @@ export class P2Fight implements Act {
     ui.text(`P${r.rank}`, 72, y + 34, { font: 'mono', size: 20, weight: 700, color: r.rank === 2 ? '#F5C542' : '#9aa3b2', alpha: a });
     ui.text(String(d.number), 72, y + 150, { font: 'display', size: 120, weight: 900, color: col, alpha: a * 0.18 });
     ui.text(String(d.number), 72, y + 150, { font: 'display', size: 120, weight: 900, color: 'none', stroke: col, strokeWidth: 2.5, alpha: a });
-    ui.text(d.first.toUpperCase(), 250, y + 64, { font: 'mono', size: 15, weight: 700, tracking: 0.24, color: '#cfd5df', alpha: a });
+    drawTeamTile(ui, d.team, 250, y + 58, 26, a);
+    ui.text(d.first.toUpperCase(), 286, y + 64, { font: 'mono', size: 15, weight: 700, tracking: 0.24, color: '#cfd5df', alpha: a });
     ui.text(d.last.toUpperCase(), 248, y + 112, { font: 'title', size: 46, weight: 900, tracking: 0.02, alpha: a });
     ui.text(`${r.points}`, 250, y + 160, { font: 'mono', size: 34, weight: 700, alpha: a });
     const gap = r.rank === 2 ? `AHEAD BY ${r.points - CONTENDERS[1].points}` : `${CONTENDERS[0].points - r.points} BEHIND`;

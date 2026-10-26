@@ -3,6 +3,7 @@ import { clamp, easeInOutCubic, easeOutCubic, easeOutExpo, lerp, smoothstep } fr
 import { DURATION } from '../engine/Timeline';
 import { POINTS_LEFT, RACES_LEFT, SEASON, shortDate } from '../leaderboard/data';
 import { FULL, drawBoard } from '../leaderboard/Board';
+import { F1_MARK, drawMark } from '../leaderboard/logos';
 import { FINAL } from '../leaderboard/model';
 import { PANEL_W, PANEL_X, drawRemaining, drawRoundStrip, drawTitleHeader } from '../leaderboard/Panels';
 import { stateAt } from '../leaderboard/schedule';
@@ -72,13 +73,14 @@ export class Outro implements Act {
     // Title card.
     if (title > 0) {
       const p = easeOutCubic(clamp((bar - 87.5) / 0.8));
-      ui.text('F1', 960, 560, { font: 'display', size: 240, weight: 900, align: 'center', tracking: 0.06, alpha: title * p });
-      ui.text(`${SEASON.season} · THE CHAMPIONSHIP, RACE BY RACE`, 960, 624, { font: 'title', size: 26, weight: 700, tracking: 0.3, align: 'center', color: '#d6dbe4', alpha: title });
+      drawMark(ui, F1_MARK, 960 - 150, 300, 300, `#${F1_MARK.hex}`, title * p);
+      ui.text(`“F1” · ${SEASON.season} · THE CHAMPIONSHIP, RACE BY RACE`, 960, 624, { font: 'title', size: 26, weight: 700, tracking: 0.3, align: 'center', color: '#d6dbe4', alpha: title });
       const fine = [
         `DATA: OFFICIAL CLASSIFICATIONS OF ${SEASON.afterRound.round} GRANDS PRIX AND 6 SPRINTS, CHECKED AGAINST THE STANDINGS AFTER THE ${SEASON.afterRound.name.toUpperCase()} (${shortDate(SEASON.afterRound.date)} ${SEASON.season}).`,
-        'UNOFFICIAL FAN WORK · NOT AFFILIATED WITH FORMULA 1, THE FIA OR ANY TEAM',
+        'LOGOS ARE TRADEMARKS OF THEIR OWNERS, SHOWN TO IDENTIFY TEAMS · MARKS VIA SIMPLE-ICONS (CC0)',
+        'UNOFFICIAL FAN WORK · NOT AFFILIATED WITH OR ENDORSED BY FORMULA 1, THE FIA OR ANY TEAM',
       ];
-      fine.forEach((l, i) => ui.text(l, 960, 990 + i * 24, { font: 'mono', size: 13, weight: 400, tracking: 0.06, align: 'center', color: '#8d96a6', alpha: title }));
+      fine.forEach((l, i) => ui.text(l, 960, 970 + i * 24, { font: 'mono', size: 13, weight: 400, tracking: 0.06, align: 'center', color: '#8d96a6', alpha: title }));
     }
   }
 }

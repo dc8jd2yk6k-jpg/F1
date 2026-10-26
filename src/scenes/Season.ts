@@ -2,6 +2,7 @@ import type { Act, Engine, FrameCtx } from '../engine/Engine';
 import { clamp, easeOutCubic, smoothstep } from '../engine/math';
 import { EVENTS, POINTS_LEFT, RACES_LEFT, SEASON, driver, driverColor } from '../leaderboard/data';
 import { FULL, drawBoard } from '../leaderboard/Board';
+import { drawTeamTile } from '../leaderboard/logos';
 import { TABLES } from '../leaderboard/model';
 import { PANEL_W, PANEL_X, drawHeader, drawRemaining, drawRoundStrip, drawTitleHeader, drawWeekend } from '../leaderboard/Panels';
 import { SLOTS, SUMMER_BREAK, TODAY, stateAt } from '../leaderboard/schedule';
@@ -75,7 +76,8 @@ export class Season implements Act {
       const y = 230 + i * 58;
       const col = driverColor(r.code);
       ui.rect(PANEL_X, y - 22, 5, 30, col, ra);
-      ui.text(driver(r.code).last.toUpperCase(), PANEL_X + 18, y, { font: 'title', size: 22, weight: 700, alpha: ra });
+      drawTeamTile(ui, driver(r.code).team, PANEL_X + 12, y - 7, 28, ra);
+      ui.text(driver(r.code).last.toUpperCase(), PANEL_X + 50, y, { font: 'title', size: 22, weight: 700, alpha: ra });
       for (let w = 0; w < r.wins; w++) ui.rect(PANEL_X + 230 + w * 26, y - 18, 18, 22, col, ra * 0.95);
       ui.text(String(r.wins), PANEL_X + PANEL_W, y, { font: 'mono', size: 22, weight: 700, align: 'right', alpha: ra });
     });

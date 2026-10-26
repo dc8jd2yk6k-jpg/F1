@@ -1,6 +1,7 @@
 import { clamp, easeOutCubic, smoothstep } from '../engine/math';
 import type { Overlay } from '../overlay/Overlay';
 import { EVENTS, SEASON, type SeasonEvent, driver, shortDate, teamAt, teamColor } from './data';
+import { F1_MARK, drawMark, drawTeamTile } from './logos';
 
 // Header, round strip, the "this weekend" classification panel and the
 // start lights. Pure drawing.
@@ -46,7 +47,10 @@ export function drawRoundStrip(ui: Overlay, roundsDone: number, current: number,
     else if (r <= roundsDone) ui.rect(x, 52, segW, 10, '#dfe4ec', alpha * 0.85);
     else ui.rect(x, 52, segW, 10, '#2a3140', alpha);
   }
-  ui.text(`${SEASON.season} DRIVERS' CHAMPIONSHIP`, 1848, 92, { font: 'mono', size: 13, weight: 700, tracking: 0.18, align: 'right', color: '#6f7a8c', alpha });
+  const label = `${SEASON.season} DRIVERS' CHAMPIONSHIP`;
+  ui.text(label, 1848, 92, { font: 'mono', size: 13, weight: 700, tracking: 0.18, align: 'right', color: '#6f7a8c', alpha });
+  const lw = ui.measure(label, { font: 'mono', size: 13, weight: 700, tracking: 0.18 });
+  drawMark(ui, F1_MARK, 1848 - lw - 54, 66, 40, `#${F1_MARK.hex}`, alpha);
 }
 
 /** The current event's points scorers, in finishing order. */
@@ -70,11 +74,12 @@ export function drawWeekend(ui: Overlay, ev: SeasonEvent, age: number, alpha = 1
     const slide = (1 - ra) * 30;
     if (i === 0) ui.rect(x - 8 + slide, y - 4, PANEL_W + 16, rowH - 6, '#ffffff', 0.05 * ra);
     ui.text(`P${e.pos}`, x + slide, y + 22, { font: 'mono', size: 17, weight: 700, color: i < 3 ? '#F5C542' : '#9aa3b2', alpha: ra });
-    ui.rect(x + 54 + slide, y + 4, 5, 24, col, ra);
-    ui.text(d.last.toUpperCase(), x + 70 + slide, y + 23, { font: 'title', size: 21, weight: 700, tracking: 0.03, alpha: ra });
+    ui.rect(x + 50 + slide, y + 4, 5, 24, col, ra);
+    drawTeamTile(ui, team, x + 60 + slide, y + 16, 26, ra);
+    ui.text(d.last.toUpperCase(), x + 96 + slide, y + 23, { font: 'title', size: 21, weight: 700, tracking: 0.03, alpha: ra });
     if (e.team && e.team !== d.team) {
       const nw = ui.measure(d.last.toUpperCase(), { font: 'title', size: 21, weight: 700, tracking: 0.03 });
-      ui.text(`FOR ${SEASON.teams[team as keyof typeof SEASON.teams].name.toUpperCase()}`, x + 80 + nw + slide, y + 22, {
+      ui.text(`FOR ${SEASON.teams[team as keyof typeof SEASON.teams].name.toUpperCase()}`, x + 106 + nw + slide, y + 22, {
         font: 'mono', size: 11, weight: 700, tracking: 0.08, color: col, alpha: ra,
       });
     }

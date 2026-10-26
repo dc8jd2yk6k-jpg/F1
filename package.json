@@ -24,6 +24,7 @@
     "@fontsource/big-shoulders-display": "5.2.5",
     "@fontsource/jetbrains-mono": "5.2.8",
     "@fontsource/titillium-web": "5.2.8",
+    "simple-icons": "16.36.0",
     "three": "0.175.0"
   }
 }

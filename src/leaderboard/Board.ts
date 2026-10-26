@@ -1,6 +1,7 @@
 import { clamp, easeOutBack, easeOutCubic, lerp, smoothstep } from '../engine/math';
 import type { Overlay } from '../overlay/Overlay';
 import { driver, driverColor } from './data';
+import { drawTeamTile } from './logos';
 import type { BoardState, DriverState } from './schedule';
 
 // The championship board: one row per driver, a team-coloured bar on a
@@ -114,10 +115,11 @@ function drawRow(ui: Overlay, ctx: CanvasRenderingContext2D, r: DriverState, L: 
       font: 'mono', size: 12, weight: 700, color: up ? '#3ee08f' : '#ff5a5a', alpha: ca,
     });
   }
-  ui.rect(L.x + 76 + slide, cy - barH / 2, 5, barH, col, a);
-  ui.text(String(d.number), L.x + 112 + slide, cy + 6, { font: 'mono', size: 14, weight: 700, align: 'right', color: '#7b8596', alpha: a });
-  ui.text(d.last.toUpperCase(), L.x + 122 + slide, cy + 7, { font: 'title', size: 19, weight: 700, tracking: 0.04, alpha: a });
-  if (d.standIn) ui.text('RES', L.x + 122 + ui.measure(d.last.toUpperCase(), { font: 'title', size: 19, weight: 700, tracking: 0.04 }) + 10 + slide, cy + 6,
+  ui.rect(L.x + 72 + slide, cy - barH / 2, 5, barH, col, a);
+  drawTeamTile(ui, d.team, L.x + 82 + slide, cy, 24, a);
+  ui.text(String(d.number), L.x + 136 + slide, cy + 6, { font: 'mono', size: 14, weight: 700, align: 'right', color: '#7b8596', alpha: a });
+  ui.text(d.last.toUpperCase(), L.x + 144 + slide, cy + 7, { font: 'title', size: 19, weight: 700, tracking: 0.04, alpha: a });
+  if (d.standIn) ui.text('RES', L.x + 144 + ui.measure(d.last.toUpperCase(), { font: 'title', size: 19, weight: 700, tracking: 0.04 }) + 10 + slide, cy + 6,
     { font: 'mono', size: 11, weight: 700, color: '#7b8596', alpha: a });
 
   // The bar.

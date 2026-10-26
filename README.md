@@ -13,6 +13,7 @@ After 18 rounds, Kimi Antonelli has 365 points and the title all but won. Behind
 | Engine | TypeScript, Canvas2D leaderboard over a Three.js HDR backdrop, deterministic per frame |
 | Renderer | Headless Chromium (software WebGL), parallel workers, resumable chunks, x264 |
 | Analysis | Python + librosa: 110 BPM bar grid, section map, envelopes |
+| Brand marks | F1 and team logos from [simple-icons](https://simpleicons.org) (CC0 path data), drawn as vectors |
 
 | | |
 |---|---|
@@ -58,6 +59,7 @@ src/data/results.json ─────► leaderboard/model.ts       tables after
                              leaderboard/schedule.ts    events → bars; stateAt(t): points, row positions, deltas
                              leaderboard/Board.ts       rows, bars, chips, arrows (Canvas2D)
                              leaderboard/Panels.ts      header, round strip, weekend panel, start lights
+                             leaderboard/logos.ts       F1 mark and team tiles (simple-icons paths)
                              scenes/{Intro,Season,P2Fight,Outro}.ts   one act per section group
 engine/Compositor.ts ──────► HDR backdrop + overlay → frame (pure function of song time)
 scripts/render.mjs ────────► N headless Chromium workers → JPEG → x264 chunks → concat → mux original audio
@@ -93,4 +95,8 @@ analysis/.venv/bin/python analysis/verify_av.py out/F1_MV_2026_1080p.mp4
 
 `npm test` will refuse data that doesn't add up.
 
-*Unofficial fan work. Not affiliated with Formula 1, the FIA or any team. No logos or likenesses are used; team colours are team-inspired.*
+## Brand marks
+
+The F1 logo sits in the header and on the title card, and every driver row carries a team tile. The marks are drawn as vectors from [simple-icons](https://simpleicons.org) 16.36.0, whose SVG path data is CC0. The marks themselves remain trademarks of their owners and appear here only to identify each team. That set covers F1, Ferrari, McLaren, Red Bull, Aston Martin, Audi and Cadillac. Mercedes, Williams, Haas, Alpine and Racing Bulls aren't in it, so their tiles show a short code (MER, WIL, HAA, ALP, RB) rather than a borrowed or non-free logo. Stand-in rounds show the team the driver raced for: Lawson carries the Red Bull mark at Zandvoort, Monza and Madrid. `tests/assets.test.ts` checks that every team, stand-in teams included, has a mark or a code.
+
+*Unofficial fan work, not affiliated with or endorsed by Formula 1, the FIA or any team. Logos and trademarks belong to their owners and are used for identification only.*

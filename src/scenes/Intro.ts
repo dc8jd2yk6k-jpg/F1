@@ -2,6 +2,7 @@ import type { Act, Engine, FrameCtx } from '../engine/Engine';
 import { clamp, easeOutCubic, smoothstep, window01 } from '../engine/math';
 import { DRIVERS, EVENTS, OFFICIAL, SEASON } from '../leaderboard/data';
 import { drawBoard } from '../leaderboard/Board';
+import { F1_MARK, drawMark } from '../leaderboard/logos';
 import { PANEL_W, PANEL_X, drawStartLights, drawTitleHeader } from '../leaderboard/Panels';
 import { stateAt } from '../leaderboard/schedule';
 import { background, calmPost } from './common';
@@ -26,7 +27,10 @@ export class Intro implements Act {
     bg.set(t, 0, 0.05);
     f.draw(bg.scene, bg.camera);
 
-    drawTitleHeader(ui, `FORMULA 1 · ${SEASON.season} DRIVERS' CHAMPIONSHIP`, 'EVERY RACE. EVERY POINT.', bar - 1.2, smoothstep(1.1, 1.4, bar));
+    const ha = smoothstep(1.1, 1.4, bar);
+    drawTitleHeader(ui, '', 'EVERY RACE. EVERY POINT.', bar - 1.2, ha);
+    drawMark(ui, F1_MARK, 70, 38, 44, `#${F1_MARK.hex}`, ha);
+    ui.text(`${SEASON.season} DRIVERS' CHAMPIONSHIP`, 126, 64, { font: 'mono', size: 16, weight: 700, tracking: 0.18, color: '#8d96a6', alpha: ha });
     drawBoard(ui, stateAt(t), { chips: 0, reveal: ((bar - 1.6) / 3.6) * DRIVERS.length });
 
     const lit = [1, 2, 3, 4, 5].filter((n) => bar >= n).length;
