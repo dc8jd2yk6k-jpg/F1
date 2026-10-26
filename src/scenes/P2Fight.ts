@@ -5,9 +5,12 @@ import { drawBoard } from '../leaderboard/Board';
 import { drawTeamTile } from '../leaderboard/logos';
 import { FINAL, pointsByEvent, pointsSince } from '../leaderboard/model';
 import { drawTitleHeader } from '../leaderboard/Panels';
-import { stateAt } from '../leaderboard/schedule';
+import { TODAY, stateAt } from '../leaderboard/schedule';
 import type { Overlay } from '../overlay/Overlay';
-import { background, calmPost } from './common';
+import { drawBackdropCredit } from '../photos/credits';
+import { drawCover, photoFor } from '../photos/photos';
+import { FINALE_PHOTO, zoomAt } from '../photos/venues';
+import { backdrop, calmPost } from './common';
 
 // Bars 61–82, the breakdown: the fight for P2, up close. The board narrows
 // to championship places 2–5 and each contender's season unrolls as a strip
@@ -35,9 +38,10 @@ export class P2Fight implements Act {
   render(f: FrameCtx) {
     const { t, bar, post, ui } = f;
     calmPost(post);
-    const bg = background(f.aspect);
-    bg.set(t, 0, 0.05);
-    f.draw(bg.scene, bg.camera);
+    // The finale venue from the "today" hold dissolves away: this act is about the drivers.
+    const plate = 1 - smoothstep(61, 61.8, bar);
+    backdrop(f, 0, 0.05, [{ photo: FINALE_PHOTO, alpha: plate, zoom: zoomAt(bar - TODAY.from) }]);
+    drawBackdropCredit(ui, FINALE_PHOTO, plate);
 
     // Hand-off from the full board: everyone but places 2–5 steps back.
     const out = easeInOutCubic(clamp((bar - 61) / 0.8));
@@ -62,8 +66,19 @@ export class P2Fight implements Act {
     ui.line(xb, BLOCK_Y - 4, xb, BLOCK_Y + BLOCK_H * 4 - 10, '#ffffff', 1, 0.16 * a);
     ui.text('SUMMER BREAK', xb + 6, BLOCK_Y + BLOCK_H * 4 - 14, { font: 'mono', size: 10, weight: 700, tracking: 0.16, color: '#6f7a8c', alpha: a });
     // Today marker at the end of the strips.
+    this.credits(ui, a * smoothstep(61.8, 62.4, bar));
     ui.text(`AFTER R${EVENTS.at(-1)!.round}`, STRIP_X + STRIP_W, BLOCK_Y + BLOCK_H * 4 - 14, {
       font: 'mono', size: 10, weight: 700, tracking: 0.16, align: 'right', color: '#6f7a8c', alpha: a,
+    });
+  }
+
+  /** One line crediting the four portraits. */
+  private credits(ui: Overlay, a: number) {
+    const parts = CONTENDERS.map((r) => photoFor('driver', r.code)).filter((p) => !!p)
+      .map((p) => `${driver(p!.key).last.toUpperCase()}: ${p!.author.toUpperCase()}, ${p!.license}`);
+    if (!parts.length || a <= 0) return;
+    ui.text(`PHOTOS · ${parts.join(' · ')} · WIKIMEDIA COMMONS`, 1848, 1064, {
+      font: 'mono', size: 11, weight: 700, tracking: 0.04, align: 'right', color: '#8d96a6', alpha: a * 0.9,
     });
   }
 
@@ -82,6 +97,23 @@ export class P2Fight implements Act {
     const y = BLOCK_Y + 12 + i * BLOCK_H;
     const a = alpha * focus;
     const base = y + BLOCK_H - 44;
+
+    // Portrait, between the name and the strip.
+    const photo = photoFor('driver', r.code);
+    if (photo) {
+      const px = 572;
+      const pw = 184;
+      const ph = BLOCK_H - 22;
+      const c = ui.ctx;
+      c.save();
+      c.globalAlpha = a * (0.78 + 0.22 * hi);
+      c.beginPath();
+      c.rect(px, y - 4, pw, ph);
+      c.clip();
+      drawCover(c, photo, px, y - 4, pw, ph);
+      c.restore();
+      ui.rect(px, y - 4, 3, ph, col, a);
+    }
 
     // Identity.
     ui.text(`P${r.rank}`, 72, y + 34, { font: 'mono', size: 20, weight: 700, color: r.rank === 2 ? '#F5C542' : '#9aa3b2', alpha: a });

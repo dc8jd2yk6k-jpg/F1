@@ -8,3 +8,4 @@ public/audio/*
 analysis/.venv/
 analysis/__pycache__/
 .DS_Store
+analysis/cache/

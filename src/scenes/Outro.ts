@@ -7,7 +7,12 @@ import { F1_MARK, drawMark } from '../leaderboard/logos';
 import { FINAL } from '../leaderboard/model';
 import { PANEL_W, PANEL_X, drawRemaining, drawRoundStrip, drawTitleHeader } from '../leaderboard/Panels';
 import { stateAt } from '../leaderboard/schedule';
-import { background, calmPost } from './common';
+import { GOLD } from '../photos/PhotoPlate';
+import { drawBackdropCredit } from '../photos/credits';
+import { PHOTOS } from '../photos/photos';
+import { FINALE_PHOTO, zoomAt } from '../photos/venues';
+import type { Overlay } from '../overlay/Overlay';
+import { backdrop, calmPost } from './common';
 
 // Bars 83–end. The song turns to D major and the backdrop warms to gold.
 // The full table returns as it stands today, the five rounds still to run
@@ -24,14 +29,14 @@ export class Outro implements Act {
     calmPost(post);
     post.fade = smoothstep(DURATION - 2.4, DURATION - 0.25, t);
     const warm = smoothstep(83, 86.5, bar);
-    const bg = background(f.aspect);
-    bg.set(t, warm, 0.05 + 0.03 * warm);
-    f.draw(bg.scene, bg.camera);
-
     const boardIn = easeInOutCubic(clamp((bar - 83) / 0.8));
     const card = smoothstep(85.4, 85.8, bar);
     const title = smoothstep(87.5, 87.9, bar);
     const boardA = boardIn * (1 - 0.75 * card) * (1 - title);
+    // The finale venue returns in gold: where P2 will be decided.
+    const plate = smoothstep(83, 84.2, bar) * (1 - 0.75 * title);
+    backdrop(f, warm, 0.05 + 0.03 * warm, [{ photo: FINALE_PHOTO, alpha: plate, zoom: zoomAt(bar - 83) }], GOLD);
+    drawBackdropCredit(ui, FINALE_PHOTO, plate * (1 - title));
 
     drawBoard(ui, stateAt(t), { chips: 0, alpha: boardA });
     drawRoundStrip(ui, SEASON.afterRound.round, 0, boardA);
@@ -80,7 +85,29 @@ export class Outro implements Act {
         'LOGOS ARE TRADEMARKS OF THEIR OWNERS, SHOWN TO IDENTIFY TEAMS · MARKS VIA SIMPLE-ICONS (CC0)',
         'UNOFFICIAL FAN WORK · NOT AFFILIATED WITH OR ENDORSED BY FORMULA 1, THE FIA OR ANY TEAM',
       ];
+      photoCredits(ui, title);
       fine.forEach((l, i) => ui.text(l, 960, 970 + i * 24, { font: 'mono', size: 13, weight: 400, tracking: 0.06, align: 'center', color: '#8d96a6', alpha: title }));
     }
   }
+}
+
+/** Every photograph used, on the closing card (the full list is in CREDITS.md). */
+function photoCredits(ui: Overlay, alpha: number) {
+  if (!PHOTOS.length || alpha <= 0) return;
+  const sa = PHOTOS.some((p) => /BY-SA/i.test(p.license));
+  ui.text(`PHOTOGRAPHY VIA WIKIMEDIA COMMONS${sa ? ' · THIS VIDEO IS SHARED UNDER CC BY-SA 4.0' : ''}`, 960, 690, {
+    font: 'mono', size: 13, weight: 700, tracking: 0.16, align: 'center', color: '#c9ced8', alpha,
+  });
+  const cols = 3;
+  const perCol = Math.ceil(PHOTOS.length / cols);
+  const colW = 580;
+  const x0 = 960 - (colW * cols) / 2 + 20;
+  PHOTOS.forEach((p, i) => {
+    const cx = x0 + Math.floor(i / perCol) * colW;
+    const cy = 722 + (i % perCol) * 19;
+    const line = `${p.caption.toUpperCase()} — ${p.author.toUpperCase()}, ${p.license}`;
+    const style = { font: 'mono', size: 11, weight: 400, tracking: 0.03 } as const;
+    const size = Math.min(11, (11 * (colW - 24)) / ui.measure(line, style));
+    ui.text(line, cx, cy, { ...style, size, color: '#a3abb8', alpha });
+  });
 }

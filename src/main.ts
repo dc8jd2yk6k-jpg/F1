@@ -8,6 +8,7 @@ import '@fontsource/big-shoulders-display/700.css';
 import '@fontsource/big-shoulders-display/900.css';
 import { Engine } from './engine/Engine';
 import { DURATION, FPS, FRAME_COUNT, barTime } from './engine/Timeline';
+import { loadPhotos } from './photos/photos';
 import { ACTS } from './scenes';
 
 // Two modes share one engine:
@@ -42,7 +43,7 @@ async function loadFonts() {
 }
 
 async function boot() {
-  await loadFonts();
+  await Promise.all([loadFonts(), loadPhotos()]);
   const canvas = document.createElement('canvas');
   canvas.width = W;
   canvas.height = H;

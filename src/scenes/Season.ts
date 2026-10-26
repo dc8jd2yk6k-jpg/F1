@@ -7,7 +7,9 @@ import { TABLES } from '../leaderboard/model';
 import { PANEL_W, PANEL_X, drawHeader, drawRemaining, drawRoundStrip, drawTitleHeader, drawWeekend } from '../leaderboard/Panels';
 import { SLOTS, SUMMER_BREAK, TODAY, stateAt } from '../leaderboard/schedule';
 import type { Overlay } from '../overlay/Overlay';
-import { background, breath, calmPost } from './common';
+import { drawBackdropCredit, drawWinnerCard } from '../photos/credits';
+import { LEGS, legAt, venueLayers } from '../photos/venues';
+import { backdrop, breath, calmPost } from './common';
 
 // Bars 6–60: the season itself, one round at a time, from Melbourne to
 // Austin. Two holds are cut into the music: the song's dip is the summer
@@ -23,9 +25,9 @@ export class Season implements Act {
   render(f: FrameCtx) {
     const { t, bar, post, ui } = f;
     calmPost(post);
-    const bg = background(f.aspect);
-    bg.set(t, 0, 0.05);
-    f.draw(bg.scene, bg.camera);
+    backdrop(f, 0, 0.05, venueLayers(bar));
+    const leg = LEGS[legAt(bar)];
+    if (leg) drawBackdropCredit(ui, leg.photo, smoothstep(leg.from, leg.from + 0.3, bar));
 
     const s = stateAt(t);
     const inBreak = bar >= SUMMER_BREAK.from && bar < SUMMER_BREAK.to;
@@ -62,6 +64,7 @@ export class Season implements Act {
     } else {
       drawHeader(ui, ev, s.age);
       drawWeekend(ui, ev, s.age);
+      drawWinnerCard(ui, ev, s.age);
     }
   }
 

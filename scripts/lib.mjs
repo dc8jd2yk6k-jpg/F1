@@ -13,7 +13,7 @@ export const DIST = path.join(ROOT, 'dist');
 
 const TYPES = {
   '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json',
-  '.woff2': 'font/woff2', '.woff': 'font/woff', '.m4a': 'audio/mp4', '.png': 'image/png',
+  '.woff2': 'font/woff2', '.woff': 'font/woff', '.m4a': 'audio/mp4', '.png': 'image/png', '.jpg': 'image/jpeg',
 };
 
 export function build() {

@@ -16,6 +16,18 @@ So the video became a **dynamic leaderboard**: a bar-chart race of the whole dri
 - There is no 3D camera. That removes both the clipping and the shake.
 - Nothing pulses on the beat. The music lands through *when* things change: every round starts on a downbeat, then eases.
 
+### Revision 3: real photographs and brand marks
+
+The leaderboard was purely typographic. Revision 3 adds real-world material without giving up legibility or the no-shake rule:
+
+- **Brand marks.** The F1 logo and team marks (simple-icons, CC0 path data) identify every row. Teams without a free mark show a short code instead.
+- **Photographs** from Wikimedia Commons, free licences only, each credited on screen while it is shown:
+  - **Behind the board:** each round's own venue. Where Commons has it, the photo is from that 2026 weekend and shows the race winner's car: Antonelli at Suzuka and in Shanghai, Russell at the Red Bull Ring, Leclerc at Silverstone, Norris at Zandvoort, Verstappen in the Bahrain GP. Otherwise it is a captioned photo of the circuit from an earlier year. The photo dissolves in on the round's downbeat (an ease-out, so the biggest change lands on the beat) and only pushes in very slowly. It is blurred, darkened and graded toward the board's palette, so it reads as atmosphere and never competes with a number.
+  - **The winner card:** under the weekend's classification, the winner's photo and name.
+  - **The fight for P2:** a portrait in each of the four contenders' blocks.
+  - **The finale venue:** Yas Marina under lights, from the "today" hold onward, turning gold for the ending. That's where P2 will be decided.
+- **Honest captions.** Who or what a photo shows comes from its Commons metadata. Captions say where and when it was taken, for example "Hamilton · 2025 Japanese GP" for the one contender without a 2026 portrait on Commons.
+
 ## What the music says
 
 Measured by `analysis/analyze_audio.py`:
@@ -62,5 +74,6 @@ Facts this work surfaced and corrected:
 - **One table, always legible.** Each row has rank, team chip, car number, surname, the bar on a shared points axis, a count-up total, this round's **+N** chip, and ▲/▼ rank changes. The right-hand panel lists the weekend's points scorers in finishing order. Sprints carry a gold SPRINT tag.
 - **Team colours** are team-inspired, chosen so that neighbouring bars stay distinguishable.
 - **Calm motion.** Points ease up over the first part of a round, then rows glide to their new places, softening as they pass. Labels never fight.
-- **Background.** Out-of-focus floodlight bokeh drifting slowly, a pure function of time, turning gold for the D-major ending.
+- **Background.** Out-of-focus floodlight bokeh drifting slowly, a pure function of time, turning gold for the D-major ending. During the season it sits under the round's photograph.
+- **Credits on screen.** Each photo's caption, author and licence are shown while it is visible, and all of them appear together on the closing card. The full list is in [`CREDITS.md`](../CREDITS.md).
 - **Typography.** Titillium Web for names, JetBrains Mono for numbers and data, and Big Shoulders Display for big numerals.

@@ -1,0 +1,278 @@
+[
+ {
+  "id": "venue-aus",
+  "role": "venue",
+  "key": "AUS",
+  "title": "File:2026 Australian Grand Prix (028A8090).jpg",
+  "caption": "Albert Park · 2026 Australian GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-chn",
+  "role": "venue",
+  "key": "CHN",
+  "title": "File:2026 Chinese GP - Mercedes - Kimi Antonelli - Qualifying.jpg",
+  "caption": "Antonelli in Shanghai · 2026 Chinese GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-jpn",
+  "role": "venue",
+  "key": "JPN",
+  "title": "File:Mercedes W17 - Kimi Antonelli approaches Spoon Curve at Suzuka during the 2026 Japanese GP (55194289192).jpg",
+  "caption": "Antonelli at Suzuka · 2026 Japanese GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-mia",
+  "role": "venue",
+  "key": "MIA",
+  "title": "File:The first three rows of the grid ahead of the race start miami gp 2025.jpg",
+  "caption": "The grid in Miami · 2025 Miami GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-can",
+  "role": "venue",
+  "key": "CAN",
+  "title": "File:Circuit Gilles-Villeneuve Bassin Olympique.jpg",
+  "caption": "Circuit Gilles Villeneuve, Montréal (2008)",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-mon",
+  "role": "venue",
+  "key": "MON",
+  "title": "File:Monaco Grand Prix stands, 31 May 2025.jpg",
+  "caption": "Monaco grandstands · 2025 Monaco GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-bar",
+  "role": "venue",
+  "key": "BAR",
+  "title": "File:Fernand Alonso GP Espagna2025 Pratice 3.jpg",
+  "caption": "Barcelona-Catalunya · 2025 Spanish GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-aut",
+  "role": "venue",
+  "key": "AUT",
+  "title": "File:FIA F1 Austria 2026 Nr. 63 Russell (2).jpg",
+  "caption": "Russell at the Red Bull Ring · 2026 Austrian GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-gbr",
+  "role": "venue",
+  "key": "GBR",
+  "title": "File:Charles Leclerc Ferrari F1 Car (55383928044).jpg",
+  "caption": "Leclerc at Silverstone · 2026 British GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-bel",
+  "role": "venue",
+  "key": "BEL",
+  "title": "File:F1 2026, TGR Haas F1 Team, Haas VF-26, Oliver Bearman, Esteban Ocon, Spa Francorchamps (55425688103).jpg",
+  "caption": "Spa-Francorchamps · 2026 Belgian GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-hun",
+  "role": "venue",
+  "key": "HUN",
+  "title": "File:Hungaroring, Mogyoród 13.jpg",
+  "caption": "Hungaroring, Mogyoród (2015)",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-ned",
+  "role": "venue",
+  "key": "NED",
+  "title": "File:2026-08-21 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2186.jpg",
+  "caption": "Norris at Zandvoort · 2026 Dutch GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-ita",
+  "role": "venue",
+  "key": "ITA",
+  "title": "File:Historic Monza Oval Banking, 2019 Italian Grand Prix, Monza, September 6th.jpg",
+  "caption": "The old banking at Monza (2019)",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-mad",
+  "role": "venue",
+  "key": "MAD",
+  "title": "File:IFEMA Madrid Venue for the XX International Botanical Congress.jpg",
+  "caption": "IFEMA Madrid, home of the Madring (2024)",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-aze",
+  "role": "venue",
+  "key": "AZE",
+  "title": "File:Formula 1 2026 Azerbaijan Grand Prix 2.jpg",
+  "caption": "The start in Baku · 2026 Azerbaijan GP",
+  "focus": [
+   0.5,
+   0.5
+  ],
+  "author": "Azerbaijan Presidential Press Service"
+ },
+ {
+  "id": "venue-mas",
+  "role": "venue",
+  "key": "MAS",
+  "title": "File:2026 Bahrain GP - Red Bull - Max Verstappen - FP2.jpg",
+  "caption": "Verstappen · 2026 Bahrain GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-sin",
+  "role": "venue",
+  "key": "SIN",
+  "title": "File:Singapore (SG), View from Marina Bay Sands, Singapore Flyer -- 2019 -- 4720.jpg",
+  "caption": "Marina Bay from above (2019)",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "venue-usa",
+  "role": "venue",
+  "key": "USA",
+  "title": "File:F1-usgp-2012-crowds-austin-texas.jpg",
+  "caption": "Circuit of the Americas, Austin (2012)",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "finale-yas-marina",
+  "role": "finale",
+  "key": "FINALE",
+  "title": "File:Yas Marina circuit by night.jpg",
+  "caption": "Yas Marina under lights (2010)",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "driver-rus",
+  "role": "driver",
+  "key": "RUS",
+  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2377.jpg",
+  "caption": "Russell · 2026 Dutch GP",
+  "focus": [
+   0.45,
+   0.3
+  ]
+ },
+ {
+  "id": "driver-ant",
+  "role": "driver",
+  "key": "ANT",
+  "title": "File:2026 Chinese GP - Mercedes - Kimi Antonelli - Post Race Celebration.jpg",
+  "caption": "Antonelli celebrates · 2026 Chinese GP",
+  "focus": [
+   0.5,
+   0.35
+  ]
+ },
+ {
+  "id": "driver-lec",
+  "role": "driver",
+  "key": "LEC",
+  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2374.jpg",
+  "caption": "Leclerc · 2026 Dutch GP",
+  "focus": [
+   0.5,
+   0.3
+  ]
+ },
+ {
+  "id": "driver-nor",
+  "role": "driver",
+  "key": "NOR",
+  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2551.jpg",
+  "caption": "Norris · 2026 Dutch GP",
+  "focus": [
+   0.42,
+   0.28
+  ]
+ },
+ {
+  "id": "driver-ver",
+  "role": "driver",
+  "key": "VER",
+  "title": "File:Max Verstappen at the Red Bull Fan Zone – Crown Riverwalk, Melbourne (028A7659).jpg",
+  "caption": "Verstappen · Melbourne, 2026",
+  "focus": [
+   0.6,
+   0.35
+  ]
+ },
+ {
+  "id": "driver-ham",
+  "role": "driver",
+  "key": "HAM",
+  "title": "File:2025 Japan GP - Ferrari - Lewis Hamilton - Fanzone Stage.jpg",
+  "caption": "Hamilton · 2025 Japanese GP",
+  "focus": [
+   0.45,
+   0.2
+  ]
+ }
+]

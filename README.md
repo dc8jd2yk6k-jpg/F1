@@ -14,6 +14,7 @@ After 18 rounds, Kimi Antonelli has 365 points and the title all but won. Behind
 | Renderer | Headless Chromium (software WebGL), parallel workers, resumable chunks, x264 |
 | Analysis | Python + librosa: 110 BPM bar grid, section map, envelopes |
 | Brand marks | F1 and team logos from [simple-icons](https://simpleicons.org) (CC0 path data), drawn as vectors |
+| Photos | 25 photographs from Wikimedia Commons (CC0, PD, CC BY, CC BY-SA), each credited on screen; see [`CREDITS.md`](CREDITS.md) |
 
 | | |
 |---|---|
@@ -60,6 +61,8 @@ src/data/results.json ─────► leaderboard/model.ts       tables after
                              leaderboard/Board.ts       rows, bars, chips, arrows (Canvas2D)
                              leaderboard/Panels.ts      header, round strip, weekend panel, start lights
                              leaderboard/logos.ts       F1 mark and team tiles (simple-icons paths)
+analysis/fetch_commons.py ─► src/data/photos.json       curated Commons photos, licence-checked, with credits
+                             photos/{PhotoPlate,venues,credits}.ts   venue backdrop, winner card, on-screen credits
                              scenes/{Intro,Season,P2Fight,Outro}.ts   one act per section group
 engine/Compositor.ts ──────► HDR backdrop + overlay → frame (pure function of song time)
 scripts/render.mjs ────────► N headless Chromium workers → JPEG → x264 chunks → concat → mux original audio
@@ -80,6 +83,7 @@ python3 -m venv analysis/.venv && analysis/.venv/bin/pip install -r analysis/req
 
 # Put the song at public/audio/f1.m4a (not committed), then:
 npm run analyze                 # → src/data/audio.json
+analysis/.venv/bin/python analysis/fetch_commons.py   # photos + credits (already committed)
 npm test                        # data integrity, schedule, timeline
 npm run dev                     # real-time preview with audio (?bar=40 to jump)
 
@@ -94,6 +98,21 @@ analysis/.venv/bin/python analysis/verify_av.py out/F1_MV_2026_1080p.mp4
 3. Give the new round a slot in `schedule.ts`.
 
 `npm test` will refuse data that doesn't add up.
+
+## Photographs
+
+Real photos come from [Wikimedia Commons](https://commons.wikimedia.org). Only files Commons marks as CC0, public domain, CC BY or CC BY-SA are used, and each is credited on screen while it is shown.
+
+- **Behind the board:** each round's venue, from that 2026 weekend wherever Commons has it, and often showing the race winner's car (Antonelli at Suzuka, Leclerc at Silverstone, Norris at Zandvoort…). It dissolves in on the round's downbeat and is softened, darkened and graded so the numbers always read.
+- **Winner card:** the winner of each Grand Prix and sprint, under the weekend's classification.
+- **P2 blocks:** a portrait of each of the four contenders.
+- **Finale venue:** Yas Marina under lights, from "today" to the gold ending.
+
+Who a photo shows comes from its Commons title, description and categories. Captions state where and when each photo was taken.
+
+[`analysis/photos.select.json`](analysis/photos.select.json) is the curated list. `analysis/fetch_commons.py` checks each file's licence against Commons metadata, downloads a resized copy, and writes the manifest and [`CREDITS.md`](CREDITS.md). `npm test` checks that every photo has an accepted licence, an author, a source page and a credits entry. It also checks that every race winner and every P2 contender has a photo.
+
+**Licence of the video:** some photos are CC BY-SA, so the rendered video is shared under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The code is unaffected.
 
 ## Brand marks
 
