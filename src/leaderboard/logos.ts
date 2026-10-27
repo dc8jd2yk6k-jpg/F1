@@ -62,6 +62,26 @@ export function drawMark(ui: Overlay, m: Mark, x: number, y: number, size: numbe
   c.restore();
 }
 
+/** A mark with a band of light sweeping across it (0 → 1 = left → right). */
+export function drawMarkSweep(ui: Overlay, m: Mark, x: number, y: number, size: number, color: string, sweep: number, alpha = 1) {
+  drawMark(ui, m, x, y, size, color, alpha);
+  if (alpha <= 0.003 || sweep <= 0 || sweep >= 1) return;
+  const c = ui.ctx;
+  c.save();
+  c.globalAlpha = Math.min(1, alpha);
+  c.translate(x, y);
+  c.scale(size / 24, size / 24);
+  c.clip(path2d(m));
+  const cx = -8 + 40 * sweep;
+  const g = c.createLinearGradient(cx - 5, 0, cx + 5, 6);
+  g.addColorStop(0, 'rgba(255,255,255,0)');
+  g.addColorStop(0.5, 'rgba(255,255,255,0.85)');
+  g.addColorStop(1, 'rgba(255,255,255,0)');
+  c.fillStyle = g;
+  c.fillRect(0, 0, 24, 24);
+  c.restore();
+}
+
 /** A team's identity tile: its mark in white, or its code if it has none. */
 export function drawTeamTile(ui: Overlay, team: string, x: number, cy: number, size: number, alpha = 1) {
   if (alpha <= 0.003) return;

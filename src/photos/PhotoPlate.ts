@@ -33,6 +33,8 @@ export interface PlateLayer {
   alpha: number;
   /** ≥ 1; grows slowly for the push-in. */
   zoom: number;
+  /** Full resolution, not softened (the opening's hero shots). */
+  sharp?: boolean;
 }
 
 export interface PlateGrade {
@@ -42,6 +44,8 @@ export interface PlateGrade {
 }
 
 export const NIGHT: PlateGrade = { exposure: 0.06, sat: 0.65, tint: [0.85, 0.95, 1.15] };
+/** The opening's hero shots: full colour, only darkened enough for the type on top. */
+export const HERO: PlateGrade = { exposure: 0.24, sat: 0.95, tint: [1, 1, 1.04] };
 /** The D-major ending: the finale venue in gold. */
 export const GOLD: PlateGrade = { exposure: 0.085, sat: 0.55, tint: [1.25, 0.95, 0.62] };
 
@@ -76,27 +80,29 @@ export class PhotoPlate {
     }
   }
 
-  private texture(p: Photo) {
-    let tex = this.textures.get(p.id);
+  private texture(p: Photo, sharp = false) {
+    const key = sharp ? `${p.id}:sharp` : p.id;
+    let tex = this.textures.get(key);
     if (!tex) {
       const img = imageOf(p);
       if (!img) return null;
       // Soften once, at low resolution: a smooth blur that costs nothing per frame.
-      const w = SOFT_W;
+      const soft = sharp ? 0 : SOFT_PX;
+      const w = sharp ? img.naturalWidth : SOFT_W;
       const h = Math.round((w * img.naturalHeight) / img.naturalWidth);
       const c = document.createElement('canvas');
       c.width = w;
       c.height = h;
       const g = c.getContext('2d')!;
-      g.filter = `blur(${SOFT_PX}px)`;
-      g.drawImage(img, -2 * SOFT_PX, -2 * SOFT_PX, w + 4 * SOFT_PX, h + 4 * SOFT_PX);
+      if (soft) g.filter = `blur(${soft}px)`;
+      g.drawImage(img, -2 * soft, -2 * soft, w + 4 * soft, h + 4 * soft);
       tex = new THREE.CanvasTexture(c);
       tex.colorSpace = THREE.SRGBColorSpace;
       tex.minFilter = THREE.LinearFilter;
       tex.magFilter = THREE.LinearFilter;
       tex.generateMipmaps = false;
       tex.needsUpdate = true;
-      this.textures.set(p.id, tex);
+      this.textures.set(key, tex);
     }
     return tex;
   }
@@ -106,7 +112,7 @@ export class PhotoPlate {
     let any = false;
     this.layers.forEach((l, i) => {
       const spec = layers[i];
-      const tex = spec?.photo ? this.texture(spec.photo) : null;
+      const tex = spec?.photo ? this.texture(spec.photo, spec.sharp) : null;
       const on = !!tex && spec.alpha > 0.002;
       l.mesh.visible = on;
       if (!on || !spec.photo) return;

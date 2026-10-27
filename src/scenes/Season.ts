@@ -3,6 +3,7 @@ import { clamp, easeOutCubic, smoothstep } from '../engine/math';
 import { EVENTS, POINTS_LEFT, RACES_LEFT, SEASON, driver, driverColor } from '../leaderboard/data';
 import { FULL, drawBoard } from '../leaderboard/Board';
 import { drawTeamTile } from '../leaderboard/logos';
+import { LIGHTS_OUT, drawGantry, gridOffset, launch } from '../leaderboard/Opening';
 import { TABLES } from '../leaderboard/model';
 import { PANEL_W, PANEL_X, drawHeader, drawRemaining, drawRoundStrip, drawTitleHeader, drawWeekend } from '../leaderboard/Panels';
 import { SLOTS, SUMMER_BREAK, TODAY, stateAt } from '../leaderboard/schedule';
@@ -33,7 +34,13 @@ export class Season implements Act {
     const inBreak = bar >= SUMMER_BREAK.from && bar < SUMMER_BREAK.to;
     const inToday = bar >= TODAY.from;
     const hold = inBreak || inToday;
-    drawBoard(ui, s, { chips: hold ? 0 : 1, leaderGlow: breath(t) });
+    // Lights out (bar 6): the grid slots launch into their rows, the dark gantry fades.
+    const go = launch(bar);
+    drawBoard(ui, s, {
+      chips: hold ? 0 : 1, leaderGlow: breath(t),
+      ...(go < 1 ? { offset: (code: string) => gridOffset(code, go), dataAlpha: go } : {}),
+    });
+    drawGantry(ui, 0, 1 - smoothstep(LIGHTS_OUT, LIGHTS_OUT + 0.35, bar));
 
     const ev = EVENTS[s.k];
     drawRoundStrip(ui, ev.round, hold ? 0 : ev.round);

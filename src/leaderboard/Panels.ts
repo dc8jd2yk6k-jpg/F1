@@ -87,36 +87,6 @@ export function drawWeekend(ui: Overlay, ev: SeasonEvent, age: number, alpha = 1
   });
 }
 
-/** Five start lights, F1-style, lit one per bar of the intro. */
-export function drawStartLights(ui: Overlay, lit: number, x: number, y: number, size: number, alpha = 1) {
-  if (alpha <= 0) return;
-  const c = ui.ctx;
-  const gap = size * 1.35;
-  const x0 = x - (gap * 4) / 2;
-  for (let i = 0; i < 5; i++) {
-    const on = clamp(lit - i);
-    const cx = x0 + i * gap;
-    c.save();
-    c.globalAlpha = alpha;
-    c.fillStyle = '#0b0d12';
-    c.beginPath();
-    c.roundRect(cx - size * 0.62, y - size * 1.25, size * 1.24, size * 2.5, size * 0.2);
-    c.fill();
-    for (const dy of [-0.55, 0.55]) {
-      c.beginPath();
-      c.arc(cx, y + dy * size, size * 0.42, 0, Math.PI * 2);
-      c.fillStyle = on > 0 ? `rgba(255,${30 + 20 * (1 - on)},${30},${0.25 + 0.75 * on})` : '#1d0a0b';
-      if (on > 0) {
-        c.shadowColor = 'rgba(255,40,40,0.9)';
-        c.shadowBlur = size * 0.9 * on;
-      }
-      c.fill();
-      c.shadowBlur = 0;
-    }
-    c.restore();
-  }
-}
-
 /** Remaining rounds of the calendar as empty slots. */
 export function drawRemaining(ui: Overlay, x: number, y: number, age: number, alpha = 1) {
   if (alpha <= 0) return;

@@ -88,7 +88,8 @@ def main() -> None:
     }
 
     # 2. No shake: during holds nothing but slow background drift should move.
-    holds = [(36.6, 39.8), (57.6, 60.8), (70.0, 70.9)]
+    # Summer break, "today", and the P2 chart's final hold.
+    holds = [(36.6, 39.8), (57.6, 60.8), (81.2, 82.8)]
     stab = []
     for a0, a1 in holds:
         f0, f1 = int(bar_t(a0) * fps), int(bar_t(a1) * fps)

@@ -5,6 +5,7 @@ import { drawBoard } from '../leaderboard/Board';
 import { drawTeamTile } from '../leaderboard/logos';
 import { FINAL, pointsByEvent, pointsSince } from '../leaderboard/model';
 import { drawTitleHeader } from '../leaderboard/Panels';
+import { autoTop, drawPointsChart } from '../leaderboard/PointsChart';
 import { TODAY, stateAt } from '../leaderboard/schedule';
 import type { Overlay } from '../overlay/Overlay';
 import { drawBackdropCredit } from '../photos/credits';
@@ -14,9 +15,11 @@ import { backdrop, calmPost } from './common';
 
 // Bars 61–82, the breakdown: the fight for P2, up close. The board narrows
 // to championship places 2–5 and each contender's season unrolls as a strip
-// of every score — race by race, sprint by sprint. On the four bass pulses
-// (bars 67, 71, 75, 79) one driver at a time is brought forward with what the
-// data says about them.
+// of every score — race by race, sprint by sprint. From the first bass pulse
+// (bar 67) the strips give way to a chart of cumulative points: the season
+// replays as four racing lines, one event per half bar, and on each pulse
+// (67, 71, 75, 79) one driver is brought forward with what the data says
+// about them. Then the view closes in on the finish: 9 points, 4 drivers.
 
 const CONTENDERS = FINAL.slice(1, 5);
 const PULSES = [67, 71, 75, 79];
@@ -27,6 +30,9 @@ const BLOCK_Y = 176;
 const BLOCK_H = 214;
 const COL_W = STRIP_W / EVENTS.length;
 const MAX_H = 112;
+
+/** The chart: axes draw on at bar 67, then one event every half bar from 67.5 to 79.5, then the zoom. */
+export const CHART = { in: 67, start: 67.5, step: 0.5, zoom: [79.5, 81] as const };
 
 const since = Object.fromEntries(CONTENDERS.map((r) => [r.code, pointsSince(r.code, BREAK_AT)]));
 const mostSince = Math.max(...Object.values(since));
@@ -54,22 +60,72 @@ export class P2Fight implements Act {
     drawTitleHeader(ui, 'THE FIGHT FOR P2', `${CONTENDERS.length} DRIVERS · ${spread} POINTS · ${RACES_LEFT} RACES LEFT`, bar - 61.4, a);
     if (a <= 0) return;
 
-    const active = PULSES.findIndex((p) => bar >= p && bar < p + 4);
-    this.codesRow(ui, a);
-    CONTENDERS.forEach((r, i) => {
-      const focus = active < 0 ? 1 : i === active ? 1 : 0.32;
-      const hi = active === i ? smoothstep(PULSES[i], PULSES[i] + 0.3, bar) * (1 - smoothstep(PULSES[i] + 3.75, PULSES[i] + 4, bar)) : 0;
-      this.block(ui, r, i, bar, a, lerp(1, focus, smoothstep(66.7, 67.1, bar)), hi);
-    });
-    // Summer-break divider through the strips.
-    const xb = STRIP_X + BREAK_AT * COL_W;
-    ui.line(xb, BLOCK_Y - 4, xb, BLOCK_Y + BLOCK_H * 4 - 10, '#ffffff', 1, 0.16 * a);
-    ui.text('SUMMER BREAK', xb + 6, BLOCK_Y + BLOCK_H * 4 - 14, { font: 'mono', size: 10, weight: 700, tracking: 0.16, color: '#6f7a8c', alpha: a });
-    // Today marker at the end of the strips.
     this.credits(ui, a * smoothstep(61.8, 62.4, bar));
-    ui.text(`AFTER R${EVENTS.at(-1)!.round}`, STRIP_X + STRIP_W, BLOCK_Y + BLOCK_H * 4 - 14, {
-      font: 'mono', size: 10, weight: 700, tracking: 0.16, align: 'right', color: '#6f7a8c', alpha: a,
+
+    // The strips, until the chart takes over on the first bass pulse.
+    const sa = a * (1 - smoothstep(CHART.in, CHART.in + 0.3, bar));
+    if (sa > 0) {
+      this.codesRow(ui, sa);
+      CONTENDERS.forEach((r, i) => this.block(ui, r, i, bar, sa, 1, 0));
+      // Summer-break divider through the strips.
+      const xb = STRIP_X + BREAK_AT * COL_W;
+      ui.line(xb, BLOCK_Y - 4, xb, BLOCK_Y + BLOCK_H * 4 - 10, '#ffffff', 1, 0.16 * sa);
+      ui.text('SUMMER BREAK', xb + 6, BLOCK_Y + BLOCK_H * 4 - 14, { font: 'mono', size: 10, weight: 700, tracking: 0.16, color: '#6f7a8c', alpha: sa });
+      // Today marker at the end of the strips.
+      ui.text(`AFTER R${EVENTS.at(-1)!.round}`, STRIP_X + STRIP_W, BLOCK_Y + BLOCK_H * 4 - 14, {
+        font: 'mono', size: 10, weight: 700, tracking: 0.16, align: 'right', color: '#6f7a8c', alpha: sa,
+      });
+    }
+    if (bar >= CHART.in) this.chart(ui, bar, spread);
+  }
+
+  /** Cumulative points, replayed; then the close-up on the finish. */
+  private chart(ui: Overlay, bar: number, spread: number) {
+    const progress = clamp((bar - CHART.start) / CHART.step, 0, EVENTS.length);
+    const z = easeInOutCubic((bar - CHART.zoom[0]) / (CHART.zoom[1] - CHART.zoom[0]));
+    const lead = CONTENDERS[0].points;
+    const low = CONTENDERS[CONTENDERS.length - 1].points;
+    const active = PULSES.findIndex((p) => bar >= p && bar < p + 4);
+    const focus = bar < CHART.zoom[0] ? active : -1;
+    drawPointsChart(ui, {
+      progress,
+      view: { x: [lerp(0, BREAK_AT, z), EVENTS.length], y: [lerp(0, low - 38, z), z > 0 ? lerp(autoTop(lead), lead + 10, z) : null] },
+      focus,
+      alpha: smoothstep(CHART.in + 0.15, CHART.in + 0.5, bar),
+      axes: smoothstep(CHART.in + 0.15, CHART.in + 0.65, bar),
     });
+    // On each pulse, a card introduces one contender (LEC's ends before the final hold).
+    if (active >= 0) {
+      // The first card waits for the strips to clear.
+      const p0 = Math.max(PULSES[active], CHART.start);
+      const end = active === PULSES.length - 1 ? CHART.zoom[1] : p0 + 3.85;
+      this.callout(ui, CONTENDERS[active], bar - p0, smoothstep(p0 + 0.05, p0 + 0.35, bar) * (1 - smoothstep(end - 0.3, end, bar)));
+    }
+    // The finish, in gold.
+    const fa = smoothstep(CHART.zoom[1] - 0.3, CHART.zoom[1] + 0.1, bar);
+    if (fa > 0) {
+      ui.text(`${spread} POINTS`, 170, 300, { font: 'display', size: 96, weight: 900, color: '#F5C542', alpha: fa });
+      ui.text(`BETWEEN P2 AND P5 · ${CONTENDERS.map((r) => r.points).join(' · ')}`, 174, 340, {
+        font: 'mono', size: 16, weight: 700, tracking: 0.14, color: '#F5C542', alpha: fa,
+      });
+      ui.text(`${RACES_LEFT} RACES LEFT`, 174, 368, { font: 'mono', size: 16, weight: 700, tracking: 0.14, color: '#c9ced8', alpha: fa });
+    }
+  }
+
+  private callout(ui: Overlay, r: (typeof FINAL)[number], age: number, a: number) {
+    if (a <= 0.01) return;
+    const d = driver(r.code);
+    const col = driverColor(r.code);
+    const x = 170;
+    const y = 236;
+    ui.rect(x, y, 4, 118, col, a);
+    ui.text(`P${r.rank} · ${r.points} PTS`, x + 20, y + 22, { font: 'mono', size: 15, weight: 700, tracking: 0.14, color: r.rank === 2 ? '#F5C542' : '#9aa3b2', alpha: a });
+    ui.text(d.last.toUpperCase(), x + 18, y + 66, { font: 'title', size: 44, weight: 900, tracking: 0.02, alpha: a });
+    const record = [`${r.wins} ${r.wins === 1 ? 'WIN' : 'WINS'}`, `${r.podiums} PODIUMS`];
+    if (r.sprintWins > 0) record.push(`${r.sprintWins} SPRINT ${r.sprintWins === 1 ? 'WIN' : 'WINS'}`);
+    ui.typeText(record.join(' · '), x + 20, y + 94, clamp((age - 0.2) / 0.6), { font: 'mono', size: 14, weight: 700, tracking: 0.1, alpha: a }, false);
+    const sinceTxt = `${since[r.code]} PTS SINCE THE SUMMER BREAK${since[r.code] === mostSince ? ' — MOST OF THE FOUR' : ''}`;
+    ui.typeText(sinceTxt, x + 20, y + 116, clamp((age - 0.6) / 0.7), { font: 'mono', size: 14, weight: 700, tracking: 0.1, color: col, alpha: a }, false);
   }
 
   /** One line crediting the four portraits. */

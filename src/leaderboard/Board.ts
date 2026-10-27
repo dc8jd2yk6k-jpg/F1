@@ -30,6 +30,10 @@ export interface BoardOptions {
   reveal?: number;
   /** Gentle breathing glow on the leader (0..1, smoothed — not per beat). */
   leaderGlow?: number;
+  /** Per-driver displacement of the whole row (the opening's grid slots launching into place). */
+  offset?: (code: string) => [number, number];
+  /** Visibility of the bar, total and axis: 0 leaves just the identity, as a grid slot. */
+  dataAlpha?: number;
 }
 
 function niceStep(max: number) {
@@ -66,11 +70,17 @@ export function drawBoard(ui: Overlay, s: BoardState, opts: BoardOptions = {}) {
   const alpha = opts.alpha ?? 1;
   if (alpha <= 0) return;
   const axisMax = axisMaxFor(s.leaderPoints);
-  drawAxis(ui, L, axisMax, s.rows.length, alpha);
+  drawAxis(ui, L, axisMax, s.rows.length, alpha * (opts.dataAlpha ?? 1));
   const ctx = ui.ctx;
   // Draw from the bottom up so rows rising through the table sit on top.
   const rows = [...s.rows].sort((a, b) => b.pos - a.pos);
-  for (const r of rows) drawRow(ui, ctx, r, L, axisMax, s, opts, alpha);
+  for (const r of rows) {
+    const [dx, dy] = opts.offset?.(r.code) ?? [0, 0];
+    ctx.save();
+    ctx.translate(dx, dy);
+    drawRow(ui, ctx, r, L, axisMax, s, opts, alpha);
+    ctx.restore();
+  }
 }
 
 function drawRow(ui: Overlay, ctx: CanvasRenderingContext2D, r: DriverState, L: Layout, axisMax: number, s: BoardState, opts: BoardOptions, alpha: number) {
@@ -123,23 +133,25 @@ function drawRow(ui: Overlay, ctx: CanvasRenderingContext2D, r: DriverState, L: 
     { font: 'mono', size: 11, weight: 700, color: '#7b8596', alpha: a });
 
   // The bar.
+  const da = opts.dataAlpha ?? 1;
+  if (da <= 0.003) return;
   const w = Math.max(0, (r.points / axisMax) * L.barMaxW);
   const bx = L.barX + slide;
   if (w > 0.5) {
     const g = ctx.createLinearGradient(bx, 0, bx + w, 0);
-    g.addColorStop(0, rgba(col, 0.35 * a));
-    g.addColorStop(1, rgba(col, 0.95 * a));
+    g.addColorStop(0, rgba(col, 0.35 * a * da));
+    g.addColorStop(1, rgba(col, 0.95 * a * da));
     ctx.save();
     ctx.fillStyle = g;
     ctx.beginPath();
     ctx.roundRect(bx, cy - barH / 2, w, barH, [0, barH / 2, barH / 2, 0]);
     ctx.fill();
-    ctx.fillStyle = `rgba(255,255,255,${0.22 * a})`;
+    ctx.fillStyle = `rgba(255,255,255,${0.22 * a * da})`;
     ctx.fillRect(bx, cy - barH / 2, w, 1.5);
     // Soft glow at the tip; the leader's breathes slowly with the bass swell.
     const glow = 0.35 + (leader ? 0.35 * (opts.leaderGlow ?? 0) : 0);
     const rg = ctx.createRadialGradient(bx + w, cy, 0, bx + w, cy, barH * 2.2);
-    rg.addColorStop(0, rgba(col, glow * a));
+    rg.addColorStop(0, rgba(col, glow * a * da));
     rg.addColorStop(1, rgba(col, 0));
     ctx.globalCompositeOperation = 'lighter';
     ctx.fillStyle = rg;
@@ -150,13 +162,13 @@ function drawRow(ui: Overlay, ctx: CanvasRenderingContext2D, r: DriverState, L: 
   // Points (count-up) and this round's chip.
   const pts = Math.round(r.points);
   const px = bx + w + 12;
-  ui.text(String(pts), px, cy + 7, { font: 'mono', size: 19, weight: 700, alpha: a });
+  ui.text(String(pts), px, cy + 7, { font: 'mono', size: 19, weight: 700, alpha: a * da });
   if (r.delta > 0 && chips > 0 && s.k >= 0) {
     const age = s.age;
     const life = s.slot?.bars ?? 2;
     const pop = easeOutBack(clamp(age / 0.25));
     const fade = 1 - smoothstep(life - 0.2, life, age);
-    const ca = a * chips * clamp(age / 0.08) * fade;
+    const ca = a * da * chips * clamp(age / 0.08) * fade;
     if (ca > 0.01) {
       const label = `+${r.delta}`;
       const tw = ui.measure(label, { font: 'mono', size: 15, weight: 700 }) + 14;

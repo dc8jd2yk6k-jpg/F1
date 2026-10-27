@@ -32,13 +32,14 @@ SELECT = ROOT / "analysis" / "photos.select.json"
 OUT = ROOT / "public" / "assets" / "photos"
 MANIFEST = ROOT / "src" / "data" / "photos.json"
 CREDITS = ROOT / "CREDITS.md"
-WIDTH = {"venue": 1920, "finale": 1920, "driver": 1280}
+WIDTH = {"venue": 1920, "finale": 1920, "driver": 1280, "winner": 1280}
 # Stored size: backdrops are shown softened, driver photos at most ~500 px wide.
-KEEP = {"venue": 1600, "finale": 1600, "driver": 960}
+KEEP = {"venue": 1600, "finale": 1600, "driver": 960, "winner": 960}
 CHANGES = {
     "venue": "resized; shown cropped, softened and colour-graded as a darkened backdrop",
     "finale": "resized; shown cropped, softened and colour-graded as a darkened backdrop",
     "driver": "resized; shown cropped",
+    "winner": "resized; shown cropped",
 }
 
 
@@ -87,6 +88,8 @@ def main() -> None:
             "license": d["license"], "licenseFamily": fam, "licenseUrl": d["license_url"],
             "page": d["page"], "title": d["title"], "date": d["date"], "restrictions": d["restrictions"],
             "focus": s.get("focus", [0.5, 0.5]), "changes": CHANGES[s["role"]],
+            # What Commons says the photo shows: the source of every caption.
+            "description": d["description"][:300], "categories": d["categories"],
         })
 
     if problems:
@@ -103,7 +106,7 @@ def main() -> None:
 
 
 def write_credits(photos: list[dict]) -> None:
-    role_name = {"venue": "Backdrop", "finale": "Backdrop (finale)", "driver": "Driver"}
+    role_name = {"venue": "Backdrop", "finale": "Backdrop (finale)", "driver": "Driver", "winner": "Winner card"}
     lines = [
         "# Credits",
         "",

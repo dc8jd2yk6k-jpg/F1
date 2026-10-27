@@ -5,14 +5,15 @@ import type { Overlay } from '../overlay/Overlay';
 import { type Photo, credit, drawCover, photoFor } from './photos';
 
 // Photos on the overlay, always with their credit: the race winner's card
-// under the weekend classification, and the credit line for the backdrop.
+// under the weekend classification (a photo of that winner at that event
+// wherever Commons has one), and the credit line for the backdrop.
 
 const CREDIT = { font: 'mono', size: 11, weight: 700, tracking: 0.04 } as const;
 
 /** Credit for the photo behind the board, bottom right. */
-export function drawBackdropCredit(ui: Overlay, p: Photo | null, alpha: number) {
+export function drawBackdropCredit(ui: Overlay, p: Photo | null, alpha: number, label = 'BACKDROP') {
   if (!p || alpha <= 0.01) return;
-  ui.text(`BACKDROP: ${p.caption.toUpperCase()} · ${credit(p, 'PHOTO')}`, 1848, 1064, { ...CREDIT, align: 'right', color: '#8d96a6', alpha: alpha * 0.9 });
+  ui.text(`${label}: ${p.caption.toUpperCase()} · ${credit(p, 'PHOTO')}`, 1848, 1064, { ...CREDIT, align: 'right', color: '#8d96a6', alpha: alpha * 0.9 });
 }
 
 export const CARD = { x: 1360, y: 688, w: 488, h: 252 };
@@ -21,7 +22,7 @@ export const CARD = { x: 1360, y: 688, w: 488, h: 252 };
 export function drawWinnerCard(ui: Overlay, ev: SeasonEvent, age: number, alpha = 1) {
   if (alpha <= 0) return;
   const code = ev.classification[0].driver;
-  const p = photoFor('driver', code);
+  const p = photoFor('winner', `${ev.code}-${ev.type}`) ?? photoFor('driver', code);
   if (!p) return;
   const reveal = easeOutCubic(clamp((age - 0.12) / 0.45));
   if (reveal <= 0) return;

@@ -8,9 +8,9 @@ import manifest from '../data/photos.json';
 
 export interface Photo {
   id: string;
-  /** venue: a round's circuit · driver: a driver's 2026 portrait or car · finale: the last venue */
-  role: 'venue' | 'driver' | 'finale';
-  /** Event code (venue), driver code (driver) or 'FINALE'. */
+  /** venue: a round's circuit · driver: a contender's portrait · winner: an event's winner · finale: the last venue */
+  role: 'venue' | 'driver' | 'winner' | 'finale';
+  /** Event code (venue), driver code (driver), `${code}-${type}` (winner) or 'FINALE'. */
   key: string;
   file: string;
   width: number;
