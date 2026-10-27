@@ -18,8 +18,9 @@ After 18 rounds, Kimi Antonelli has 365 points and the title all but won. Behind
 
 | | |
 |---|---|
-| ![Round 1, Australia](docs/stills/02-australia.jpg) | ![Summer break](docs/stills/05-summer-break.jpg) |
-| ![The fight for P2](docs/stills/10-russell.jpg) | ![P2 — ?](docs/stills/13-p2.jpg) |
+| ![Cold open: the start-light gantry](docs/stills/00-cold-open.jpg) | ![The grid, just before lights out](docs/stills/01-grid.jpg) |
+| ![Round 1, Australia, with the podium photo](docs/stills/02-australia.jpg) | ![Summer break](docs/stills/05-summer-break.jpg) |
+| ![The fight for P2, as cumulative points](docs/stills/10-p2-chart.jpg) | ![The finish: 9 points between P2 and P5](docs/stills/11-the-finish.jpg) |
 
 ## The data, verified
 
