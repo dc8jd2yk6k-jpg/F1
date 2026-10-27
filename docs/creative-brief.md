@@ -28,6 +28,12 @@ The leaderboard was purely typographic. Revision 3 adds real-world material with
   - **The finale venue:** Yas Marina under lights, from the "today" hold onward, turning gold for the ending. That's where P2 will be decided.
 - **Honest captions.** Who or what a photo shows comes from its Commons metadata. Captions say where and when it was taken, for example "Hamilton · 2025 Japanese GP" for the one contender without a 2026 portrait on Commons.
 
+### Revision 4: the cold open, the winners, the chart
+
+- **A cold open worthy of lights out.** Bars 1–5 used to fill in a table. Now they build to a start: the F1 mark, real photos on the downbeats, a gantry lighting up at the real one-per-second cadence, the grid. The lights go out on the bass drop, and the grid launches into the championship table. It's still one event per beat and nothing shakes.
+- **The winner, at that race.** The bottom-right card used one fixed photo per driver, so Antonelli's 10 wins showed the same shot 10 times. Every event now has its own photo, 24 in all. Ten are the winner at that very weekend: the Australian podium, Antonelli celebrating on his car in Shanghai, Russell's sprint-winner interview at Zandvoort, and others. Where Commons has nothing yet, it is the winner at another 2026 race, and the caption says so.
+- **2:25–2:59 as a chart.** The fight for P2 is easier to feel as lines than as bars: four drivers trading places all season, ending 9 points apart.
+
 ## What the music says
 
 Measured by `analysis/analyze_audio.py`:
@@ -42,13 +48,14 @@ The season has a strikingly similar shape. It started fast, paused for the summe
 
 | Bars | Song | Leaderboard |
 |---|---|---|
-| 1–5 | Swell | 23 drivers on zero, in entry-list order. Five start lights come on, one per bar |
-| 6 | Bass drop | Lights out. **Round 1, Australia** |
+| 1–5 | Swell | **Cold open.** The F1 mark catches a light sweep. Real photos cut in on the downbeats (the Baku start, the Miami grid, Yas Marina at night) while the season's facts land. A full-width start-light gantry fills one pod per half bar from bar 3, the real one-per-second cadence. In bar 5 the 23 drivers line up on the grid under five red lights |
+| 6 | Bass drop | **Lights out.** The lamps cut on the downbeat and each grid slot launches into its row of the table. **Round 1, Australia** |
 | 6–36 | Verse → Hook 1 | Rounds 1–11 with their sprints. A Grand Prix takes 2–3 bars, a sprint 1. Bars grow first, then rows re-sort |
 | 36–40 | **The dip** | **Summer break.** The table holds; Grand Prix wins so far; Antonelli leads by 50 |
 | 40–57 | Hook 2 | Rounds 12–18: Zandvoort to Austin, including the Bahrain GP held at Sepang |
 | 57–61 | Hook 2 end | **Today.** The P2 places are bracketed: 4 drivers, 9 points. The 5 rounds still to run are listed |
-| 61–82 | Breakdown | **The fight for P2.** Russell, Hamilton, Verstappen and Leclerc, each with a strip of every score they made this season. On the bass pulses (bars 67, 71, 75, 79) one driver at a time is brought forward with their record |
+| 61–67 | Breakdown | **The fight for P2.** Russell, Hamilton, Verstappen and Leclerc, each with a strip of every score they made this season |
+| 67–83 | Breakdown | **Cumulative points, replayed.** The strips become four racing lines; the season replays one event per half bar, with portraits and live totals at the heads and gold dots for wins. On each bass pulse (67, 71, 75, 79) a card brings one driver forward. The view then closes in on the finish: 242 · 241 · 236 · 233, 9 points between P2 and P5 |
 | 83–end | D-major outro | The full table as it stands. The background warms to gold. **P2 — ?** Title card |
 
 ## Data

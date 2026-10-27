@@ -14,7 +14,7 @@ After 18 rounds, Kimi Antonelli has 365 points and the title all but won. Behind
 | Renderer | Headless Chromium (software WebGL), parallel workers, resumable chunks, x264 |
 | Analysis | Python + librosa: 110 BPM bar grid, section map, envelopes |
 | Brand marks | F1 and team logos from [simple-icons](https://simpleicons.org) (CC0 path data), drawn as vectors |
-| Photos | 25 photographs from Wikimedia Commons (CC0, PD, CC BY, CC BY-SA), each credited on screen; see [`CREDITS.md`](CREDITS.md) |
+| Photos | 47 photographs from Wikimedia Commons (CC0, PD, CC BY, CC BY-SA), each credited on screen; see [`CREDITS.md`](CREDITS.md) |
 
 | | |
 |---|---|
@@ -41,13 +41,14 @@ The track is instrumental: 110 BPM in D minor, turning to D major in the outro. 
 
 | Bars | Music | Video |
 |---|---|---|
-| 1–5 | swell | 23 drivers on zero; five start lights, one per bar |
-| 6 | bass drop | lights out: **Round 1, Australia** |
+| 1–5 | swell | cold open: the F1 mark, real photos cut on the downbeats, a full-width start-light gantry filling one pod per half bar, the 23 drivers on the grid |
+| 6 | bass drop | **lights out**: the grid slots launch into the table, **Round 1, Australia** |
 | 6–36 | verse, hook | rounds 1–11 and their sprints; every round starts on a downbeat |
 | 36–40 | the dip | **summer break**: the table holds |
 | 40–57 | hook | rounds 12–18, Zandvoort to Austin |
 | 57–61 | | **today**: the P2 fight bracketed, 5 rounds left |
-| 61–82 | breakdown | **the fight for P2**: every score of the four contenders, one driver per bass pulse |
+| 61–67 | breakdown | **the fight for P2**: every score of the four contenders, as strips |
+| 67–83 | breakdown | **cumulative points, replayed**: four racing lines, one event per half bar, a card per bass pulse, then a zoom to the finish (242 · 241 · 236 · 233) |
 | 83–end | D major | the table as it stands, a gold backdrop, **P2 — ?** |
 
 There's no camera shake and no beat-pumped flashing. Sync comes from timing: each round lands on its downbeat, the bars grow, and then the rows re-sort. Full reasoning is in [`docs/creative-brief.md`](docs/creative-brief.md).
@@ -104,8 +105,8 @@ analysis/.venv/bin/python analysis/verify_av.py out/F1_MV_2026_1080p.mp4
 Real photos come from [Wikimedia Commons](https://commons.wikimedia.org). Only files Commons marks as CC0, public domain, CC BY or CC BY-SA are used, and each is credited on screen while it is shown.
 
 - **Behind the board:** each round's venue, from that 2026 weekend wherever Commons has it, and often showing the race winner's car (Antonelli at Suzuka, Leclerc at Silverstone, Norris at Zandvoort…). It dissolves in on the round's downbeat and is softened, darkened and graded so the numbers always read.
-- **Winner card:** the winner of each Grand Prix and sprint, under the weekend's classification.
-- **P2 blocks:** a portrait of each of the four contenders.
+- **Winner card:** the winner of each Grand Prix and sprint, under the weekend's classification, in a photo of their own: 24 events, 24 different photos. For 10 events (Australia, both Chinese races, Japan, Austria, both Silverstone races, both Zandvoort races, and the Bahrain GP) the photo is from that very weekend. For the other 14, Commons has no free photo of the winner there yet, so the card shows the winner at another 2026 event, and its caption says which.
+- **P2 fight:** a portrait of each of the four contenders, in their blocks and at the heads of the points chart.
 - **Finale venue:** Yas Marina under lights, from "today" to the gold ending.
 
 Who a photo shows comes from its Commons title, description and categories. Captions state where and when each photo was taken.

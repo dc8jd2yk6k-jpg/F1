@@ -25,8 +25,8 @@
   "id": "venue-jpn",
   "role": "venue",
   "key": "JPN",
-  "title": "File:Mercedes W17 - Kimi Antonelli approaches Spoon Curve at Suzuka during the 2026 Japanese GP (55194289192).jpg",
-  "caption": "Antonelli at Suzuka · 2026 Japanese GP",
+  "title": "File:Mclaren MCL40 - Oscar Piastri enters the Nissin Brake Hairpin at Suzuka during the 2026 Japanese GP (55195174246).jpg",
+  "caption": "Suzuka · 2026 Japanese GP",
   "focus": [
    0.5,
    0.5
@@ -36,8 +36,8 @@
   "id": "venue-mia",
   "role": "venue",
   "key": "MIA",
-  "title": "File:The first three rows of the grid ahead of the race start miami gp 2025.jpg",
-  "caption": "The grid in Miami · 2025 Miami GP",
+  "title": "File:F1sprint2026.png",
+  "caption": "The grid · 2026 Miami sprint",
   "focus": [
    0.5,
    0.5
@@ -47,8 +47,8 @@
   "id": "venue-can",
   "role": "venue",
   "key": "CAN",
-  "title": "File:Circuit Gilles-Villeneuve Bassin Olympique.jpg",
-  "caption": "Circuit Gilles Villeneuve, Montréal (2008)",
+  "title": "File:Formula 1 Grand Prix du Canada 2026 - Franco Colapinto 01.jpg",
+  "caption": "Montréal · 2026 Canadian GP",
   "focus": [
    0.5,
    0.5
@@ -80,8 +80,8 @@
   "id": "venue-aut",
   "role": "venue",
   "key": "AUT",
-  "title": "File:FIA F1 Austria 2026 Nr. 63 Russell (2).jpg",
-  "caption": "Russell at the Red Bull Ring · 2026 Austrian GP",
+  "title": "File:FIA F1 Austria 2026 Nr. 1 Norris (2).jpg",
+  "caption": "Red Bull Ring · 2026 Austrian GP",
   "focus": [
    0.5,
    0.5
@@ -169,8 +169,8 @@
   "id": "venue-mas",
   "role": "venue",
   "key": "MAS",
-  "title": "File:2026 Bahrain GP - Red Bull - Max Verstappen - FP2.jpg",
-  "caption": "Verstappen · 2026 Bahrain GP",
+  "title": "File:2026 Bahrain GP - McLaren - Oscar Piastri - Race.jpg",
+  "caption": "Sepang · 2026 Bahrain GP",
   "focus": [
    0.5,
    0.5
@@ -221,17 +221,6 @@
   ]
  },
  {
-  "id": "driver-ant",
-  "role": "driver",
-  "key": "ANT",
-  "title": "File:2026 Chinese GP - Mercedes - Kimi Antonelli - Post Race Celebration.jpg",
-  "caption": "Antonelli celebrates · 2026 Chinese GP",
-  "focus": [
-   0.5,
-   0.35
-  ]
- },
- {
   "id": "driver-lec",
   "role": "driver",
   "key": "LEC",
@@ -240,17 +229,6 @@
   "focus": [
    0.5,
    0.3
-  ]
- },
- {
-  "id": "driver-nor",
-  "role": "driver",
-  "key": "NOR",
-  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2551.jpg",
-  "caption": "Norris · 2026 Dutch GP",
-  "focus": [
-   0.42,
-   0.28
   ]
  },
  {
@@ -273,6 +251,270 @@
   "focus": [
    0.45,
    0.2
+  ]
+ },
+ {
+  "id": "winner-aus-race",
+  "role": "winner",
+  "key": "AUS-race",
+  "title": "File:Podium celebration at the 2026 Australian Grand Prix (028A8792).jpg",
+  "caption": "The podium · 2026 Australian GP",
+  "focus": [
+   0.5,
+   0.35
+  ]
+ },
+ {
+  "id": "winner-chn-sprint",
+  "role": "winner",
+  "key": "CHN-sprint",
+  "title": "File:2026 Chinese GP - Mercedes - George Russell - Qualifying.jpg",
+  "caption": "Russell · 2026 Chinese GP qualifying",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ {
+  "id": "winner-chn-race",
+  "role": "winner",
+  "key": "CHN-race",
+  "title": "File:2026 Chinese GP - Mercedes - Kimi Antonelli - Post Race Celebration.jpg",
+  "caption": "Antonelli celebrates · 2026 Chinese GP",
+  "focus": [
+   0.5,
+   0.35
+  ]
+ },
+ {
+  "id": "winner-jpn-race",
+  "role": "winner",
+  "key": "JPN-race",
+  "title": "File:Mercedes W17 - Kimi Antonelli approaches Spoon Curve at Suzuka during the 2026 Japanese GP (55194289192).jpg",
+  "caption": "Antonelli at Suzuka · 2026 Japanese GP",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ {
+  "id": "winner-mia-sprint",
+  "role": "winner",
+  "key": "MIA-sprint",
+  "title": "File:2026 Chinese GP - McLaren - Lando Norris - Qualifying.jpg",
+  "caption": "Norris · 2026 Chinese GP qualifying",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ {
+  "id": "winner-mia-race",
+  "role": "winner",
+  "key": "MIA-race",
+  "title": "File:2026-08-23 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 3011.jpg",
+  "caption": "Antonelli on the podium · 2026 Dutch GP",
+  "focus": [
+   0.4,
+   0.3
+  ]
+ },
+ {
+  "id": "winner-can-sprint",
+  "role": "winner",
+  "key": "CAN-sprint",
+  "title": "File:2026-08-21 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2180.jpg",
+  "caption": "Russell · 2026 Dutch GP practice",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "winner-can-race",
+  "role": "winner",
+  "key": "CAN-race",
+  "title": "File:2026 Bahrain GP - Mercedes - Kimi Antonelli - Race.jpg",
+  "caption": "Antonelli · 2026 Bahrain GP",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ {
+  "id": "winner-mon-race",
+  "role": "winner",
+  "key": "MON-race",
+  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2547.jpg",
+  "caption": "Antonelli · 2026 Dutch GP qualifying",
+  "focus": [
+   0.45,
+   0.3
+  ]
+ },
+ {
+  "id": "winner-bar-race",
+  "role": "winner",
+  "key": "BAR-race",
+  "title": "File:2026 Chinese GP - Ferrari - Lewis Hamilton - Qualifying.jpg",
+  "caption": "Hamilton · 2026 Chinese GP qualifying",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ {
+  "id": "winner-aut-race",
+  "role": "winner",
+  "key": "AUT-race",
+  "title": "File:FIA F1 Austria 2026 Nr. 63 Russell (1).jpg",
+  "caption": "Russell at the Red Bull Ring · 2026 Austrian GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "winner-gbr-sprint",
+  "role": "winner",
+  "key": "GBR-sprint",
+  "title": "File:Kimi Antonelli Mercedes F1 Car (55383927539).jpg",
+  "caption": "Antonelli at Silverstone · 2026 British GP",
+  "focus": [
+   0.5,
+   0.6
+  ]
+ },
+ {
+  "id": "winner-gbr-race",
+  "role": "winner",
+  "key": "GBR-race",
+  "title": "File:Charles Leclerc Ferrari F1 Car (55384147630).jpg",
+  "caption": "Leclerc at Silverstone · 2026 British GP",
+  "focus": [
+   0.5,
+   0.6
+  ]
+ },
+ {
+  "id": "winner-bel-race",
+  "role": "winner",
+  "key": "BEL-race",
+  "title": "File:2026-08-21 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2179.jpg",
+  "caption": "Antonelli · 2026 Dutch GP practice",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "winner-hun-race",
+  "role": "winner",
+  "key": "HUN-race",
+  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2353.jpg",
+  "caption": "Norris · 2026 Dutch GP sprint podium",
+  "focus": [
+   0.4,
+   0.3
+  ]
+ },
+ {
+  "id": "winner-ned-sprint",
+  "role": "winner",
+  "key": "NED-sprint",
+  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2378.jpg",
+  "caption": "Russell, sprint winner · 2026 Dutch GP",
+  "focus": [
+   0.45,
+   0.3
+  ]
+ },
+ {
+  "id": "winner-ned-race",
+  "role": "winner",
+  "key": "NED-race",
+  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2551.jpg",
+  "caption": "Norris on pole · 2026 Dutch GP",
+  "focus": [
+   0.42,
+   0.28
+  ]
+ },
+ {
+  "id": "winner-ita-race",
+  "role": "winner",
+  "key": "ITA-race",
+  "title": "File:2026 Chinese GP - Mercedes - Kimi Antonelli - Pole Position Award.jpg",
+  "caption": "Antonelli's pole award · 2026 Chinese GP",
+  "focus": [
+   0.33,
+   0.3
+  ]
+ },
+ {
+  "id": "winner-mad-race",
+  "role": "winner",
+  "key": "MAD-race",
+  "title": "File:2026-08-23 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2931.jpg",
+  "caption": "Antonelli leads Russell · 2026 Dutch GP",
+  "focus": [
+   0.4,
+   0.6
+  ]
+ },
+ {
+  "id": "winner-aze-race",
+  "role": "winner",
+  "key": "AZE-race",
+  "title": "File:Mercedes-AMG F1 W17 E Performance of George Russell (028A8051).jpg",
+  "caption": "Russell · 2026 Australian GP practice",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ {
+  "id": "winner-mas-race",
+  "role": "winner",
+  "key": "MAS-race",
+  "title": "File:2026 Bahrain GP - Red Bull - Max Verstappen - FP2.jpg",
+  "caption": "Verstappen · 2026 Bahrain GP",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ {
+  "id": "winner-sin-sprint",
+  "role": "winner",
+  "key": "SIN-sprint",
+  "title": "File:2026 Chinese GP - Red Bull - Max Verstappen - Qualifying.jpg",
+  "caption": "Verstappen · 2026 Chinese GP qualifying",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ {
+  "id": "winner-sin-race",
+  "role": "winner",
+  "key": "SIN-race",
+  "title": "File:2026-08-21 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2266.jpg",
+  "caption": "Verstappen · 2026 Dutch GP practice",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "winner-usa-race",
+  "role": "winner",
+  "key": "USA-race",
+  "title": "File:FIA F1 Austria 2026 Nr. 12 Antonelli (4).jpg",
+  "caption": "Antonelli · 2026 Austrian GP",
+  "focus": [
+   0.5,
+   0.55
   ]
  }
 ]

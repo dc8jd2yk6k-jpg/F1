@@ -60,9 +60,31 @@ describe('photographs', () => {
     expect(new Set(all.map((p) => p.id)).size).toBe(all.length);
   });
 
-  it('has a photo for every winner and every P2 contender, once photos exist', () => {
+  it('has a photo of every event winner, and of each P2 contender', () => {
     if (!all.length) return;
-    const need = new Set([...EVENTS.map((e) => e.classification[0].driver), ...FINAL.slice(1, 5).map((r) => r.code)]);
-    for (const code of need) expect(PHOTOS.some((p) => p.role === 'driver' && p.key === code), code).toBe(true);
+    for (const ev of EVENTS) {
+      const key = `${ev.code}-${ev.type}`;
+      expect(PHOTOS.some((p) => p.role === 'winner' && p.key === key), key).toBe(true);
+    }
+    for (const r of FINAL.slice(1, 5)) expect(PHOTOS.some((p) => p.role === 'driver' && p.key === r.code), r.code).toBe(true);
+  });
+
+  it('shows the winner, by Commons metadata, never repeating a photo', () => {
+    const winners = all.filter((p) => p.role === 'winner') as (typeof all[number] & { description: string; categories: string[] })[];
+    for (const p of winners) {
+      const ev = EVENTS.find((e) => `${e.code}-${e.type}` === p.key)!;
+      const surname = DRIVERS.find((d) => d.code === ev.classification[0].driver)!.last;
+      const meta = [p.title, p.description, ...p.categories].join(' ');
+      expect(meta, p.id).toContain(surname);
+      expect(p.caption, p.id).toContain(surname === 'Russell' && p.key === 'AUS-race' ? 'podium' : surname);
+    }
+    expect(new Set(winners.map((p) => p.title)).size).toBe(winners.length);
+  });
+
+  it('never shows the same photo as backdrop and winner card in one round', () => {
+    for (const p of all.filter((x) => x.role === 'winner')) {
+      const venue = all.find((x) => x.role === 'venue' && x.key === p.key.split('-')[0]);
+      if (venue) expect(venue.title, p.id).not.toBe(p.title);
+    }
   });
 });
