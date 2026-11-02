@@ -20,7 +20,7 @@ const ff = (args) => {
 
 const hero = {
   '00-cold-open': 3.6, '01-grid': 5.6, '02-australia': 7.6, '03-china': 11.6, '04-barcelona': 24.2, '05-summer-break': 38.6,
-  '06-madrid': 46.6, '07-austin': 56.4, '08-today': 59.6, '09-p2-fight': 66, '10-p2-chart': 73.6, '11-the-finish': 82,
+  '06-madrid': 46.6, '07-mexico-champion': 57.6, '08-today': 59.6, '09-p2-fight': 66, '10-p2-chart': 73.6, '11-the-finish': 82,
   '12-the-table': 84.6, '13-p2': 87,
 };
 for (const [name, bar] of Object.entries(hero)) {
