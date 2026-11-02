@@ -114,9 +114,9 @@ def sound_credits() -> list[str]:
     lines = [
         "## Sound effects",
         "",
-        "The start-light beeps are synthesised for this video. The launch at lights out is a real recording from",
-        "Wikimedia Commons, credited on screen while it plays and on the closing card. The song itself is unchanged;",
-        "the effects are mixed on top of it (see `analysis/mix_sfx.py`).",
+        "Nothing is synthesised: real start lights make no sound of their own. At lights out comes a real recording",
+        "from Wikimedia Commons, credited on screen while it plays and on the closing card. The song itself is unchanged;",
+        "the recording is mixed on top of it (see `analysis/mix_sfx.py`).",
         "",
         "| Used as | Subject | Author | Licence | Changes | Source |",
         "|---|---|---|---|---|---|",

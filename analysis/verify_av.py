@@ -2,11 +2,11 @@
 
 1. Stream specs (resolution, fps, frame count, duration).
 2. Audio. A music-only cut must carry the source stream byte for byte
-   (packet MD5). A cut with the start-light effects must keep the song intact
-   outside the effects (residual after alignment far below the music), start
-   every beep on the frame its lamp lights and the launch on the first dark
-   frame (both measured from the picture), and stay clear of clipping where
-   the effects play.
+   (packet MD5). A cut with the start-light sound must keep the song intact
+   outside the recording (residual after alignment far below the music), add
+   nothing while the lamps light (real start lights are silent), start the
+   launch on the first dark frame (measured from the picture), and stay clear
+   of clipping where the recording plays.
 3. Every round change in the schedule becomes visible within one frame of
    its downbeat.
 4. Stability: during holds the picture is still (no shake, no pulsing).
@@ -79,7 +79,7 @@ def lamp_frames(Y: np.ndarray, fps: float, t0: float, t1: float) -> tuple[list[i
 
 
 def sound_report(video: Path, Y: np.ndarray, fps: float, meta: dict) -> dict:
-    """Checks for a cut with the start-light effects mixed onto the song."""
+    """Checks for a cut with the start-light sound mixed onto the song."""
     cfg = json.loads(SFX_JSON.read_text())
     bar_t = lambda b: meta["barOrigin"] + (b - 1) * meta["barLength"]
     src, out = pcm(AUDIO_SRC), pcm(video)
@@ -99,38 +99,37 @@ def sound_report(video: Path, Y: np.ndarray, fps: float, meta: dict) -> dict:
 
     res = out - np.roll(src, lag, axis=0)
     mono = res.mean(1)
-    # Beeps: the D6 tone, band-limited by a narrow FFT mask around the beep frequency.
-    hz = cfg["beep"]["hz"]
     spec = np.fft.rfft(mono)
     f = np.fft.rfftfreq(len(mono), 1 / SR)
-    tone = np.fft.irfft(spec * ((f > hz * 0.9) & (f < hz * 1.1)), len(mono))
     hp = np.fft.irfft(spec * (f > 150), len(mono))
-    tone_env, roar_env = envelope(tone, 2), envelope(hp, 5)
+    roar_env = envelope(hp, 5)
 
     def onset(env: np.ndarray, t: float, before: float, after: float, frac: float) -> float:
         i0, i1 = int((t - before) * SR), int((t + after) * SR)
         w = env[i0:i1]
         return (i0 + int(np.argmax(w >= frac * w.max()))) / SR
 
-    beep_off = [1000 * (onset(tone_env, t, 0.15, 0.3, 0.5) - t) for t in lamp_t]
     roar_off = 1000 * (onset(roar_env, out_t, 0.3, 0.6, 0.5) - out_t)
 
-    # Music preserved: outside the effects, the output is the song plus re-encode noise.
-    keep = np.ones(n, bool)
-    for t in lamp_t:
-        keep[int((t - 0.05) * SR):int((t + 0.6) * SR)] = False
+    # Music preserved: outside the recording, the output is the song plus re-encode noise.
     r = cfg["roar"]
+    pre = r.get("preroll", 0.05) if r else 0.0
+    keep = np.ones(n, bool)
     if r:
-        keep[int((out_t - 0.2) * SR):int((out_t + r["length"] + 0.2) * SR)] = False
+        keep[int((out_t - pre - 0.2) * SR):int((out_t + r["length"] + 0.2) * SR)] = False
     music = np.sqrt((src[keep] ** 2).mean())
     noise = np.sqrt((res[keep] ** 2).mean())
+    # Nothing added while the lamps light: the countdown (first lamp to just
+    # before the recording starts) is the song alone.
+    cd = slice(int((lamp_t[0] - 0.2) * SR), int((out_t - pre - 0.2) * SR))
+    cd_snr = 20 * np.log10(np.sqrt((src[cd] ** 2).mean()) / max(np.sqrt((res[cd] ** 2).mean()), 1e-12))
     fx = ~keep
-    peak = float(np.abs(out[fx]).max())
+    peak = float(np.abs(out[fx]).max()) if fx.any() else 0.0
     return {
         "alignment_lag_samples": lag,
         "music_preserved_snr_db": round(20 * np.log10(music / max(noise, 1e-12)), 1),
         "lamps_lit_at_s": [round(t, 4) for t in lamp_t],
-        "beep_onset_vs_lamp_ms": [round(x, 1) for x in beep_off],
+        "countdown_is_song_only_snr_db": round(cd_snr, 1),
         "lights_out_at_s": round(out_t, 4),
         "launch_onset_vs_lights_out_ms": round(roar_off, 1),
         "peak_where_effects_play_dbfs": round(20 * np.log10(peak), 2),

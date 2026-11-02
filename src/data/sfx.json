@@ -1,5 +1,5 @@
 {
- "note": "Sound effects for the start-light countdown. Cue positions are in bars (see audio.json); the video draws its lamps from the same numbers. analysis/mix_sfx.py mixes the effects onto the song.",
+ "note": "Sound for the start-light countdown. Real F1 starts have no beeps: the lamps are silent and the sound is the engines. Cue positions are in bars (see audio.json); the video draws its lamps from the same numbers. analysis/mix_sfx.py mixes the recording onto the song, its launch on the first dark frame.",
  "lamps": [
   3,
   3.5,
@@ -8,12 +8,6 @@
   5
  ],
  "lightsOut": 6,
- "beep": {
-  "hz": 1174.66,
-  "note": "D6, the song's tonal centre",
-  "length": 0.17,
-  "peakDb": -14
- },
  "roar": {
   "title": "File:Ferrari F60 (2009).ogg",
   "caption": "Ferrari F60 (2009) pulling away · Goodwood Festival of Speed 2010",

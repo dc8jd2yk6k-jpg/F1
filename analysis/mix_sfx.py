@@ -1,4 +1,4 @@
-"""Mix the start-light sound effects onto the song.
+"""Mix the start-light sound onto the song.
 
     analysis/.venv/bin/python analysis/mix_sfx.py
 
@@ -6,18 +6,16 @@ Reads public/audio/f1.m4a (the song, untouched) and src/data/sfx.json (the
 cues, in bars: the video draws its lamps from the same numbers) and writes
 public/audio/f1_sfx.m4a, which the renderer and the preview play.
 
-- One beep per lamp: a short tone at D6, the song's tonal centre, in the
-  1–4 kHz band the intro leaves empty. Five identical beeps, as on the
-  broadcast graphics.
-- A held silence, then the launch: a real recording from Wikimedia Commons
-  (credited; see src/data/sounds.json and CREDITS.md), high-passed so the
-  song's bass drop keeps the low end, fading out into the verse.
+Real F1 start lights make no sound, so nothing is added as the lamps light.
+At lights out comes the launch: a real recording from Wikimedia Commons
+(credited; see src/data/sounds.json and CREDITS.md), high-passed so the
+song's bass drop keeps the low end, fading out into the verse.
 
 The song itself is never processed: no ducking, no limiter, no EQ. Effects
 are added on top, and if the sum would come within 1 dB of full scale the
-launch is turned down, never the song. Each effect starts exactly when the
-first video frame showing its cue is displayed (frames are rendered at
-mid-frame time, (f + 0.5) / 30), so the sound never leads the picture.
+recording is turned down, never the song. The launch starts exactly when the
+first dark frame is displayed (frames are rendered at mid-frame time,
+(f + 0.5) / 30), so the sound never leads the picture.
 """
 
 from __future__ import annotations
@@ -63,31 +61,6 @@ def cue_times(cfg: dict, au: dict) -> tuple[list[float], float]:
         t = au["barOrigin"] + (bar - 1) * au["barLength"]
         return math.ceil(t * FPS - 0.5) / FPS
     return [at(b) for b in cfg["lamps"]], at(cfg["lightsOut"])
-
-
-def room(n: int, seed: int) -> np.ndarray:
-    """A short, quiet stereo room tail: decaying noise, different on each side."""
-    rng = np.random.default_rng(seed)
-    t = np.arange(int(0.32 * SR)) / SR
-    ir = rng.standard_normal((len(t), 2)) * np.exp(-t / 0.07)[:, None]
-    ir /= np.sqrt((ir ** 2).sum(0))
-    return ir
-
-
-def beep(cfg: dict) -> np.ndarray:
-    """One lamp beep (stereo), normalised to its peak level."""
-    b = cfg["beep"]
-    n = int((b["length"] + 0.35) * SR)
-    t = np.arange(n) / SR
-    f = b["hz"]
-    tone = np.sin(2 * np.pi * f * t) + 0.16 * np.sin(2 * np.pi * 2 * f * t) + 0.05 * np.sin(2 * np.pi * 3 * f * t)
-    hold = b["length"] - 0.04
-    env = np.clip(t / 0.004, 0, 1) * np.where(t < hold, 1.0, np.exp(-(t - hold) / 0.022))
-    dry = tone * env
-    ir = room(n, seed=6)
-    wet = np.stack([np.convolve(dry, ir[:, c])[:n] for c in range(2)], 1)
-    out = dry[:, None] + 0.12 * wet
-    return out * (10 ** (b["peakDb"] / 20) / np.abs(out).max())
 
 
 def launch(cfg: dict) -> tuple[np.ndarray, dict | None]:
@@ -142,12 +115,6 @@ def main() -> None:
     song = decode(SRC)
     lamps, out_t = cue_times(cfg, au)
 
-    beeps = np.zeros_like(song)
-    if cfg.get("beep"):
-        one = beep(cfg)
-        for t in lamps:
-            place(beeps, one, t)
-
     roar, credit = launch(cfg)
     roars = np.zeros_like(song)
     gain = 0.0
@@ -157,7 +124,7 @@ def main() -> None:
         want = 10 ** (cfg["roar"]["peakDb"] / 20)
         ceiling = 10 ** (CEILING_DB / 20)
         lo, hi = 0.0, want
-        base = song + beeps
+        base = song
         win = slice(int((out_t - 0.1) * SR), int((out_t + cfg["roar"]["length"] + 0.1) * SR))
         if np.abs(base[win] + hi * roars[win]).max() > ceiling:
             for _ in range(40):
@@ -167,10 +134,10 @@ def main() -> None:
         else:
             gain = hi
 
-    mix = song + beeps + gain * roars
-    # Where the effects play, the sum must stay under the ceiling (the song
+    mix = song + gain * roars
+    # Where the recording plays, the sum must stay under the ceiling (the song
     # alone peaks near full scale in the hooks, which is left as it is).
-    fx = (np.abs(beeps) + np.abs(roars)).max(1) > 0
+    fx = np.abs(roars).max(1) > 0
     peak = np.abs(mix[fx]).max() if fx.any() else 0.0
     if peak > 10 ** (CEILING_DB / 20):
         sys.exit(f"effects push the mix to {db(peak):.2f} dBFS")
@@ -185,16 +152,14 @@ def main() -> None:
     SOUNDS.write_text(json.dumps({
         "source": "Wikimedia Commons",
         "policy": "CC0, public domain, CC BY or CC BY-SA only; author and licence from Commons metadata",
-        "beeps": "synthesised for this video",
         "sounds": sounds,
     }, indent=1, ensure_ascii=False) + "\n")
     import fetch_commons
     fetch_commons.write_credits(json.loads(fetch_commons.MANIFEST.read_text())["photos"])
 
     report = {
-        "beeps_at": [round(t, 4) for t in lamps],
+        "lamps_lit_at": [round(t, 4) for t in lamps],
         "lights_out_at": round(out_t, 4),
-        "beep_peak_dbfs": cfg["beep"]["peakDb"] if cfg.get("beep") else None,
         "launch": credit and {"file": credit["title"], "author": credit["authorFull"], "licence": credit["license"],
                               "gain_db": round(db(gain), 2), "asked_db": cfg["roar"]["peakDb"]},
         "song_peak_dbfs": round(db(np.abs(song).max()), 2),

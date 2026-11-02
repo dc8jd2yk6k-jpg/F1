@@ -18,8 +18,12 @@ describe('start-light sound effects', () => {
     expect(lampsLit(LIGHTS_OUT)).toBe(0);
   });
 
+  it('adds no synthetic beeps: real start lights are silent', () => {
+    expect(sfx).not.toHaveProperty('beep');
+    expect(sounds).not.toHaveProperty('beeps');
+  });
+
   it('credits every recording with an accepted free licence and its Commons page', () => {
-    expect(sounds.beeps).toMatch(/synthesised/);
     for (const s of sounds.sounds) {
       expect(['CC0', 'PD', 'CC BY', 'CC BY-SA']).toContain(s.licenseFamily);
       expect(s.author.length).toBeGreaterThan(0);
