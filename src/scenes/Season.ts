@@ -1,6 +1,6 @@
 import type { Act, Engine, FrameCtx } from '../engine/Engine';
 import { clamp, easeOutCubic, smoothstep } from '../engine/math';
-import { EVENTS, POINTS_LEFT, RACES_LEFT, SEASON, driver, driverColor } from '../leaderboard/data';
+import { CHAMPION, CLINCHED_AT, EVENTS, POINTS_LEFT, RACES_LEFT, SEASON, driver, driverColor } from '../leaderboard/data';
 import { FULL, drawBoard } from '../leaderboard/Board';
 import { drawTeamTile } from '../leaderboard/logos';
 import { LIGHTS_OUT, drawGantry, gridOffset, launch } from '../leaderboard/Opening';
@@ -18,6 +18,9 @@ import { backdrop, breath, calmPost } from './common';
 // P2 fight bracketed.
 
 const HUN = SLOTS.findIndex((s) => EVENTS[s.event].code === 'HUN');
+/** The title is clinched once the deciding Grand Prix's rows have settled. */
+const CLINCH = SLOTS.find((s) => EVENTS[s.event].code === CLINCHED_AT && EVENTS[s.event].type === 'race') ?? null;
+export const CHAMPION_FROM = CLINCH ? CLINCH.bar + 1 : Infinity;
 
 export class Season implements Act {
   readonly sections = ['verse', 'build', 'hook1', 'dip', 'hook2'] as const;
@@ -37,7 +40,7 @@ export class Season implements Act {
     // Lights out (bar 6): the grid slots launch into their rows, the dark gantry fades.
     const go = launch(bar);
     drawBoard(ui, s, {
-      chips: hold ? 0 : 1, leaderGlow: breath(t),
+      chips: hold ? 0 : 1, leaderGlow: breath(t), champion: bar >= CHAMPION_FROM ? CHAMPION ?? undefined : undefined,
       ...(go < 1 ? { offset: (code: string) => gridOffset(code, go), dataAlpha: go } : {}),
     });
     drawGantry(ui, 0, 1 - smoothstep(LIGHTS_OUT, LIGHTS_OUT + 0.35, bar));
@@ -65,14 +68,39 @@ export class Season implements Act {
       const a = smoothstep(0.6, 1.0, age);
       ui.text(`${POINTS_LEFT} POINTS LEFT`, PANEL_X, 530, { font: 'title', size: 34, weight: 900, tracking: 0.04, alpha: a });
       ui.text(`${RACES_LEFT} GRANDS PRIX · NO SPRINTS`, PANEL_X, 566, { font: 'mono', size: 15, weight: 700, tracking: 0.14, color: '#9aa3b2', alpha: a });
-      if (!SEASON.championDecided) {
-        ui.text(SEASON.clinchNote.toUpperCase(), PANEL_X, 612, { font: 'mono', size: 13, weight: 700, tracking: 0.1, color: '#F5C542', alpha: smoothstep(1.2, 1.6, age) });
-      }
+      const note = CHAMPION
+        ? `${driver(CHAMPION).last.toUpperCase()} IS CHAMPION · SECOND IS STILL OPEN`
+        : SEASON.clinchNote.toUpperCase();
+      ui.text(note, PANEL_X, 612, { font: 'mono', size: 13, weight: 700, tracking: 0.1, color: '#F5C542', alpha: smoothstep(1.2, 1.6, age) });
     } else {
       drawHeader(ui, ev, s.age);
       drawWeekend(ui, ev, s.age);
       drawWinnerCard(ui, ev, s.age);
+      if (CLINCH && s.slot === CLINCH) this.championBanner(ui, bar - CHAMPION_FROM);
     }
+  }
+
+  /** The title, clinched: a gold card over the quiet lower half of the board. */
+  private championBanner(ui: Overlay, age: number) {
+    if (age < 0 || !CHAMPION) return;
+    const a = smoothstep(0, 0.2, age);
+    const p = easeOutCubic(clamp(age / 0.4));
+    const d = driver(CHAMPION);
+    const ev = EVENTS[CLINCH!.event];
+    const pos = ev.classification.find((e) => e.driver === CHAMPION)?.pos;
+    const pts = TABLES[CLINCH!.event + 1].find((r) => r.code === CHAMPION)!.points;
+    const x = 600;
+    const y = 660;
+    const w = 640;
+    const h = 236;
+    ui.rect(x, y, w, h, '#05070a', 0.86 * a);
+    ui.line(x, y, x + w * p, y, '#F5C542', 3, a);
+    ui.line(x + w * (1 - p), y + h, x + w, y + h, '#F5C542', 3, a);
+    ui.text(`${SEASON.season} WORLD CHAMPION`, x + 32, y + 54, { font: 'mono', size: 18, weight: 700, tracking: 0.3, color: '#F5C542', alpha: a });
+    ui.wipeText(`${d.first} ${d.last}`.toUpperCase(), x + 28, y + 134, p, { font: 'title', size: 62, weight: 900, tracking: 0.02, alpha: a });
+    const where = ev.name.replace(' Grand Prix', '').toUpperCase();
+    ui.text(`${pos ? `P${pos} IN ${where} · ` : ''}${pts} PTS · ${RACES_LEFT} RACES TO SPARE`, x + 32, y + 186,
+      { font: 'mono', size: 15, weight: 700, tracking: 0.12, color: '#d6dbe4', alpha: a * smoothstep(0.2, 0.5, age) });
   }
 
   /** Halfway snapshot: who has won what. */

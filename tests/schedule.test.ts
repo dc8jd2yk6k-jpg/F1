@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { EVENTS, OFFICIAL } from '../src/leaderboard/data';
+import { EVENTS, OFFICIAL, OFFICIAL_ORDER } from '../src/leaderboard/data';
 import { SLOTS, SUMMER_BREAK, TODAY, stateAt } from '../src/leaderboard/schedule';
 import { barTime, DURATION, section } from '../src/engine/Timeline';
 
@@ -26,11 +26,11 @@ describe('season schedule', () => {
     expect(barTime(TODAY.to)).toBeLessThan(DURATION);
   });
 
-  it('lands on the official standings after Austin', () => {
+  it('lands on the official standings after the latest round', () => {
     const s = stateAt(barTime(TODAY.from + 0.5));
     for (const r of s.rows) expect(r.points).toBeCloseTo(OFFICIAL[r.code], 6);
     const order = [...s.rows].sort((a, b) => a.pos - b.pos).map((r) => r.code);
-    expect(order.slice(0, 6)).toEqual(['ANT', 'RUS', 'HAM', 'VER', 'LEC', 'NOR']);
+    expect(order).toEqual(OFFICIAL_ORDER);
   });
 
   it('only ever increases points as time moves forward', () => {

@@ -69,5 +69,8 @@ export function shortDate(iso: string) {
 }
 
 export const LAST_EVENT = EVENTS[EVENTS.length - 1];
+/** The champion, once the title is decided, and the event where it was clinched. */
+export const CHAMPION: string | null = season.championDecided ? (season as { champion?: string }).champion ?? null : null;
+export const CLINCHED_AT: string | null = CHAMPION ? (season as { clinchedAt?: string }).clinchedAt ?? null : null;
 export const RACES_LEFT = season.remaining.length;
 export const POINTS_LEFT = RACES_LEFT * RACE_POINTS[0] + season.sprintsRemaining * SPRINT_POINTS[0];

@@ -13,7 +13,7 @@ import { backdrop, calmPost } from './common';
 // Bars 1–5, the swell: a cold open. The F1 mark catches the light; then real
 // photographs cut in on the downbeats while the facts of the season land and
 // the start-light gantry fills, one lamp per half bar — the real
-// one-per-second cadence. In bar 5 the 23 drivers line up on the grid with
+// one-per-second cadence. In bar 5 every driver of the season lines up on the grid with
 // all five lamps lit. The lights go out on the downbeat of bar 6, the bass
 // drop, and the grid launches into the table (Season.ts carries that on).
 

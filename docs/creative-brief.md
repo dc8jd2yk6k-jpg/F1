@@ -12,7 +12,7 @@ The first cut was a cinematic 3D race: an imagined Abu Dhabi decider. Review fou
 2. **Beat-synced camera shake.** It was distracting and fought the picture.
 3. **Wrong subject.** The real goal was to **follow every driver's score in every race of 2026**.
 
-So the video became a **dynamic leaderboard**: a bar-chart race of the whole drivers' championship, all 23 drivers who have raced, re-ranking round by round to the music.
+So the video became a **dynamic leaderboard**: a bar-chart race of the whole drivers' championship, every driver who has raced (24 after Mexico City), re-ranking round by round to the music.
 - There is no 3D camera. That removes both the clipping and the shake.
 - Nothing pulses on the beat. The music lands through *when* things change: every round starts on a downbeat, then eases.
 
@@ -32,7 +32,11 @@ The leaderboard was purely typographic. Revision 3 adds real-world material with
 
 - **A cold open worthy of lights out.** Bars 1–5 used to fill in a table. Now they build to a start: the F1 mark, real photos on the downbeats, a gantry lighting up at the real one-per-second cadence, the grid. The lights go out on the bass drop, and the grid launches into the championship table. It's still one event per beat and nothing shakes.
 - **The winner, at that race.** The bottom-right card used one fixed photo per driver, so Antonelli's 10 wins showed the same shot 10 times. Every event now has its own photo, 24 in all. Ten are the winner at that very weekend: the Australian podium, Antonelli celebrating on his car in Shanghai, Russell's sprint-winner interview at Zandvoort, and others. Where Commons has nothing yet, it is the winner at another 2026 race, and the caption says so.
-- **2:25–2:59 as a chart.** The fight for P2 is easier to feel as lines than as bars: four drivers trading places all season, ending 9 points apart.
+- **2:25–2:59 as a chart.** The fight for P2 is easier to feel as lines than as bars: four drivers trading places all season, 16 points apart after Mexico City.
+
+### Revision 5: Mexico City
+
+Round 19 decided the title. Verstappen won, Hamilton was second and Antonelli's third place made him champion with four races to spare. The round takes bars 56–58 (Austin gives up a bar), a gold card marks the clinch, and everything downstream recomputes from the data: the fight for second is now Verstappen, Hamilton, Russell and Leclerc, 16 points apart.
 
 ## What the music says
 
@@ -48,14 +52,14 @@ The season has a strikingly similar shape. It started fast, paused for the summe
 
 | Bars | Song | Leaderboard |
 |---|---|---|
-| 1–5 | Swell | **Cold open.** The F1 mark catches a light sweep. Real photos cut in on the downbeats (the Baku start, the Miami grid, Yas Marina at night) while the season's facts land. A full-width start-light gantry fills one pod per half bar from bar 3, the real one-per-second cadence. In bar 5 the 23 drivers line up on the grid under five red lights |
+| 1–5 | Swell | **Cold open.** The F1 mark catches a light sweep. Real photos cut in on the downbeats (the Baku start, the Miami grid, Yas Marina at night) while the season's facts land. A full-width start-light gantry fills one pod per half bar from bar 3, the real one-per-second cadence. In bar 5 every driver lines up on the grid under five red lights |
 | 6 | Bass drop | **Lights out.** The lamps cut on the downbeat and each grid slot launches into its row of the table. **Round 1, Australia** |
 | 6–36 | Verse → Hook 1 | Rounds 1–11 with their sprints. A Grand Prix takes 2–3 bars, a sprint 1. Bars grow first, then rows re-sort |
 | 36–40 | **The dip** | **Summer break.** The table holds; Grand Prix wins so far; Antonelli leads by 50 |
-| 40–57 | Hook 2 | Rounds 12–18: Zandvoort to Austin, including the Bahrain GP held at Sepang |
-| 57–61 | Hook 2 end | **Today.** The P2 places are bracketed: 4 drivers, 9 points. The 5 rounds still to run are listed |
+| 40–58 | Hook 2 | Rounds 12–19: Zandvoort to Mexico City, including the Bahrain GP held at Sepang. In Mexico City a gold card marks the moment Antonelli clinches the title; from there his row is tagged CHAMPION |
+| 58–61 | Hook 2 end | **Today.** Antonelli is champion; the P2 places are bracketed: 4 drivers, 16 points. The 4 rounds still to run are listed |
 | 61–67 | Breakdown | **The fight for P2.** Russell, Hamilton, Verstappen and Leclerc, each with a strip of every score they made this season |
-| 67–83 | Breakdown | **Cumulative points, replayed.** The strips become four racing lines; the season replays one event per half bar, with portraits and live totals at the heads and gold dots for wins. On each bass pulse (67, 71, 75, 79) a card brings one driver forward. The view then closes in on the finish: 242 · 241 · 236 · 233, 9 points between P2 and P5 |
+| 67–83 | Breakdown | **Cumulative points, replayed.** The strips become four racing lines; the season replays one event per half bar, with portraits and live totals at the heads and gold dots for wins. On each bass pulse (67, 71, 75, 79) a card brings one driver forward. The view then closes in on the finish: 261 · 259 · 250 · 245, 16 points between P2 and P5 |
 | 83–end | D-major outro | The full table as it stands. The background warms to gold. **P2 — ?** Title card |
 
 ## Data
@@ -66,7 +70,7 @@ The data is the point of this video, so it has to be right.
 - Each event was cross-checked between at least two outlets: formula1.com, motorsport.com, crash.net, GPFans, RaceFans, Sky Sports, ESPN and Formula1points.
 
 Integrity, enforced by `tests/results.test.ts`:
-- Each of the 23 drivers' summed points equals the official standings after the United States GP.
+- Each of the 24 drivers' summed points equals the official standings after the Mexico City GP.
 - The Singapore checkpoint matches for the top six.
 - The Mercedes, Ferrari, McLaren and Red Bull constructor totals match, with Lawson's stand-in points counted to Red Bull.
 - Every event awards exactly 25-18-15-12-10-8-6-4-2-1 (races) or 8-7-6-5-4-3-2-1 (sprints).
@@ -74,7 +78,8 @@ Integrity, enforced by `tests/results.test.ts`:
 
 Facts this work surfaced and corrected:
 - **2026 has 23 rounds, not 22.** The Bahrain GP was re-run at Sepang, Malaysia, on 4 October as Round 16. Austin was Round 18. The first cut's "Round 17 of 22" was wrong.
-- **Stand-ins.** Isack Hadjar missed Zandvoort, Monza and Madrid with a wrist injury. Liam Lawson drove for Red Bull and reserve Yuki Tsunoda took the Racing Bulls seat. Tsunoda's point at Monza is why 23 drivers appear.
+- **Stand-ins.** Isack Hadjar missed Zandvoort, Monza and Madrid with a wrist injury. Liam Lawson drove for Red Bull and reserve Yuki Tsunoda took the Racing Bulls seat. Tsunoda's point at Monza is why he appears; Ryo Hirakawa, who replaced Esteban Ocon at Haas in Mexico City, makes 24.
+- **Mexico City.** Oscar Piastri crossed the line seventh, but a 10-second penalty for the collision with Arvid Lindblad dropped him to 15th. The data uses the final, post-penalty classification.
 
 ## Visual system
 

@@ -16,7 +16,7 @@ export interface Layout {
   barMaxW: number;
 }
 
-export const FULL: Layout = { x: 72, y: 178, rowH: 37.6, barX: 392, barMaxW: 760 };
+export const FULL: Layout = { x: 72, y: 178, rowH: 36, barX: 392, barMaxW: 760 };
 
 export interface BoardOptions {
   layout?: Layout;
@@ -34,6 +34,8 @@ export interface BoardOptions {
   offset?: (code: string) => [number, number];
   /** Visibility of the bar, total and axis: 0 leaves just the identity, as a grid slot. */
   dataAlpha?: number;
+  /** Driver code to tag CHAMPION, once the title is decided. */
+  champion?: string;
 }
 
 function niceStep(max: number) {
@@ -128,9 +130,10 @@ function drawRow(ui: Overlay, ctx: CanvasRenderingContext2D, r: DriverState, L: 
   ui.rect(L.x + 72 + slide, cy - barH / 2, 5, barH, col, a);
   drawTeamTile(ui, d.team, L.x + 82 + slide, cy, 24, a);
   ui.text(String(d.number), L.x + 136 + slide, cy + 6, { font: 'mono', size: 14, weight: 700, align: 'right', color: '#7b8596', alpha: a });
-  ui.text(d.last.toUpperCase(), L.x + 144 + slide, cy + 7, { font: 'title', size: 19, weight: 700, tracking: 0.04, alpha: a });
-  if (d.standIn) ui.text('RES', L.x + 144 + ui.measure(d.last.toUpperCase(), { font: 'title', size: 19, weight: 700, tracking: 0.04 }) + 10 + slide, cy + 6,
-    { font: 'mono', size: 11, weight: 700, color: '#7b8596', alpha: a });
+  const champ = opts.champion === r.code;
+  ui.text(d.last.toUpperCase(), L.x + 144 + slide, cy + 7, { font: 'title', size: 19, weight: 700, tracking: 0.04, color: champ ? '#F5C542' : '#fff', alpha: a });
+  const nameW = ui.measure(d.last.toUpperCase(), { font: 'title', size: 19, weight: 700, tracking: 0.04 });
+  if (d.standIn) ui.text('RES', L.x + 144 + nameW + 10 + slide, cy + 6, { font: 'mono', size: 11, weight: 700, color: '#7b8596', alpha: a });
 
   // The bar.
   const da = opts.dataAlpha ?? 1;
@@ -163,6 +166,7 @@ function drawRow(ui: Overlay, ctx: CanvasRenderingContext2D, r: DriverState, L: 
   const pts = Math.round(r.points);
   const px = bx + w + 12;
   ui.text(String(pts), px, cy + 7, { font: 'mono', size: 19, weight: 700, alpha: a * da });
+  let endX = px + ui.measure(String(pts), { font: 'mono', size: 19, weight: 700 });
   if (r.delta > 0 && chips > 0 && s.k >= 0) {
     const age = s.age;
     const life = s.slot?.bars ?? 2;
@@ -182,6 +186,8 @@ function drawRow(ui: Overlay, ctx: CanvasRenderingContext2D, r: DriverState, L: 
       ctx.fill();
       ctx.restore();
       ui.text(label, cx + tw / 2, cy + 5.5, { font: 'mono', size: 15, weight: 700, align: 'center', color: '#05070a', alpha: ca });
+      endX = cx + tw;
     }
   }
+  if (champ) ui.text('CHAMPION', endX + 12, cy + 6, { font: 'mono', size: 12, weight: 700, tracking: 0.16, color: '#F5C542', alpha: a * da });
 }

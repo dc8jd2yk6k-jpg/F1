@@ -595,6 +595,38 @@
    ]
   },
   {
+   "id": "venue-mex",
+   "role": "venue",
+   "key": "MEX",
+   "file": "venue-mex.jpg",
+   "width": 1600,
+   "height": 900,
+   "caption": "Autódromo Hermanos Rodríguez from above (2025)",
+   "author": "ProtoplasmaKid",
+   "authorFull": "ProtoplasmaKid",
+   "license": "CC BY-SA 4.0",
+   "licenseFamily": "CC BY-SA",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Vista_a%C3%A9rea_del_Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez_03.jpg",
+   "title": "File:Vista aérea del Autódromo Hermanos Rodríguez 03.jpg",
+   "date": "2025-08-16 18:54:25",
+   "restrictions": "",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "changes": "resized; shown cropped, softened and colour-graded as a darkened backdrop",
+   "description": "Main grandstand of the File:Vista aérea del Autódromo Hermanos Rodríguez.",
+   "categories": [
+    "Autódromo Hermanos Rodríguez",
+    "CC-BY-SA-4.0",
+    "Files with coordinates missing SDC location of creation",
+    "Images of Venustiano Carranza by User:ProtoplasmaKid",
+    "Photos taken with WMMX drone",
+    "Self-published work"
+   ]
+  },
+  {
    "id": "finale-yas-marina",
    "role": "finale",
    "key": "FINALE",
@@ -1547,6 +1579,41 @@
     "Photographs by Lukas Raich",
     "Self-published work",
     "Spielberg bei Knittelfeld photographs taken on 2026-06-26"
+   ]
+  },
+  {
+   "id": "winner-mex-race",
+   "role": "winner",
+   "key": "MEX-race",
+   "file": "winner-mex-race.jpg",
+   "width": 960,
+   "height": 540,
+   "caption": "Verstappen · 2026 Belgian GP",
+   "author": "Der Alf",
+   "authorFull": "Der Alf",
+   "license": "CC BY 4.0",
+   "licenseFamily": "CC BY",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:F1_2026,_Red_Bull_Racing,_Red_Bull_RB22,_Max_Verstappen,_Spa_Francorchamps_(55425736764).jpg",
+   "title": "File:F1 2026, Red Bull Racing, Red Bull RB22, Max Verstappen, Spa Francorchamps (55425736764).jpg",
+   "date": "2026-07-28 12:54:15",
+   "restrictions": "",
+   "focus": [
+    0.45,
+    0.5
+   ],
+   "changes": "resized; shown cropped",
+   "description": "",
+   "categories": [
+    "2026 Belgian Grand Prix",
+    "CC-BY-4.0",
+    "Creative Commons Attribution 4.0 missing SDC copyright license",
+    "Creative Commons Attribution missing SDC copyright status",
+    "Flickr images missing SDC copyright status",
+    "Flickr images missing SDC inception",
+    "Flickr images reviewed by FlickreviewR 2",
+    "Media lacking a description",
+    "Red Bull Racing RB22 of Max Verstappen"
    ]
   }
  ]

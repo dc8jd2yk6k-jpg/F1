@@ -1,7 +1,7 @@
 import type { Act, Engine, FrameCtx } from '../engine/Engine';
 import { clamp, easeInOutCubic, easeOutCubic, easeOutExpo, lerp, smoothstep } from '../engine/math';
 import { DURATION } from '../engine/Timeline';
-import { POINTS_LEFT, RACES_LEFT, SEASON, shortDate } from '../leaderboard/data';
+import { CHAMPION, POINTS_LEFT, RACES_LEFT, SEASON, driver, shortDate } from '../leaderboard/data';
 import { FULL, drawBoard } from '../leaderboard/Board';
 import { F1_MARK, drawMark } from '../leaderboard/logos';
 import { FINAL } from '../leaderboard/model';
@@ -38,7 +38,7 @@ export class Outro implements Act {
     backdrop(f, warm, 0.05 + 0.03 * warm, [{ photo: FINALE_PHOTO, alpha: plate, zoom: zoomAt(bar - 83) }], GOLD);
     drawBackdropCredit(ui, FINALE_PHOTO, plate * (1 - title));
 
-    drawBoard(ui, stateAt(t), { chips: 0, alpha: boardA });
+    drawBoard(ui, stateAt(t), { chips: 0, alpha: boardA, champion: CHAMPION ?? undefined });
     drawRoundStrip(ui, SEASON.afterRound.round, 0, boardA);
     drawTitleHeader(ui, `TODAY · AFTER ROUND ${SEASON.afterRound.round} OF ${SEASON.totalRounds}`, 'THE TABLE, AS IT STANDS', bar - 83, boardA);
     // Places 2–5 stay marked.
@@ -73,6 +73,11 @@ export class Outro implements Act {
       ui.typeText(contenders, 960, 700, clamp((bar - 85.9) / 0.6), { font: 'mono', size: 28, weight: 700, tracking: 0.2, align: 'center', alpha: a }, false);
       ui.typeText(`${RACES_LEFT} RACES · DECIDED BY ${shortDate(FINALE.date)} AT ${(FINALE.venue ?? 'YAS MARINA').toUpperCase()}`, 960, 748,
         clamp((bar - 86.4) / 0.6), { font: 'mono', size: 18, weight: 700, tracking: 0.16, align: 'center', color: '#c9ced8', alpha: a }, false);
+      if (CHAMPION) {
+        ui.text(`${driver(CHAMPION).last.toUpperCase()} IS CHAMPION. SECOND IS STILL OPEN.`, 960, 806, {
+          font: 'mono', size: 18, weight: 700, tracking: 0.2, align: 'center', color: '#F5C542', alpha: a * smoothstep(86.7, 87.0, bar),
+        });
+      }
     }
 
     // Title card.

@@ -4,7 +4,7 @@ import { CONTENDERS, CUMULATIVE, valueAt } from '../src/leaderboard/PointsChart'
 
 describe('P2 points chart', () => {
   it('follows places 2–5 of the official table', () => {
-    expect(CONTENDERS).toEqual(['RUS', 'HAM', 'VER', 'LEC']);
+    expect(CONTENDERS).toEqual(['VER', 'HAM', 'RUS', 'LEC']);
   });
 
   it('ends every line on the official total', () => {

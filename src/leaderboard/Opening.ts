@@ -4,7 +4,7 @@ import { FULL } from './Board';
 import { TABLES } from './model';
 
 // Pieces of the cold open shared by the intro and the first round: the
-// start-light gantry, the grid the 23 drivers line up on, and the launch
+// start-light gantry, the grid the drivers line up on, and the launch
 // that carries each grid slot into its row of the table when the lights go
 // out on the bass drop (bar 6).
 

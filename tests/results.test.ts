@@ -8,8 +8,8 @@ const sumFor = (code: string, upTo = EVENTS.length) =>
   EVENTS.slice(0, upTo).reduce((s, ev) => s + (ev.classification.find((e) => e.driver === code)?.pts ?? 0), 0);
 
 describe('2026 results data', () => {
-  it('covers 18 Grands Prix and 6 sprints, in date order', () => {
-    expect(EVENTS.filter((e) => e.type === 'race')).toHaveLength(18);
+  it('covers every Grand Prix run so far and 6 sprints, in date order', () => {
+    expect(EVENTS.filter((e) => e.type === 'race')).toHaveLength(SEASON.afterRound.round);
     expect(EVENTS.filter((e) => e.type === 'sprint')).toHaveLength(6);
     for (let i = 1; i < EVENTS.length; i++) expect(EVENTS[i].date >= EVENTS[i - 1].date).toBe(true);
   });
@@ -31,10 +31,10 @@ describe('2026 results data', () => {
     }
   });
 
-  it('sums to the official standings after Austin for every driver', () => {
+  it('sums to the official standings after the latest round for every driver', () => {
     for (const d of DRIVERS) expect([d.code, sumFor(d.code)]).toEqual([d.code, OFFICIAL[d.code]]);
     const total = Object.values(OFFICIAL).reduce((a, b) => a + b, 0);
-    expect(total).toBe(18 * 101 + 6 * 36);
+    expect(total).toBe(SEASON.afterRound.round * 101 + 6 * 36);
   });
 
   it('matches the checkpoint after Singapore', () => {

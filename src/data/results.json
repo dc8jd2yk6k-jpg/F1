@@ -1,7 +1,7 @@
 {
  "season": 2026,
- "asOf": "2026-10-25",
- "note": "Points scorers per event (races: top 10, sprints: top 8). Verified: per-driver sums equal the official standings after the United States GP for every driver; post-Singapore checkpoint also matches.",
+ "asOf": "2026-11-01",
+ "note": "Points scorers per event (races: top 10, sprints: top 8). Verified: per-driver sums equal the official standings after the Mexico City GP for every driver; post-Singapore checkpoint also matches.",
  "events": [
   {
    "round": 1,
@@ -1483,6 +1483,72 @@
     "https://www.crash.net/f1/results/1108504/1/formula-1-us-grand-prix-full-race-results",
     "https://www.gpfans.com/en/f1-news/1092007/f1-us-grand-prix-2026-results-final-classification-all-penalties-applied-cota/",
     "https://www.racefans.net/2026/10/25/2026-united-states-grand-prix-race-result-and-championship-points/"
+   ]
+  },
+  {
+   "round": 19,
+   "code": "MEX",
+   "name": "Mexico City Grand Prix",
+   "venue": "Autódromo Hermanos Rodríguez, Mexico City",
+   "date": "2026-11-01",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "VER",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "HAM",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "ANT",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "LEC",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "NOR",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "RUS",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "COL",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "LAW",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "GAS",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "BOR",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://racingnews365.com/2026-f1-mexico-city-grand-prix-results-adjusted-after-severe-post-race-penalty",
+    "https://www.total-motorsport.com/mexico-city-gp-results-2026-full-race-classification/",
+    "https://www.skysports.com/f1/news/13606682/kimi-antonelli-crowned-2026-f1-world-champion-as-max-verstappen-wins-wild-mexico-city-grand-prix-from-lewis-hamilton",
+    "https://www.planetf1.com/news/fia-oscar-piastri-penalty-f1-2026-mexican-grand-prix"
    ]
   }
  ]

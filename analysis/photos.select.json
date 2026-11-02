@@ -199,6 +199,17 @@
   ]
  },
  {
+  "id": "venue-mex",
+  "role": "venue",
+  "key": "MEX",
+  "title": "File:Vista aérea del Autódromo Hermanos Rodríguez 03.jpg",
+  "caption": "Autódromo Hermanos Rodríguez from above (2025)",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
   "id": "finale-yas-marina",
   "role": "finale",
   "key": "FINALE",
@@ -515,6 +526,17 @@
   "focus": [
    0.5,
    0.55
+  ]
+ },
+ {
+  "id": "winner-mex-race",
+  "role": "winner",
+  "key": "MEX-race",
+  "title": "File:F1 2026, Red Bull Racing, Red Bull RB22, Max Verstappen, Spa Francorchamps (55425736764).jpg",
+  "caption": "Verstappen · 2026 Belgian GP",
+  "focus": [
+   0.45,
+   0.5
   ]
  }
 ]

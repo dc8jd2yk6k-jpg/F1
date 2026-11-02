@@ -1,12 +1,11 @@
 {
   "season": 2026,
-  "asOf": "2026-10-25",
+  "asOf": "2026-11-02",
   "status": "provisional",
-  "afterRound": { "round": 18, "name": "United States Grand Prix", "date": "2026-10-25" },
+  "afterRound": { "round": 19, "name": "Mexico City Grand Prix", "date": "2026-11-01" },
   "totalRounds": 23,
   "calendarNote": "Bahrain and Saudi Arabia were cancelled in March; the Bahrain Grand Prix was later run at Sepang, Malaysia (Round 16), making 23 rounds.",
   "remaining": [
-    { "round": 19, "code": "MEX", "name": "Mexico City Grand Prix", "date": "2026-11-01" },
     { "round": 20, "code": "BRA", "name": "São Paulo Grand Prix", "date": "2026-11-08" },
     { "round": 21, "code": "LVG", "name": "Las Vegas Grand Prix", "date": "2026-11-21" },
     { "round": 22, "code": "QAT", "name": "Qatar Grand Prix", "date": "2026-11-29" },
@@ -15,8 +14,10 @@
   "sprintsRemaining": 0,
   "racePoints": [25, 18, 15, 12, 10, 8, 6, 4, 2, 1],
   "sprintPoints": [8, 7, 6, 5, 4, 3, 2, 1],
-  "championDecided": false,
-  "clinchNote": "Antonelli can clinch in Mexico with P9 or better",
+  "championDecided": true,
+  "champion": "ANT",
+  "clinchedAt": "MEX",
+  "clinchNote": "Antonelli clinched the title in Mexico City with third place",
   "teams": {
     "mercedes": { "name": "Mercedes", "color": "#27F4D2" },
     "ferrari": { "name": "Ferrari", "color": "#E8102E" },
@@ -53,18 +54,25 @@
     { "code": "BOR", "first": "Gabriel", "last": "Bortoleto", "number": 5, "team": "audi" },
     { "code": "PER", "first": "Sergio", "last": "Pérez", "number": 11, "team": "cadillac" },
     { "code": "BOT", "first": "Valtteri", "last": "Bottas", "number": 77, "team": "cadillac" },
-    { "code": "TSU", "first": "Yuki", "last": "Tsunoda", "number": 22, "team": "racingbulls", "standIn": true, "note": "Reserve; raced for Racing Bulls at Zandvoort, Monza and Madrid" }
+    { "code": "TSU", "first": "Yuki", "last": "Tsunoda", "number": 22, "team": "racingbulls", "standIn": true, "note": "Reserve; raced for Racing Bulls at Zandvoort, Monza and Madrid" },
+    { "code": "HIR", "first": "Ryo", "last": "Hirakawa", "number": 50, "team": "haas", "standIn": true, "note": "Reserve; replaced Esteban Ocon at Haas for the Mexico City Grand Prix" }
   ],
   "officialStandings": {
-    "ANT": 365, "RUS": 242, "HAM": 241, "VER": 236, "LEC": 233, "NOR": 211, "PIA": 144, "HAD": 105, "LAW": 77,
-    "GAS": 42, "LIN": 38, "COL": 27, "BEA": 23, "HUL": 13, "BOR": 10, "OCO": 7, "ALO": 7, "SAI": 7, "ALB": 5,
-    "TSU": 1, "STR": 0, "BOT": 0, "PER": 0
+    "ANT": 380, "VER": 261, "HAM": 259, "RUS": 250, "LEC": 245, "NOR": 221, "PIA": 144, "HAD": 105, "LAW": 81,
+    "GAS": 44, "LIN": 38, "COL": 33, "BEA": 23, "HUL": 13, "BOR": 11, "OCO": 7, "ALO": 7, "SAI": 7, "ALB": 5,
+    "TSU": 1, "STR": 0, "BOT": 0, "PER": 0, "HIR": 0
   },
   "checkpoints": {
     "afterSingapore": { "ANT": 340, "RUS": 238, "HAM": 229, "VER": 221, "LEC": 215, "NOR": 201 }
   },
-  "constructors": { "mercedes": 607, "ferrari": 474, "mclaren": 355, "redbull": 355 },
+  "constructors": { "mercedes": 630, "ferrari": 504, "mclaren": 365, "redbull": 380 },
   "sources": [
+    "https://racingnews365.com/adjusted-2026-f1-championship-standings-after-the-mexico-city-grand-prix-penalty",
+    "https://www.si.com/onsi/f1/news/f1-standings-and-results-as-kimi-antonelli-crowned-champion-at-mexican-grand-prix",
+    "https://gpkingdom.it/en/185361/formula-1-drivers-championship-standings-after-the-mexico-city-gp-antonelli-is-world-champion/",
+    "https://www.crash.net/f1/results/1109260/1/new-f1-championship-standings-after-mexico-grand-prix",
+    "https://scuderiafans.com/2026-f1-constructor-standings-after-mexico-gp-ferrari-second-with-504-points/",
+    "https://www.formula1.com/en/latest/article/hirakawa-to-replace-ocon-at-haas-for-remainder-of-mexico-city-grand-prix-weekend.2cl5jN0g3rZ2pIYQvc00xM",
     "https://racingnews365.com/2026-f1-championship-standings-after-united-states-grand-prix",
     "https://www.racefans.net/2026/10/25/2026-united-states-grand-prix-race-result-and-championship-points/",
     "https://www.crash.net/f1/results/1108507/1/new-f1-championship-standings-after-united-states-grand-prix",

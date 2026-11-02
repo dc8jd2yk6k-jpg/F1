@@ -7,7 +7,7 @@ import { TABLES } from './model';
 // starts on a beat (downbeat or mid-bar): a Grand Prix gets 2–3 bars, a
 // sprint 1. Two holds are written into the music:
 //   bars 36–40 — the song's dip is F1's summer break (after Hungary)
-//   bars 57–61 — after Austin: the standings as they are today
+//   bars 58–61 — after Mexico City: the standings as they are today
 // Bars grow and rows re-rank over the first part of each span, then hold, so
 // the eye can read the result before the next round lands.
 
@@ -42,7 +42,8 @@ const PLAN: [code: string, type: 'race' | 'sprint', bar: number, bars: number][]
   ['MAS', 'race', 49, 2],
   ['SIN', 'sprint', 51, 1],
   ['SIN', 'race', 52, 2],
-  ['USA', 'race', 54, 3],
+  ['USA', 'race', 54, 2],
+  ['MEX', 'race', 56, 2],
 ];
 
 export const SLOTS: Slot[] = PLAN.map(([code, type, bar, bars]) => {
@@ -52,7 +53,7 @@ export const SLOTS: Slot[] = PLAN.map(([code, type, bar, bars]) => {
 });
 
 export const SUMMER_BREAK = { from: 36, to: 40 };
-export const TODAY = { from: 57, to: 61 };
+export const TODAY = { from: 58, to: 61 };
 export const SEASON_START_BAR = SLOTS[0].bar;
 
 /** Fraction of a slot over which points grow and ranks move. */
@@ -119,5 +120,5 @@ export function stateAt(t: number): BoardState {
   return { k, slot, p: pPts, age, rows, leaderPoints };
 }
 
-/** Last time point covered by the season run (end of the Austin slot). */
+/** Last time point covered by the season run (end of the latest round's slot). */
 export const SEASON_END_BAR = SLOTS[SLOTS.length - 1].bar + SLOTS[SLOTS.length - 1].bars;

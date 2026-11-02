@@ -1,6 +1,6 @@
 import type { Act, Engine, FrameCtx } from '../engine/Engine';
 import { clamp, easeInOutCubic, easeOutCubic, lerp, smoothstep } from '../engine/math';
-import { EVENTS, RACES_LEFT, driver, driverColor } from '../leaderboard/data';
+import { CHAMPION, EVENTS, RACES_LEFT, driver, driverColor } from '../leaderboard/data';
 import { drawBoard } from '../leaderboard/Board';
 import { drawTeamTile } from '../leaderboard/logos';
 import { FINAL, pointsByEvent, pointsSince } from '../leaderboard/model';
@@ -31,8 +31,8 @@ const BLOCK_H = 214;
 const COL_W = STRIP_W / EVENTS.length;
 const MAX_H = 112;
 
-/** The chart: axes draw on at bar 67, then one event every half bar from 67.5 to 79.5, then the zoom. */
-export const CHART = { in: 67, start: 67.5, step: 0.5, zoom: [79.5, 81] as const };
+/** The chart: axes draw on at bar 67, then one event every half bar from 67.5, then the zoom to the finish. */
+export const CHART = { in: 67, start: 67.5, step: 0.5, zoom: [80.0, 81.1] as const };
 
 const since = Object.fromEntries(CONTENDERS.map((r) => [r.code, pointsSince(r.code, BREAK_AT)]));
 const mostSince = Math.max(...Object.values(since));
@@ -53,7 +53,7 @@ export class P2Fight implements Act {
     const out = easeInOutCubic(clamp((bar - 61) / 0.8));
     if (out < 1) {
       const keep = new Set(CONTENDERS.map((r) => r.code));
-      drawBoard(ui, stateAt(t), { chips: 0, alpha: 1 - out, dim: (c) => (keep.has(c) ? 1 : 1 - out) });
+      drawBoard(ui, stateAt(t), { chips: 0, alpha: 1 - out, dim: (c) => (keep.has(c) ? 1 : 1 - out), champion: CHAMPION ?? undefined });
     }
     const a = smoothstep(61.4, 61.9, bar);
     const spread = CONTENDERS[0].points - CONTENDERS[CONTENDERS.length - 1].points;
