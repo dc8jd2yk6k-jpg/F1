@@ -112,7 +112,7 @@ def launch(cfg: dict) -> tuple[np.ndarray, dict | None]:
     seg = x[max(0, a - pre): a + int(r["length"] * SR)].copy()
     n = len(seg)
     t = np.arange(n) / SR
-    fade_in = np.clip(t / max(pre / SR, 1e-3), 0, 1)
+    fade_in = np.clip(t / max(r.get("fadeIn", pre / SR), 1e-3), 0, 1)
     fo = r["fade"]
     k = np.clip((t - (n / SR - fo)) / fo, 0, 1)
     fade_out = 0.5 * (1 + np.cos(np.pi * k))
@@ -124,7 +124,7 @@ def launch(cfg: dict) -> tuple[np.ndarray, dict | None]:
         "id": "sfx-launch", "role": "sound", "caption": r["caption"], "title": d["title"], "page": d["page"],
         "author": r.get("author") or artist, "authorFull": artist, "license": d["license"], "licenseFamily": fam,
         "licenseUrl": d["license_url"], "date": d["date"],
-        "changes": "trimmed to the launch, high-passed, faded out and mixed with the song",
+        "changes": r.get("changes", "trimmed to the launch, high-passed, faded out and mixed with the song"),
         "description": d["description"][:300], "categories": d["categories"],
     }
     return seg, {"pre": pre / SR, **credit}
@@ -143,9 +143,10 @@ def main() -> None:
     lamps, out_t = cue_times(cfg, au)
 
     beeps = np.zeros_like(song)
-    one = beep(cfg)
-    for t in lamps:
-        place(beeps, one, t)
+    if cfg.get("beep"):
+        one = beep(cfg)
+        for t in lamps:
+            place(beeps, one, t)
 
     roar, credit = launch(cfg)
     roars = np.zeros_like(song)
@@ -193,7 +194,7 @@ def main() -> None:
     report = {
         "beeps_at": [round(t, 4) for t in lamps],
         "lights_out_at": round(out_t, 4),
-        "beep_peak_dbfs": cfg["beep"]["peakDb"],
+        "beep_peak_dbfs": cfg["beep"]["peakDb"] if cfg.get("beep") else None,
         "launch": credit and {"file": credit["title"], "author": credit["authorFull"], "licence": credit["license"],
                               "gain_db": round(db(gain), 2), "asked_db": cfg["roar"]["peakDb"]},
         "song_peak_dbfs": round(db(np.abs(song).max()), 2),
