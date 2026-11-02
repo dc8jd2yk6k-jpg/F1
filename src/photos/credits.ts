@@ -3,6 +3,7 @@ import type { SeasonEvent } from '../leaderboard/data';
 import { driver, teamAt, teamColor } from '../leaderboard/data';
 import type { Overlay } from '../overlay/Overlay';
 import { type Photo, credit, drawCover, photoFor } from './photos';
+import { soundFor } from './sounds';
 
 // Photos on the overlay, always with their credit: the race winner's card
 // under the weekend classification (a photo of that winner at that event
@@ -14,6 +15,13 @@ const CREDIT = { font: 'mono', size: 11, weight: 700, tracking: 0.04 } as const;
 export function drawBackdropCredit(ui: Overlay, p: Photo | null, alpha: number, label = 'BACKDROP') {
   if (!p || alpha <= 0.01) return;
   ui.text(`${label}: ${p.caption.toUpperCase()} · ${credit(p, 'PHOTO')}`, 1848, 1064, { ...CREDIT, align: 'right', color: '#8d96a6', alpha: alpha * 0.9 });
+}
+
+/** Credit for the launch recording while it plays, just above the backdrop credit. */
+export function drawSoundCredit(ui: Overlay, alpha: number) {
+  const s = soundFor('sfx-launch');
+  if (!s || alpha <= 0.01) return;
+  ui.text(`SOUND: ${s.caption.toUpperCase()} · ${credit(s, 'RECORDING')}`, 1848, 1046, { ...CREDIT, align: 'right', color: '#8d96a6', alpha: alpha * 0.9 });
 }
 
 export const CARD = { x: 1360, y: 688, w: 488, h: 252 };

@@ -10,6 +10,7 @@ import { stateAt } from '../leaderboard/schedule';
 import { GOLD } from '../photos/PhotoPlate';
 import { drawBackdropCredit } from '../photos/credits';
 import { PHOTOS } from '../photos/photos';
+import { SOUNDS } from '../photos/sounds';
 import { FINALE_PHOTO, zoomAt } from '../photos/venues';
 import type { Overlay } from '../overlay/Overlay';
 import { backdrop, calmPost } from './common';
@@ -96,22 +97,27 @@ export class Outro implements Act {
   }
 }
 
-/** Every photograph used, on the closing card (the full list is in CREDITS.md). */
+/** Every photograph and recording used, on the closing card (the full list is in CREDITS.md). */
 function photoCredits(ui: Overlay, alpha: number) {
-  if (!PHOTOS.length || alpha <= 0) return;
-  const sa = PHOTOS.some((p) => /BY-SA/i.test(p.license));
-  ui.text(`PHOTOGRAPHY VIA WIKIMEDIA COMMONS${sa ? ' · THIS VIDEO IS SHARED UNDER CC BY-SA 4.0' : ''}`, 960, 690, {
+  const items = [
+    ...PHOTOS.map((p) => ({ label: p.caption, author: p.author, license: p.license })),
+    ...SOUNDS.map((s) => ({ label: `Sound: ${s.caption.split(' · ')[0]}`, author: s.author, license: s.license })),
+  ];
+  if (!items.length || alpha <= 0) return;
+  const sa = items.some((p) => /BY-SA/i.test(p.license));
+  const what = SOUNDS.length ? 'PHOTOGRAPHY AND SOUND' : 'PHOTOGRAPHY';
+  ui.text(`${what} VIA WIKIMEDIA COMMONS${sa ? ' · THIS VIDEO IS SHARED UNDER CC BY-SA 4.0' : ''}`, 960, 690, {
     font: 'mono', size: 13, weight: 700, tracking: 0.16, align: 'center', color: '#c9ced8', alpha,
   });
-  const cols = PHOTOS.length > 30 ? 4 : 3;
-  const perCol = Math.ceil(PHOTOS.length / cols);
+  const cols = items.length > 30 ? 4 : 3;
+  const perCol = Math.ceil(items.length / cols);
   const colW = 1760 / cols;
   const rowH = perCol > 10 ? 17 : 19;
   const x0 = 960 - (colW * cols) / 2 + 20;
-  PHOTOS.forEach((p, i) => {
+  items.forEach((p, i) => {
     const cx = x0 + Math.floor(i / perCol) * colW;
     const cy = 722 + (i % perCol) * rowH;
-    const line = `${p.caption.toUpperCase()} — ${p.author.toUpperCase()}, ${p.license}`;
+    const line = `${p.label.toUpperCase()} — ${p.author.toUpperCase()}, ${p.license}`;
     const style = { font: 'mono', size: 11, weight: 400, tracking: 0.03 } as const;
     const size = Math.min(11, (11 * (colW - 24)) / ui.measure(line, style));
     ui.text(line, cx, cy, { ...style, size, color: '#a3abb8', alpha });

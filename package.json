@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "analyze": "python3 analysis/analyze_audio.py",
+    "sfx": "analysis/.venv/bin/python analysis/mix_sfx.py",
     "stills": "node scripts/stills.mjs",
     "render": "node scripts/render.mjs"
   },

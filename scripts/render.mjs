@@ -1,7 +1,9 @@
 // Offline renderer: every frame is rendered deterministically in headless
 // Chromium (software WebGL), captured as JPEG, and piped into x264. Work is
 // split across parallel browser workers in resumable chunks; the chunks are
-// concatenated and muxed with the ORIGINAL audio stream (copied, not re-encoded).
+// concatenated and muxed with the soundtrack stream copied as it is: by default
+// the song with the start-light effects (analysis/mix_sfx.py writes it);
+// --audio public/audio/f1.m4a gives the music-only cut.
 //
 //   node scripts/render.mjs [--w 1920 --h 1080] [--workers 3] [--step 1]
 //                           [--out out/F1_MV_2026_1080p.mp4] [--crf 18] [--from 0 --to N] [--no-build]
@@ -20,7 +22,8 @@ const CRF = String(args.crf ?? 19);
 const QUALITY = Number(args.quality ?? 0.95);
 const CHUNK = Number(args.chunk ?? 240);
 const OUT = path.resolve(ROOT, args.out ?? `out/F1_MV_2026_${H}p.mp4`);
-const AUDIO = path.resolve(ROOT, args.audio ?? 'public/audio/f1.m4a');
+const AUDIO = path.resolve(ROOT, args.audio ?? 'public/audio/f1_sfx.m4a');
+if (!fs.existsSync(AUDIO)) throw new Error(`${path.relative(ROOT, AUDIO)} is missing: run analysis/mix_sfx.py first (or pass --audio public/audio/f1.m4a)`);
 const WORK = path.resolve(ROOT, args.work ?? `out/chunks_${W}x${H}_s${STEP}`);
 
 const audio = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/audio.json'), 'utf8'));
@@ -87,7 +90,7 @@ const queue = [...todo];
 await Promise.all(Array.from({ length: Math.min(WORKERS, Math.max(1, todo.length)) }, (_, i) => worker(i, queue)));
 server.close();
 
-// Concatenate and mux with the untouched source audio.
+// Concatenate and mux with the soundtrack (copied, not re-encoded).
 const list = path.join(WORK, 'list.txt');
 fs.writeFileSync(list, chunks.map((c) => `file '${c.file}'`).join('\n'));
 const silent = path.join(WORK, 'video.mp4');

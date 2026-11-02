@@ -64,6 +64,16 @@ Because some photographs are licensed CC BY-SA, the video as a whole is shared u
 Subjects are identified from each file's Commons title, description and categories.
 Some photos show identifiable people; Commons notes that their personality rights may restrict commercial use.
 
+## Sound effects
+
+The start-light beeps are synthesised for this video. The launch at lights out is a real recording from
+Wikimedia Commons, credited on screen while it plays and on the closing card. The song itself is unchanged;
+the effects are mixed on top of it (see `analysis/mix_sfx.py`).
+
+| Used as | Subject | Author | Licence | Changes | Source |
+|---|---|---|---|---|---|
+| Launch at lights out · `sfx-launch` | Ferrari F60 (2009) pulling away · Goodwood Festival of Speed 2010 | Edvvc | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | trimmed to the launch, high-passed, faded out and mixed with the song | [Ferrari F60 (2009).ogg](https://commons.wikimedia.org/wiki/File:Ferrari_F60_(2009).ogg) |
+
 ## Logos
 
 The F1, Ferrari, McLaren, Red Bull, Aston Martin, Audi and Cadillac marks are drawn from

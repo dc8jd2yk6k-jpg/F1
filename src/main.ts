@@ -74,7 +74,7 @@ async function boot() {
   // Preview: fit canvas to the window, play the song, render at audio time.
   canvas.style.width = '100vw';
   canvas.style.height = `${(100 * H) / W}vw`;
-  const audio = new Audio('./audio/f1.m4a');
+  const audio = new Audio('./audio/f1_sfx.m4a'); // the song with the start-light effects (analysis/mix_sfx.py)
   const start = params.get('bar') ? barTime(Number(params.get('bar'))) : Number(params.get('t') ?? 0);
   audio.currentTime = start;
   const loop = () => {

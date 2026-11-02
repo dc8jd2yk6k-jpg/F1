@@ -1,7 +1,12 @@
 """Objective checks on a rendered video.
 
 1. Stream specs (resolution, fps, frame count, duration).
-2. Audio is the source stream, byte-identical (packet MD5, stream copied).
+2. Audio. A music-only cut must carry the source stream byte for byte
+   (packet MD5). A cut with the start-light effects must keep the song intact
+   outside the effects (residual after alignment far below the music), start
+   every beep on the frame its lamp lights and the launch on the first dark
+   frame (both measured from the picture), and stay clear of clipping where
+   the effects play.
 3. Every round change in the schedule becomes visible within one frame of
    its downbeat.
 4. Stability: during holds the picture is still (no shake, no pulsing).
@@ -22,6 +27,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 AUDIO_SRC = ROOT / "public" / "audio" / "f1.m4a"
 AUDIO_JSON = ROOT / "src" / "data" / "audio.json"
+SFX_JSON = ROOT / "src" / "data" / "sfx.json"
+SR = 48_000
 
 
 def run(cmd: list[str]) -> bytes:
@@ -35,6 +42,99 @@ def probe(path: Path) -> dict:
 def audio_md5(path: Path) -> str:
     out = run(["ffmpeg", "-v", "error", "-i", str(path), "-map", "0:a:0", "-c", "copy", "-f", "md5", "-"]).decode().strip()
     return out.split("=")[-1]
+
+
+def pcm(path: Path) -> np.ndarray:
+    raw = run(["ffmpeg", "-v", "error", "-i", str(path), "-map", "0:a:0", "-f", "f32le", "-ac", "2", "-ar", str(SR), "-"])
+    return np.frombuffer(raw, np.float32).reshape(-1, 2).astype(np.float64)
+
+
+def envelope(x: np.ndarray, ms: float) -> np.ndarray:
+    """RMS envelope, one value per sample (centred moving window)."""
+    k = max(1, int(SR * ms / 1000))
+    return np.sqrt(np.convolve(x ** 2, np.ones(k) / k, mode="same"))
+
+
+def lamp_frames(Y: np.ndarray, fps: float, t0: float, t1: float) -> tuple[list[int], int]:
+    """From the picture: the first frame each gantry lamp is lit, and the first frame all are dark again.
+
+    The gantry (Opening.ts) has five pods, 104 px wide with 38 px gaps, centred on
+    x = 960; the upper lamp of each sits at y = 34 + 0.3 * 214. Sampled at the
+    lamp centre on the 96x54 thumbnails (1/20 scale).
+    """
+    h, w = Y.shape[1:]
+    sx, sy = w / 1920, h / 1080
+    x0 = 960 - (5 * 104 + 4 * 38) / 2
+    f0, f1 = int(t0 * fps), int(t1 * fps)
+    lit, out = [], -1
+    for i in range(5):
+        cx, cy = int((x0 + i * 142 + 52) * sx), int((34 + 0.3 * 214) * sy)
+        lum = Y[f0:f1, cy, cx]
+        on = np.flatnonzero(lum > 0.25)
+        lit.append(f0 + int(on[0]) if len(on) else -1)
+        if i == 0 and len(on):
+            off = np.flatnonzero(lum[on[0]:] < 0.15)
+            out = f0 + int(on[0] + off[0]) if len(off) else -1
+    return lit, out
+
+
+def sound_report(video: Path, Y: np.ndarray, fps: float, meta: dict) -> dict:
+    """Checks for a cut with the start-light effects mixed onto the song."""
+    cfg = json.loads(SFX_JSON.read_text())
+    bar_t = lambda b: meta["barOrigin"] + (b - 1) * meta["barLength"]
+    src, out = pcm(AUDIO_SRC), pcm(video)
+    n = min(len(src), len(out))
+    src, out = src[:n], out[:n]
+
+    # Alignment: cross-correlate a loud stretch of the hook (bar 20).
+    a = int(bar_t(20) * SR)
+    s_, o_ = src[a:a + SR, 0], out[a - 2400:a + SR + 2400, 0]
+    corr = np.correlate(o_, s_, mode="valid")
+    lag = int(np.argmax(corr)) - 2400
+
+    # The picture says when each lamp lights and when they go out.
+    lit, dark = lamp_frames(Y, fps, bar_t(2.5), bar_t(6.5))
+    lamp_t = [f / fps for f in lit]
+    out_t = dark / fps
+
+    res = out - np.roll(src, lag, axis=0)
+    mono = res.mean(1)
+    # Beeps: the D6 tone, band-limited by a narrow FFT mask around the beep frequency.
+    hz = cfg["beep"]["hz"]
+    spec = np.fft.rfft(mono)
+    f = np.fft.rfftfreq(len(mono), 1 / SR)
+    tone = np.fft.irfft(spec * ((f > hz * 0.9) & (f < hz * 1.1)), len(mono))
+    hp = np.fft.irfft(spec * (f > 150), len(mono))
+    tone_env, roar_env = envelope(tone, 2), envelope(hp, 5)
+
+    def onset(env: np.ndarray, t: float, before: float, after: float, frac: float) -> float:
+        i0, i1 = int((t - before) * SR), int((t + after) * SR)
+        w = env[i0:i1]
+        return (i0 + int(np.argmax(w >= frac * w.max()))) / SR
+
+    beep_off = [1000 * (onset(tone_env, t, 0.15, 0.3, 0.5) - t) for t in lamp_t]
+    roar_off = 1000 * (onset(roar_env, out_t, 0.3, 0.6, 0.5) - out_t)
+
+    # Music preserved: outside the effects, the output is the song plus re-encode noise.
+    keep = np.ones(n, bool)
+    for t in lamp_t:
+        keep[int((t - 0.05) * SR):int((t + 0.6) * SR)] = False
+    r = cfg["roar"]
+    if r:
+        keep[int((out_t - 0.2) * SR):int((out_t + r["length"] + 0.2) * SR)] = False
+    music = np.sqrt((src[keep] ** 2).mean())
+    noise = np.sqrt((res[keep] ** 2).mean())
+    fx = ~keep
+    peak = float(np.abs(out[fx]).max())
+    return {
+        "alignment_lag_samples": lag,
+        "music_preserved_snr_db": round(20 * np.log10(music / max(noise, 1e-12)), 1),
+        "lamps_lit_at_s": [round(t, 4) for t in lamp_t],
+        "beep_onset_vs_lamp_ms": [round(x, 1) for x in beep_off],
+        "lights_out_at_s": round(out_t, 4),
+        "launch_onset_vs_lights_out_ms": round(roar_off, 1),
+        "peak_where_effects_play_dbfs": round(20 * np.log10(peak), 2),
+    }
 
 
 def luma_frames(path: Path, w: int = 96, h: int = 54) -> np.ndarray:
@@ -61,6 +161,8 @@ def main() -> None:
     report["size_mb"] = round(video.stat().st_size / 1e6, 1)
 
     Y = luma_frames(video)
+    if src != out:
+        report["sound_effects"] = sound_report(video, Y, fps, meta)
     n = len(Y)
     diff = np.concatenate([[0.0], np.abs(Y[1:] - Y[:-1]).mean(axis=(1, 2))])
     bar_t = lambda b: meta["barOrigin"] + (b - 1) * meta["barLength"]

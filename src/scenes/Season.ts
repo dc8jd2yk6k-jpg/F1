@@ -8,7 +8,7 @@ import { TABLES } from '../leaderboard/model';
 import { PANEL_W, PANEL_X, drawHeader, drawRemaining, drawRoundStrip, drawTitleHeader, drawWeekend } from '../leaderboard/Panels';
 import { SLOTS, SUMMER_BREAK, TODAY, stateAt } from '../leaderboard/schedule';
 import type { Overlay } from '../overlay/Overlay';
-import { drawBackdropCredit, drawWinnerCard } from '../photos/credits';
+import { drawBackdropCredit, drawSoundCredit, drawWinnerCard } from '../photos/credits';
 import { LEGS, legAt, venueLayers } from '../photos/venues';
 import { backdrop, breath, calmPost } from './common';
 
@@ -32,6 +32,8 @@ export class Season implements Act {
     backdrop(f, 0, 0.05, venueLayers(bar));
     const leg = LEGS[legAt(bar)];
     if (leg) drawBackdropCredit(ui, leg.photo, smoothstep(leg.from, leg.from + 0.3, bar));
+    // The launch you hear at lights out is a real recording: credited while it plays.
+    drawSoundCredit(ui, smoothstep(LIGHTS_OUT, LIGHTS_OUT + 0.15, bar) * (1 - smoothstep(LIGHTS_OUT + 1.3, LIGHTS_OUT + 1.6, bar)));
 
     const s = stateAt(t);
     const inBreak = bar >= SUMMER_BREAK.from && bar < SUMMER_BREAK.to;

@@ -32,6 +32,7 @@ SELECT = ROOT / "analysis" / "photos.select.json"
 OUT = ROOT / "public" / "assets" / "photos"
 MANIFEST = ROOT / "src" / "data" / "photos.json"
 CREDITS = ROOT / "CREDITS.md"
+SOUNDS = ROOT / "src" / "data" / "sounds.json"
 WIDTH = {"venue": 1920, "finale": 1920, "driver": 1280, "winner": 1280}
 # Stored size: backdrops are shown softened, driver photos at most ~500 px wide.
 KEEP = {"venue": 1600, "finale": 1600, "driver": 960, "winner": 960}
@@ -105,6 +106,27 @@ def main() -> None:
     print(f"{len(photos)} photos · {sa} CC BY-SA → {MANIFEST.relative_to(ROOT)}, {CREDITS.relative_to(ROOT)}")
 
 
+def sound_credits() -> list[str]:
+    """The sound-effects section, from src/data/sounds.json (written by analysis/mix_sfx.py)."""
+    if not SOUNDS.exists():
+        return []
+    data = json.loads(SOUNDS.read_text())
+    lines = [
+        "## Sound effects",
+        "",
+        "The start-light beeps are synthesised for this video. The launch at lights out is a real recording from",
+        "Wikimedia Commons, credited on screen while it plays and on the closing card. The song itself is unchanged;",
+        "the effects are mixed on top of it (see `analysis/mix_sfx.py`).",
+        "",
+        "| Used as | Subject | Author | Licence | Changes | Source |",
+        "|---|---|---|---|---|---|",
+    ]
+    for s in data["sounds"]:
+        lines.append(f"| Launch at lights out · `{s['id']}` | {s['caption']} | {s['authorFull']} | "
+                     f"[{s['license']}]({s['licenseUrl']}) | {s['changes']} | [{s['title'].removeprefix('File:')}]({s['page']}) |")
+    return lines + [""]
+
+
 def write_credits(photos: list[dict]) -> None:
     role_name = {"venue": "Backdrop", "finale": "Backdrop (finale)", "driver": "Driver", "winner": "Winner card"}
     lines = [
@@ -131,6 +153,9 @@ def write_credits(photos: list[dict]) -> None:
         "Subjects are identified from each file's Commons title, description and categories.",
         "Some photos show identifiable people; Commons notes that their personality rights may restrict commercial use.",
         "",
+    ]
+    lines += sound_credits()
+    lines += [
         "## Logos",
         "",
         "The F1, Ferrari, McLaren, Red Bull, Aston Martin, Audi and Cadillac marks are drawn from",

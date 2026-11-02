@@ -76,11 +76,11 @@ def _pages(data: dict) -> list[dict]:
     return data.get("query", {}).get("pages", [])
 
 
-def search(q: str, limit: int = 30, thumb: int = 330) -> list[dict]:
-    """File search with image info and metadata in one call."""
+def search(q: str, limit: int = 30, thumb: int = 330, filetype: str = "bitmap") -> list[dict]:
+    """File search with file info and metadata in one call (filetype: bitmap, audio, …)."""
     data = api({
         "action": "query", "generator": "search", "gsrnamespace": 6, "gsrlimit": limit,
-        "gsrsearch": f"{q} filetype:bitmap", "prop": "imageinfo|categories", "cllimit": "max",
+        "gsrsearch": f"{q} filetype:{filetype}", "prop": "imageinfo|categories", "cllimit": "max",
         "iiprop": "url|size|mime|extmetadata", "iiextmetadatafilter": EXT_FIELDS, "iiurlwidth": thumb,
     })
     pages = sorted(_pages(data), key=lambda p: p.get("index", 0))
@@ -131,6 +131,7 @@ def describe(p: dict) -> dict:
         "thumb": ii.get("thumburl"),
         "width": ii.get("width"),
         "height": ii.get("height"),
+        "duration": ii.get("duration"),
         "mime": ii.get("mime"),
         "sha1": ii.get("sha1"),
         "license": strip(md.get("LicenseShortName")),

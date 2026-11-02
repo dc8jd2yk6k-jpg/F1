@@ -43,7 +43,7 @@ export const imageOf = (p: Photo | null) => (p ? images.get(p.id) ?? null : null
 export const photoFor = (role: Photo['role'], key: string) => PHOTOS.find((p) => p.role === role && p.key === key) ?? null;
 
 /** "PHOTO: AUTHOR · CC BY-SA 4.0 · WIKIMEDIA COMMONS" */
-export function credit(p: Photo, label = 'PHOTO') {
+export function credit(p: Pick<Photo, 'author' | 'license'>, label = 'PHOTO') {
   return `${label}: ${p.author} · ${p.license} · WIKIMEDIA COMMONS`.toUpperCase();
 }
 

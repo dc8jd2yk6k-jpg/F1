@@ -1,3 +1,4 @@
+import sfx from '../data/sfx.json';
 import { clamp, easeOutCubic } from '../engine/math';
 import type { Overlay } from '../overlay/Overlay';
 import { FULL } from './Board';
@@ -8,9 +9,13 @@ import { TABLES } from './model';
 // that carries each grid slot into its row of the table when the lights go
 // out on the bass drop (bar 6).
 
-/** Lamps come on one per half bar (beats 1 and 3), the real one-per-second cadence. */
-export const LAMPS_ON = [3, 3.5, 4, 4.5, 5];
-export const LIGHTS_OUT = 6;
+/**
+ * Lamps come on one per half bar (beats 1 and 3), the real one-per-second
+ * cadence. The cue bars live in sfx.json, shared with the sound mix, so each
+ * beep starts on the frame its lamp lights.
+ */
+export const LAMPS_ON: readonly number[] = sfx.lamps;
+export const LIGHTS_OUT: number = sfx.lightsOut;
 export const lampsLit = (bar: number) => (bar >= LIGHTS_OUT ? 0 : LAMPS_ON.filter((b) => bar >= b).length);
 
 /** Launch progress 0..1 after lights out. Ease-out: the biggest move lands on the beat. */

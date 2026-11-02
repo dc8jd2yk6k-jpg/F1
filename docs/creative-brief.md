@@ -48,12 +48,16 @@ Measured by `analysis/analyze_audio.py`:
 
 The season has a strikingly similar shape. It started fast, paused for the summer, and arrived at a tense, unresolved now.
 
+### Revision 6: the sound of the start
+
+The countdown was silent. Now each lamp beeps as it lights, and at lights out a real F1 car launches on the bass drop: a Ferrari F60 recorded at Goodwood, from Wikimedia Commons, credited on screen. The beeps are tuned to D, the song's key, and sit in a band the intro leaves empty. The launch is high-passed so the song's own drop keeps the low end. The song is not processed at all; the effects are added on top, each starting on the frame its cue appears.
+
 ## Structure: the season mapped onto the song
 
 | Bars | Song | Leaderboard |
 |---|---|---|
-| 1–5 | Swell | **Cold open.** The F1 mark catches a light sweep. Real photos cut in on the downbeats (the Baku start, the Miami grid, Yas Marina at night) while the season's facts land. A full-width start-light gantry fills one pod per half bar from bar 3, the real one-per-second cadence. In bar 5 every driver lines up on the grid under five red lights |
-| 6 | Bass drop | **Lights out.** The lamps cut on the downbeat and each grid slot launches into its row of the table. **Round 1, Australia** |
+| 1–5 | Swell | **Cold open.** The F1 mark catches a light sweep. Real photos cut in on the downbeats (the Baku start, the Miami grid, Yas Marina at night) while the season's facts land. A full-width start-light gantry fills one pod per half bar from bar 3, the real one-per-second cadence. In bar 5 every driver lines up on the grid under five red lights. Each lamp beeps as it lights |
+| 6 | Bass drop | **Lights out.** The lamps cut on the downbeat, a real F1 car launches on the drop, and each grid slot launches into its row of the table. **Round 1, Australia** |
 | 6–36 | Verse → Hook 1 | Rounds 1–11 with their sprints. A Grand Prix takes 2–3 bars, a sprint 1. Bars grow first, then rows re-sort |
 | 36–40 | **The dip** | **Summer break.** The table holds; Grand Prix wins so far; Antonelli leads by 50 |
 | 40–58 | Hook 2 | Rounds 12–19: Zandvoort to Mexico City, including the Bahrain GP held at Sepang. In Mexico City a gold card marks the moment Antonelli clinches the title; from there his row is tagged CHAMPION |

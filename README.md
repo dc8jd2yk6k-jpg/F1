@@ -8,13 +8,14 @@ After 19 rounds, **Kimi Antonelli is the 2026 world champion**: he clinched the 
 
 | | |
 |---|---|
-| Length | 3:13.7, 1920×1080, 30 fps, H.264 + the original AAC stream (copied, not re-encoded) |
+| Length | 3:13.7, 1920×1080, 30 fps, H.264 + AAC 320 kbps |
+| Sound | The song, with start-light beeps and a real F1 launch mixed on top at lights out; the song itself is untouched |
 | Data | Every points-scoring classification of 2026: 19 GPs and 6 sprints, verified against the official standings |
 | Engine | TypeScript, Canvas2D leaderboard over a Three.js HDR backdrop, deterministic per frame |
 | Renderer | Headless Chromium (software WebGL), parallel workers, resumable chunks, x264 |
 | Analysis | Python + librosa: 110 BPM bar grid, section map, envelopes |
 | Brand marks | F1 and team logos from [simple-icons](https://simpleicons.org) (CC0 path data), drawn as vectors |
-| Photos | 47 photographs from Wikimedia Commons (CC0, PD, CC BY, CC BY-SA), each credited on screen; see [`CREDITS.md`](CREDITS.md) |
+| Photos | 49 photographs from Wikimedia Commons (CC0, PD, CC BY, CC BY-SA), each credited on screen; see [`CREDITS.md`](CREDITS.md) |
 
 | | |
 |---|---|
@@ -43,8 +44,8 @@ The track is instrumental: 110 BPM in D minor, turning to D major in the outro. 
 
 | Bars | Music | Video |
 |---|---|---|
-| 1–5 | swell | cold open: the F1 mark, real photos cut on the downbeats, a full-width start-light gantry filling one pod per half bar, all 24 drivers on the grid |
-| 6 | bass drop | **lights out**: the grid slots launch into the table, **Round 1, Australia** |
+| 1–5 | swell | cold open: the F1 mark, real photos cut on the downbeats, a full-width start-light gantry filling one pod per half bar **with a beep for each lamp**, all 24 drivers on the grid |
+| 6 | bass drop | **lights out**: a Ferrari F60 launches on the drop as the grid slots launch into the table, **Round 1, Australia** |
 | 6–36 | verse, hook | rounds 1–11 and their sprints; every round starts on a downbeat |
 | 36–40 | the dip | **summer break**: the table holds |
 | 40–58 | hook | rounds 12–19, Zandvoort to Mexico City; Antonelli clinches the title in bar 57 |
@@ -65,10 +66,11 @@ src/data/results.json ─────► leaderboard/model.ts       tables after
                              leaderboard/Panels.ts      header, round strip, weekend panel, start lights
                              leaderboard/logos.ts       F1 mark and team tiles (simple-icons paths)
 analysis/fetch_commons.py ─► src/data/photos.json       curated Commons photos, licence-checked, with credits
+analysis/mix_sfx.py ───────► public/audio/f1_sfx.m4a    start-light beeps + launch recording, mixed onto the song
                              photos/{PhotoPlate,venues,credits}.ts   venue backdrop, winner card, on-screen credits
                              scenes/{Intro,Season,P2Fight,Outro}.ts   one act per section group
 engine/Compositor.ts ──────► HDR backdrop + overlay → frame (pure function of song time)
-scripts/render.mjs ────────► N headless Chromium workers → JPEG → x264 chunks → concat → mux original audio
+scripts/render.mjs ────────► N headless Chromium workers → JPEG → x264 chunks → concat → mux the soundtrack
 ```
 
 - **Deterministic.** Every frame is a pure function of song time, so frames render in any order across parallel workers and land exactly on the beat grid. Frames are sampled at the middle of their display interval.
@@ -87,11 +89,13 @@ python3 -m venv analysis/.venv && analysis/.venv/bin/pip install -r analysis/req
 # Put the song at public/audio/f1.m4a (not committed), then:
 npm run analyze                 # → src/data/audio.json
 analysis/.venv/bin/python analysis/fetch_commons.py   # photos + credits (already committed)
+npm run sfx                     # → public/audio/f1_sfx.m4a: the song + start-light effects
 npm test                        # data integrity, schedule, timeline
 npm run dev                     # real-time preview with audio (?bar=40 to jump)
 
 npm run stills -- --bars 7.6,38.6,59.6,69.6 --w 1920 --h 1080
-npm run render -- --workers 3 --msaa 4                  # full 1080p30 render
+npm run render -- --workers 3 --msaa 4                  # full 1080p30 render, with the effects
+npm run render -- --audio public/audio/f1.m4a --out out/F1_MV_2026_1080p_music_only.mp4 --no-build   # music only: re-muxes, no re-render
 analysis/.venv/bin/python analysis/verify_av.py out/F1_MV_2026_1080p.mp4
 ```
 
@@ -116,6 +120,23 @@ Who a photo shows comes from its Commons title, description and categories. Capt
 [`analysis/photos.select.json`](analysis/photos.select.json) is the curated list. `analysis/fetch_commons.py` checks each file's licence against Commons metadata, downloads a resized copy, and writes the manifest and [`CREDITS.md`](CREDITS.md). `npm test` checks that every photo has an accepted licence, an author, a source page and a credits entry. It also checks that every race winner and every P2 contender has a photo.
 
 **Licence of the video:** some photos are CC BY-SA, so the rendered video is shared under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The code is unaffected.
+
+## Sound effects
+
+The countdown has its own sound, mixed onto the song by [`analysis/mix_sfx.py`](analysis/mix_sfx.py):
+
+- **A beep for each lamp.** Five identical short tones, synthesised at D6 (1,175 Hz), the song's tonal centre. They sit in the 1–4 kHz band the intro leaves almost empty (0.4% of its energy), so they cut through without masking anything.
+- **The hold.** Nothing is added between the fifth lamp and lights out; the song carries the tension for a bar.
+- **The launch.** At lights out a real Formula 1 car pulls away: a [Ferrari F60 (2009) at the Goodwood Festival of Speed 2010](https://commons.wikimedia.org/wiki/File:Ferrari_F60_(2009).ogg), recorded by Edvvc (CC BY-SA 3.0). It's trimmed to the launch, high-passed at 120 Hz so the song's bass drop keeps the low end, and faded out into the verse. The recording is credited on screen while it plays and on the closing card.
+
+**The song is never processed:** no ducking, no limiter, no EQ. The effects are only added on top. Where they play, the mix peaks at −3.7 dBFS, well clear of clipping.
+
+**Sync comes from the picture.** The cue bars live in [`src/data/sfx.json`](src/data/sfx.json), which the video's gantry also reads. Each beep starts on the first frame its lamp is lit, and the launch on the first dark frame.
+
+`verify_av.py` checks this from the rendered file:
+- it reads the lamps from the frames and finds the beeps and the launch in the audio;
+- it measures that the song outside the effects matches the original, up to the one re-encode needed to mix (residual about 32 dB below the music);
+- for a music-only cut, it confirms the soundtrack is the source stream, byte for byte.
 
 ## Brand marks
 

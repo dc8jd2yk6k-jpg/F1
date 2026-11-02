@@ -1,0 +1,33 @@
+{
+ "source": "Wikimedia Commons",
+ "policy": "CC0, public domain, CC BY or CC BY-SA only; author and licence from Commons metadata",
+ "beeps": "synthesised for this video",
+ "sounds": [
+  {
+   "id": "sfx-launch",
+   "role": "sound",
+   "caption": "Ferrari F60 (2009) pulling away · Goodwood Festival of Speed 2010",
+   "title": "File:Ferrari F60 (2009).ogg",
+   "page": "https://commons.wikimedia.org/wiki/File:Ferrari_F60_(2009).ogg",
+   "author": "Edvvc",
+   "authorFull": "Edvvc",
+   "license": "CC BY-SA 3.0",
+   "licenseFamily": "CC BY-SA",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+   "date": "2010-07-03",
+   "changes": "trimmed to the launch, high-passed, faded out and mixed with the song",
+   "description": "Ferrari F60 (2009) pulling away from the start on the Saturday of the Goodwood Festival of Speed hillclimb 2010",
+   "categories": [
+    "CC-BY-SA-3.0",
+    "Ferrari F60",
+    "Ferrari Tipo 056 engine",
+    "Files with coordinates missing SDC location of creation (50° N, 1° W)",
+    "Formula One cars at the Goodwood Festival of Speed 2010",
+    "GFDL",
+    "License migration redundant",
+    "Self-published work",
+    "Sounds of Formula One cars"
+   ]
+  }
+ ]
+}
