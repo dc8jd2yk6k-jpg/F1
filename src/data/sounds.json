@@ -1,6 +1,7 @@
 {
  "source": "Wikimedia Commons",
  "policy": "CC0, public domain, CC BY or CC BY-SA only; author and licence from Commons metadata",
+ "startLightTone": "synthesised for this video, modelled on the F1 start-light sound",
  "sounds": [
   {
    "id": "sfx-launch",

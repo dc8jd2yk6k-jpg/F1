@@ -11,8 +11,8 @@ import { TABLES } from './model';
 
 /**
  * Lamps come on one per half bar (beats 1 and 3), the real one-per-second
- * cadence. The cue bars live in sfx.json, shared with the sound mix, so the
- * launch recording starts on the first dark frame.
+ * cadence. The cue bars live in sfx.json, shared with the sound mix, so each
+ * start-light tone starts on the frame its lamp lights.
  */
 export const LAMPS_ON: readonly number[] = sfx.lamps;
 export const LIGHTS_OUT: number = sfx.lightsOut;

@@ -18,9 +18,15 @@ describe('start-light sound effects', () => {
     expect(lampsLit(LIGHTS_OUT)).toBe(0);
   });
 
-  it('adds no synthetic beeps: real start lights are silent', () => {
-    expect(sfx).not.toHaveProperty('beep');
-    expect(sounds).not.toHaveProperty('beeps');
+  it('gives each lamp the F1 start-light tone: a 500 Hz beep over a deep thud, about half a second', () => {
+    expect(sfx.light.beep.hz).toBe(500);
+    expect(sfx.light.thud.hz).toBeGreaterThan(40);
+    expect(sfx.light.thud.hz).toBeLessThan(70);
+    expect(sfx.light.length).toBeGreaterThan(0.4);
+    expect(sfx.light.length).toBeLessThan(0.6);
+    // Each tone ends well before the next lamp (half a bar, about 1.09 s, later).
+    expect(sfx.light.length).toBeLessThan(0.5 * 2.18);
+    expect(sounds.startLightTone).toMatch(/synthesised/);
   });
 
   it('credits every recording with an accepted free licence and its Commons page', () => {

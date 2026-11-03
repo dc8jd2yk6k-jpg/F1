@@ -6,16 +6,20 @@ Reads public/audio/f1.m4a (the song, untouched) and src/data/sfx.json (the
 cues, in bars: the video draws its lamps from the same numbers) and writes
 public/audio/f1_sfx.m4a, which the renderer and the preview play.
 
-Real F1 start lights make no sound, so nothing is added as the lamps light.
-At lights out comes the launch: a real recording from Wikimedia Commons
-(credited; see src/data/sounds.json and CREDITS.md), high-passed so the
-song's bass drop keeps the low end, fading out into the verse.
+- The start-light tone on each lamp: a short 500 Hz beep over a deep thud
+  near 53 Hz, dry and mono, about half a second long, as heard when F1's
+  start lights come on. Synthesised here; its pitch, partial levels, glide
+  and envelope were measured from a reference clip (not used or included).
+- A held silence, then the launch: a real recording from Wikimedia Commons
+  (credited; see src/data/sounds.json and CREDITS.md), high-passed so the
+  song's bass drop keeps the low end, fading out into the verse.
 
 The song itself is never processed: no ducking, no limiter, no EQ. Effects
 are added on top, and if the sum would come within 1 dB of full scale the
-recording is turned down, never the song. The launch starts exactly when the
-first dark frame is displayed (frames are rendered at mid-frame time,
-(f + 0.5) / 30), so the sound never leads the picture.
+recording is turned down, never the song. Each tone starts exactly when the
+first frame showing its lamp lit is displayed, and the launch on the first
+dark frame (frames are rendered at mid-frame time, (f + 0.5) / 30), so the
+sound never leads the picture.
 """
 
 from __future__ import annotations
@@ -61,6 +65,33 @@ def cue_times(cfg: dict, au: dict) -> tuple[list[float], float]:
         t = au["barOrigin"] + (bar - 1) * au["barLength"]
         return math.ceil(t * FPS - 0.5) / FPS
     return [at(b) for b in cfg["lamps"]], at(cfg["lightsOut"])
+
+
+def light_tone(cfg: dict) -> np.ndarray:
+    """One start-light tone (stereo, identical channels), normalised to its peak level."""
+    L = cfg["light"]
+    n = int(L["length"] * SR)
+    t = np.arange(n) / SR
+    # The beep: a 500 Hz tone with a faint echo.
+    b = L["beep"]
+    gate = lambda t0: np.clip((t - t0) / 0.003, 0, 1) * np.clip((t0 + b["length"] - t) / 0.004, 0, 1)
+    e = b["echo"]
+    te = t - e["delay"]
+    echo_env = 10 ** (e["db"] / 20) * np.clip(te / 0.003, 0, 1) * np.where(te < e["hold"], 1.0, np.exp(-(te - e["hold"]) / e["decay"]))
+    beep = 10 ** (b["db"] / 20) * np.sin(2 * np.pi * b["hz"] * t) * (gate(0.0) + echo_env * (te > 0))
+    # The thud: a low tone that drops from startHz to hz, wavering slightly, with weak upper partials.
+    th = L["thud"]
+    f = th["hz"] + (th["startHz"] - th["hz"]) * np.exp(-np.maximum(t - th["glideAt"], 0) / th["glide"])
+    f = f + th["wobbleHz"] * (0.6 * np.sin(2 * np.pi * 9 * t) + 0.4 * np.sin(2 * np.pi * 13 * t + 1.0))
+    phase = 2 * np.pi * np.cumsum(f) / SR
+    body = np.sin(phase) + sum(10 ** (db / 20) * np.sin(k * phase) for k, db in th["partials"])
+    # Sounds at once, then swells to full over the attack time.
+    rise = np.clip(t / 0.003, 0, 1) * (th["onset"] + (1 - th["onset"]) * (0.5 - 0.5 * np.cos(np.pi * np.clip(t / th["attack"], 0, 1))))
+    end = np.clip((L["length"] - t) / 0.03, 0, 1)
+    env = rise * np.where(t < th["hold"], 1.0, np.exp(-(t - th["hold"]) / th["decay"])) * end
+    tone = body * env + beep * end
+    tone *= 10 ** (L["peakDb"] / 20) / np.abs(tone).max()
+    return np.stack([tone, tone], 1)
 
 
 def launch(cfg: dict) -> tuple[np.ndarray, dict | None]:
@@ -115,6 +146,11 @@ def main() -> None:
     song = decode(SRC)
     lamps, out_t = cue_times(cfg, au)
 
+    lights = np.zeros_like(song)
+    one = light_tone(cfg)
+    for t in lamps:
+        place(lights, one, t)
+
     roar, credit = launch(cfg)
     roars = np.zeros_like(song)
     gain = 0.0
@@ -124,7 +160,7 @@ def main() -> None:
         want = 10 ** (cfg["roar"]["peakDb"] / 20)
         ceiling = 10 ** (CEILING_DB / 20)
         lo, hi = 0.0, want
-        base = song
+        base = song + lights
         win = slice(int((out_t - 0.1) * SR), int((out_t + cfg["roar"]["length"] + 0.1) * SR))
         if np.abs(base[win] + hi * roars[win]).max() > ceiling:
             for _ in range(40):
@@ -134,10 +170,10 @@ def main() -> None:
         else:
             gain = hi
 
-    mix = song + gain * roars
-    # Where the recording plays, the sum must stay under the ceiling (the song
+    mix = song + lights + gain * roars
+    # Where the effects play, the sum must stay under the ceiling (the song
     # alone peaks near full scale in the hooks, which is left as it is).
-    fx = np.abs(roars).max(1) > 0
+    fx = (np.abs(lights) + np.abs(roars)).max(1) > 0
     peak = np.abs(mix[fx]).max() if fx.any() else 0.0
     if peak > 10 ** (CEILING_DB / 20):
         sys.exit(f"effects push the mix to {db(peak):.2f} dBFS")
@@ -152,13 +188,15 @@ def main() -> None:
     SOUNDS.write_text(json.dumps({
         "source": "Wikimedia Commons",
         "policy": "CC0, public domain, CC BY or CC BY-SA only; author and licence from Commons metadata",
+        "startLightTone": "synthesised for this video, modelled on the F1 start-light sound",
         "sounds": sounds,
     }, indent=1, ensure_ascii=False) + "\n")
     import fetch_commons
     fetch_commons.write_credits(json.loads(fetch_commons.MANIFEST.read_text())["photos"])
 
     report = {
-        "lamps_lit_at": [round(t, 4) for t in lamps],
+        "tones_at": [round(t, 4) for t in lamps],
+        "tone_peak_dbfs": cfg["light"]["peakDb"],
         "lights_out_at": round(out_t, 4),
         "launch": credit and {"file": credit["title"], "author": credit["authorFull"], "licence": credit["license"],
                               "gain_db": round(db(gain), 2), "asked_db": cfg["roar"]["peakDb"]},

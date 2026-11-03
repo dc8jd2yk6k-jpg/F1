@@ -9,7 +9,7 @@ After 19 rounds, **Kimi Antonelli is the 2026 world champion**: he clinched the 
 | | |
 |---|---|
 | Length | 3:13.7, 1920×1080, 30 fps, H.264 + AAC 320 kbps |
-| Sound | The song, with a real F1 launch recording mixed on top at lights out; the song itself is untouched |
+| Sound | The song, with the F1 start-light tone on each lamp and a real F1 launch at lights out mixed on top; the song itself is untouched |
 | Data | Every points-scoring classification of 2026: 19 GPs and 6 sprints, verified against the official standings |
 | Engine | TypeScript, Canvas2D leaderboard over a Three.js HDR backdrop, deterministic per frame |
 | Renderer | Headless Chromium (software WebGL), parallel workers, resumable chunks, x264 |
@@ -44,7 +44,7 @@ The track is instrumental: 110 BPM in D minor, turning to D major in the outro. 
 
 | Bars | Music | Video |
 |---|---|---|
-| 1–5 | swell | cold open: the F1 mark, real photos cut on the downbeats, a full-width start-light gantry filling one pod per half bar (silent, as at a real start), all 24 drivers on the grid |
+| 1–5 | swell | cold open: the F1 mark, real photos cut on the downbeats, a full-width start-light gantry filling one pod per half bar, **each lamp with the F1 start-light tone**, all 24 drivers on the grid |
 | 6 | bass drop | **lights out**: a Ferrari F60 launches on the drop as the grid slots launch into the table, **Round 1, Australia** |
 | 6–36 | verse, hook | rounds 1–11 and their sprints; every round starts on a downbeat |
 | 36–40 | the dip | **summer break**: the table holds |
@@ -66,7 +66,7 @@ src/data/results.json ─────► leaderboard/model.ts       tables after
                              leaderboard/Panels.ts      header, round strip, weekend panel, start lights
                              leaderboard/logos.ts       F1 mark and team tiles (simple-icons paths)
 analysis/fetch_commons.py ─► src/data/photos.json       curated Commons photos, licence-checked, with credits
-analysis/mix_sfx.py ───────► public/audio/f1_sfx.m4a    launch recording at lights out, mixed onto the song
+analysis/mix_sfx.py ───────► public/audio/f1_sfx.m4a    start-light tones + launch recording, mixed onto the song
                              photos/{PhotoPlate,venues,credits}.ts   venue backdrop, winner card, on-screen credits
                              scenes/{Intro,Season,P2Fight,Outro}.ts   one act per section group
 engine/Compositor.ts ──────► HDR backdrop + overlay → frame (pure function of song time)
@@ -125,16 +125,17 @@ Who a photo shows comes from its Commons title, description and categories. Capt
 
 The countdown's sound is mixed onto the song by [`analysis/mix_sfx.py`](analysis/mix_sfx.py):
 
-- **No beeps.** Real F1 start lights make no sound; what you hear at a race is the engines. Nothing synthetic is added while the lamps light: the song carries the countdown.
+- **The F1 start-light tone on each lamp.** The sound heard as each of F1's five start lights comes on: a short 500 Hz beep over a deep thud near 53 Hz, dry and mono, about half a second long. It's synthesised here. Its pitch, glide, partial levels and envelope were measured from a reference clip of the start-light sound, which is neither used nor included. Against that clip, the thud's envelope correlates 0.93 and the beep's 0.99, and the energy in each band matches to within a few percent.
+- **The hold.** Nothing is added between the fifth lamp and lights out, as at a real start; the song carries the tension for a bar.
 - **The launch.** At lights out a real Formula 1 car pulls away: a [Ferrari F60 (2009) at the Goodwood Festival of Speed 2010](https://commons.wikimedia.org/wiki/File:Ferrari_F60_(2009).ogg), recorded by Edvvc (CC BY-SA 3.0). It's trimmed to the launch, high-passed at 120 Hz so the song's bass drop keeps the low end, and faded out into the verse. The recording is credited on screen while it plays and on the closing card.
 
-**The song is never processed:** no ducking, no limiter, no EQ. The recording is only added on top. Where it plays, the mix peaks at −3.7 dBFS, well clear of clipping.
+**The song is never processed:** no ducking, no limiter, no EQ. The effects are only added on top. Where they play, the mix peaks at −3.7 dBFS, well clear of clipping.
 
-**Sync comes from the picture.** The cue bars live in [`src/data/sfx.json`](src/data/sfx.json), which the video's gantry also reads. The launch starts on the first dark frame.
+**Sync comes from the picture.** The cue bars live in [`src/data/sfx.json`](src/data/sfx.json), which the video's gantry also reads. Each tone starts on the first frame its lamp is lit, and the launch on the first dark frame.
 
 `verify_av.py` checks this from the rendered file:
-- it reads the lamps from the frames, finds the launch in the audio, and checks that nothing is added while the lamps light;
-- it measures that the song outside the recording matches the original, up to the one re-encode needed to mix (residual about 32 dB below the music);
+- it reads the lamps from the frames and finds the tones (by their 500 Hz beep) and the launch in the audio;
+- it measures that the song outside the effects matches the original, up to the one re-encode needed to mix (residual about 32 dB below the music);
 - for a music-only cut, it confirms the soundtrack is the source stream, byte for byte.
 
 ## Brand marks

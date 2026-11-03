@@ -1,8 +1,9 @@
 import manifest from '../data/sounds.json';
 
 // Recorded sound from Wikimedia Commons (free licences only), written by
-// analysis/mix_sfx.py from each file's Commons metadata. Each recording is
-// credited on screen while it plays, and again on the closing card.
+// analysis/mix_sfx.py from each file's Commons metadata. The start-light tones
+// are synthesised and need no credit. Each recording is credited on screen
+// while it plays, and again on the closing card.
 
 export interface Sound {
   id: string;
