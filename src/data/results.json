@@ -1,7 +1,7 @@
 {
  "season": 2026,
- "asOf": "2026-11-01",
- "note": "Points scorers per event (races: top 10, sprints: top 8). Verified: per-driver sums equal the official standings after the Mexico City GP for every driver; post-Singapore checkpoint also matches.",
+ "asOf": "2026-11-22",
+ "note": "Points scorers per event (races: top 10, sprints: top 8). Verified: per-driver sums equal the official standings after the Las Vegas GP for every driver; post-Singapore checkpoint also matches.",
  "events": [
   {
    "round": 1,
@@ -1524,32 +1524,167 @@
      "pts": 8
     },
     {
-     "driver": "COL",
+     "driver": "LAW",
      "pos": 7,
      "pts": 6
     },
     {
-     "driver": "LAW",
+     "driver": "BOR",
      "pos": 8,
      "pts": 4
     },
     {
-     "driver": "GAS",
+     "driver": "HAD",
      "pos": 9,
      "pts": 2
     },
     {
-     "driver": "BOR",
+     "driver": "HIR",
      "pos": 10,
      "pts": 1
     }
    ],
    "sources": [
+    "https://www.formula1.com/en/results/2026/races/1298/mexico/race-result",
+    "https://www.formula1.com/en/latest/article/alpines-gasly-and-colapinto-stripped-of-mexico-city-gp-points-after-post-race-penalties.2wLfobQHufuH1L1aMYPl7h",
+    "https://crash.net/f1/results/1109251/1/formula-1-mexico-grand-prix-full-race-results",
     "https://racingnews365.com/2026-f1-mexico-city-grand-prix-results-adjusted-after-severe-post-race-penalty",
     "https://www.total-motorsport.com/mexico-city-gp-results-2026-full-race-classification/",
     "https://www.skysports.com/f1/news/13606682/kimi-antonelli-crowned-2026-f1-world-champion-as-max-verstappen-wins-wild-mexico-city-grand-prix-from-lewis-hamilton",
     "https://www.planetf1.com/news/fia-oscar-piastri-penalty-f1-2026-mexican-grand-prix"
+   ],
+   "note": "Final classification after post-race penalties: Piastri +10 s (P7 at the flag, 15th after it); Gasly +30 s and Colapinto +10 s for not slowing under yellow flags, both out of the points. Lawson, Bortoleto, Hadjar and Hirakawa (a point on debut) move into P7-P10."
+  },
+  {
+   "round": 20,
+   "code": "BRA",
+   "name": "São Paulo Grand Prix",
+   "venue": "Autódromo José Carlos Pace, Interlagos, São Paulo",
+   "date": "2026-11-08",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "NOR",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "VER",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "HAD",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "RUS",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "ANT",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "PIA",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "LAW",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "LEC",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "HAM",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "HUL",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1299/brazil/race-result",
+    "https://www.motorsport.com/f1/results/2026/sao-paulo-gp-661696/",
+    "https://www.formula1.com/en/latest/article/f2-racer-camara-to-make-f1-debut-at-sao-paulo-grand-prix-as-haas-confirm-ocon-will-not-return.12Qa0tpaMZ9kgnEuGJBKFp"
    ]
+  },
+  {
+   "round": 21,
+   "code": "LVG",
+   "name": "Las Vegas Grand Prix",
+   "venue": "Las Vegas Strip Circuit, Las Vegas",
+   "date": "2026-11-21",
+   "type": "race",
+   "classification": [
+    {
+     "driver": "VER",
+     "pos": 1,
+     "pts": 25
+    },
+    {
+     "driver": "NOR",
+     "pos": 2,
+     "pts": 18
+    },
+    {
+     "driver": "PIA",
+     "pos": 3,
+     "pts": 15
+    },
+    {
+     "driver": "ANT",
+     "pos": 4,
+     "pts": 12
+    },
+    {
+     "driver": "GAS",
+     "pos": 5,
+     "pts": 10
+    },
+    {
+     "driver": "COL",
+     "pos": 6,
+     "pts": 8
+    },
+    {
+     "driver": "HAM",
+     "pos": 7,
+     "pts": 6
+    },
+    {
+     "driver": "SAI",
+     "pos": 8,
+     "pts": 4
+    },
+    {
+     "driver": "RUS",
+     "pos": 9,
+     "pts": 2
+    },
+    {
+     "driver": "LEC",
+     "pos": 10,
+     "pts": 1
+    }
+   ],
+   "sources": [
+    "https://www.formula1.com/en/results/2026/races/1300/las-vegas/race-result",
+    "https://www.the-race.com/formula-1/f1-2026-las-vegas-grand-prix-race-result/",
+    "https://f1i.com/news/578493-2026-las-vegas-grand-prix-race-results.html"
+   ],
+   "note": "Final classification: Leclerc +10 s for causing a collision (P10), Hadjar +10 s for driving unnecessarily slowly under the Safety Car (P15)."
   }
  ]
 }

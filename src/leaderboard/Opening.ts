@@ -23,7 +23,7 @@ export const launch = (bar: number) => easeOutCubic(clamp((bar - LIGHTS_OUT) / 0
 
 // The grid: two staggered columns, entry-list order (race-number order, as
 // the table starts). Positions are the row origins the board draws from.
-const GRID = { x: [560, 1010], y: 300, step: 62, stagger: 31 };
+const GRID = { x: [560, 1010], y: 300, step: 57, stagger: 28.5 };
 
 export function gridSlot(rank: number): [number, number] {
   const i = rank - 1;

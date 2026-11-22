@@ -16,7 +16,7 @@ export interface Layout {
   barMaxW: number;
 }
 
-export const FULL: Layout = { x: 72, y: 178, rowH: 36, barX: 392, barMaxW: 760 };
+export const FULL: Layout = { x: 72, y: 178, rowH: 34.5, barX: 392, barMaxW: 760 };
 
 export interface BoardOptions {
   layout?: Layout;

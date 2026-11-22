@@ -19,7 +19,8 @@ import { backdrop, calmPost } from './common';
 // (bar 67) the strips give way to a chart of cumulative points: the season
 // replays as four racing lines, one event per half bar, and on each pulse
 // (67, 71, 75, 79) one driver is brought forward with what the data says
-// about them. Then the view closes in on the finish: 9 points, 4 drivers.
+// about them. Then the view closes in on the finish: places 2–5 and the gap
+// between them, as the official table has it today.
 
 const CONTENDERS = FINAL.slice(1, 5);
 const PULSES = [67, 71, 75, 79];
@@ -31,8 +32,9 @@ const BLOCK_H = 214;
 const COL_W = STRIP_W / EVENTS.length;
 const MAX_H = 112;
 
-/** The chart: axes draw on at bar 67, then one event every half bar from 67.5, then the zoom to the finish. */
-export const CHART = { in: 67, start: 67.5, step: 0.5, zoom: [80.0, 81.1] as const };
+/** The chart: axes draw on at bar 67, then one event every half bar from 67.5, then the zoom to the finish once the last event is in. */
+const CHART_END = 67.5 + 0.5 * EVENTS.length;
+export const CHART = { in: 67, start: 67.5, step: 0.5, zoom: [CHART_END, CHART_END + 0.8] as const };
 
 const since = Object.fromEntries(CONTENDERS.map((r) => [r.code, pointsSince(r.code, BREAK_AT)]));
 const mostSince = Math.max(...Object.values(since));
@@ -94,7 +96,7 @@ export class P2Fight implements Act {
       alpha: smoothstep(CHART.in + 0.15, CHART.in + 0.5, bar),
       axes: smoothstep(CHART.in + 0.15, CHART.in + 0.65, bar),
     });
-    // On each pulse, a card introduces one contender (LEC's ends before the final hold).
+    // On each pulse, a card introduces one contender (the last one's ends before the final hold).
     if (active >= 0) {
       // The first card waits for the strips to clear.
       const p0 = Math.max(PULSES[active], CHART.start);

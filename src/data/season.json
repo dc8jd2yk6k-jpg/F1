@@ -1,13 +1,11 @@
 {
   "season": 2026,
-  "asOf": "2026-11-02",
+  "asOf": "2026-11-22",
   "status": "provisional",
-  "afterRound": { "round": 19, "name": "Mexico City Grand Prix", "date": "2026-11-01" },
+  "afterRound": { "round": 21, "name": "Las Vegas Grand Prix", "date": "2026-11-21" },
   "totalRounds": 23,
   "calendarNote": "Bahrain and Saudi Arabia were cancelled in March; the Bahrain Grand Prix was later run at Sepang, Malaysia (Round 16), making 23 rounds.",
   "remaining": [
-    { "round": 20, "code": "BRA", "name": "São Paulo Grand Prix", "date": "2026-11-08" },
-    { "round": 21, "code": "LVG", "name": "Las Vegas Grand Prix", "date": "2026-11-21" },
     { "round": 22, "code": "QAT", "name": "Qatar Grand Prix", "date": "2026-11-29" },
     { "round": 23, "code": "ABU", "name": "Abu Dhabi Grand Prix", "date": "2026-12-06", "venue": "Yas Marina Circuit" }
   ],
@@ -46,7 +44,7 @@
     { "code": "STR", "first": "Lance", "last": "Stroll", "number": 18, "team": "astonmartin" },
     { "code": "ALB", "first": "Alex", "last": "Albon", "number": 23, "team": "williams" },
     { "code": "SAI", "first": "Carlos", "last": "Sainz", "number": 55, "team": "williams" },
-    { "code": "OCO", "first": "Esteban", "last": "Ocon", "number": 31, "team": "haas" },
+    { "code": "OCO", "first": "Esteban", "last": "Ocon", "number": 31, "team": "haas", "note": "Dropped by Haas during the Mexico City weekend; did not race again in 2026" },
     { "code": "BEA", "first": "Oliver", "last": "Bearman", "number": 87, "team": "haas" },
     { "code": "GAS", "first": "Pierre", "last": "Gasly", "number": 10, "team": "alpine" },
     { "code": "COL", "first": "Franco", "last": "Colapinto", "number": 43, "team": "alpine" },
@@ -55,18 +53,26 @@
     { "code": "PER", "first": "Sergio", "last": "Pérez", "number": 11, "team": "cadillac" },
     { "code": "BOT", "first": "Valtteri", "last": "Bottas", "number": 77, "team": "cadillac" },
     { "code": "TSU", "first": "Yuki", "last": "Tsunoda", "number": 22, "team": "racingbulls", "standIn": true, "note": "Reserve; raced for Racing Bulls at Zandvoort, Monza and Madrid" },
-    { "code": "HIR", "first": "Ryo", "last": "Hirakawa", "number": 50, "team": "haas", "standIn": true, "note": "Reserve; replaced Esteban Ocon at Haas for the Mexico City Grand Prix" }
+    { "code": "HIR", "first": "Ryo", "last": "Hirakawa", "number": 50, "team": "haas", "standIn": true, "note": "Reserve; replaced Esteban Ocon at Haas for the Mexico City Grand Prix and scored a point on debut" },
+    { "code": "CAM", "first": "Rafael", "last": "Câmara", "number": 51, "team": "haas", "note": "F2 driver; replaced Esteban Ocon at Haas from the São Paulo Grand Prix" }
   ],
   "officialStandings": {
-    "ANT": 380, "VER": 261, "HAM": 259, "RUS": 250, "LEC": 245, "NOR": 221, "PIA": 144, "HAD": 105, "LAW": 81,
-    "GAS": 44, "LIN": 38, "COL": 33, "BEA": 23, "HUL": 13, "BOR": 11, "OCO": 7, "ALO": 7, "SAI": 7, "ALB": 5,
-    "TSU": 1, "STR": 0, "BOT": 0, "PER": 0, "HIR": 0
+    "ANT": 402, "VER": 304, "HAM": 267, "RUS": 264, "NOR": 264, "LEC": 250, "PIA": 167, "HAD": 122, "LAW": 89,
+    "GAS": 52, "LIN": 38, "COL": 35, "BEA": 23, "BOR": 14, "HUL": 14, "SAI": 11, "OCO": 7, "ALO": 7, "ALB": 5,
+    "TSU": 1, "HIR": 1, "STR": 0, "BOT": 0, "PER": 0, "CAM": 0
   },
   "checkpoints": {
     "afterSingapore": { "ANT": 340, "RUS": 238, "HAM": 229, "VER": 221, "LEC": 215, "NOR": 201 }
   },
-  "constructors": { "mercedes": 630, "ferrari": 504, "mclaren": 365, "redbull": 380 },
+  "constructors": { "mercedes": 666, "ferrari": 517, "redbull": 440, "mclaren": 431 },
   "sources": [
+    "https://www.formula1.com/en/results/2026/drivers",
+    "https://www.formula1.com/en/results/2026/team",
+    "https://www.formula1.com/en/results/2026/races/1300/las-vegas/race-result",
+    "https://www.formula1.com/en/results/2026/races/1299/brazil/race-result",
+    "https://www.formula1.com/en/results/2026/races/1298/mexico/race-result",
+    "https://www.formula1.com/en/latest/article/alpines-gasly-and-colapinto-stripped-of-mexico-city-gp-points-after-post-race-penalties.2wLfobQHufuH1L1aMYPl7h",
+    "https://www.formula1.com/en/latest/article/f2-racer-camara-to-make-f1-debut-at-sao-paulo-grand-prix-as-haas-confirm-ocon-will-not-return.12Qa0tpaMZ9kgnEuGJBKFp",
     "https://racingnews365.com/adjusted-2026-f1-championship-standings-after-the-mexico-city-grand-prix-penalty",
     "https://www.si.com/onsi/f1/news/f1-standings-and-results-as-kimi-antonelli-crowned-champion-at-mexican-grand-prix",
     "https://gpkingdom.it/en/185361/formula-1-drivers-championship-standings-after-the-mexico-city-gp-antonelli-is-world-champion/",

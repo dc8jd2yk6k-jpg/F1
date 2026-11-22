@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DRIVERS, EVENTS, OFFICIAL, RACE_POINTS, SEASON, SPRINT_POINTS, teamAt } from '../src/leaderboard/data';
+import { CHAMPION, CLINCHED_AT, DRIVERS, EVENTS, OFFICIAL, RACES_TO_SPARE, RACE_POINTS, SEASON, SPRINT_POINTS, teamAt } from '../src/leaderboard/data';
 import { FINAL, TABLES, rowAfter } from '../src/leaderboard/model';
 
 // The data must reproduce the official championship exactly, or it doesn't ship.
@@ -62,9 +62,20 @@ describe('championship model', () => {
     expect(FINAL.find((r) => r.code === 'RUS')!.sprintWins).toBe(3);
   });
 
-  it('breaks ties by countback (Ocon/Alonso/Sainz all on 7)', () => {
-    const order = FINAL.filter((r) => r.points === 7).map((r) => r.code);
-    expect(order).toEqual(['OCO', 'ALO', 'SAI']);
+  it('breaks ties by countback (Russell/Norris on 264: equal wins, Russell more seconds; Bortoleto/Hülkenberg on 14)', () => {
+    const tied = (pts: number) => FINAL.filter((r) => r.points === pts).map((r) => r.code);
+    expect(tied(264)).toEqual(['RUS', 'NOR']);
+    expect(tied(14)).toEqual(['BOR', 'HUL']);
+  });
+
+  it('dates the title to the round it was clinched in, with the races to spare as of then', () => {
+    const k = EVENTS.findIndex((e) => e.code === CLINCHED_AT && e.type === 'race');
+    expect(EVENTS[k].round).toBe(19);
+    expect(RACES_TO_SPARE).toBe(4);
+    // Mathematically decided: the lead after that round beats every point still on offer.
+    const table = TABLES[k + 1];
+    expect(table[0].code).toBe(CHAMPION);
+    expect(table[0].points - table[1].points).toBeGreaterThan(RACES_TO_SPARE! * RACE_POINTS[0]);
   });
 
   it('never loses points between tables', () => {

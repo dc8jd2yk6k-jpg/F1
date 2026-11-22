@@ -4,10 +4,12 @@ import { EVENTS } from './data';
 import { TABLES } from './model';
 
 // The season, cut to the song. Each scoring event owns a span of bars and
-// starts on a beat (downbeat or mid-bar): a Grand Prix gets 2–3 bars, a
-// sprint 1. Two holds are written into the music:
+// starts on a beat (downbeat or mid-bar): a Grand Prix gets 2–3 bars before
+// the summer break and 1.5–2 after it (Mexico City, where the title was
+// decided, and the latest round keep 2), a sprint 1. Two holds are written
+// into the music:
 //   bars 36–40 — the song's dip is F1's summer break (after Hungary)
-//   bars 58–61 — after Mexico City: the standings as they are today
+//   bars 58–61 — after the latest round: the standings as they are today
 // Bars grow and rows re-rank over the first part of each span, then hold, so
 // the eye can read the result before the next round lands.
 
@@ -35,15 +37,17 @@ const PLAN: [code: string, type: 'race' | 'sprint', bar: number, bars: number][]
   ['BEL', 'race', 31, 2.5],
   ['HUN', 'race', 33.5, 2.5],
   ['NED', 'sprint', 40, 1],
-  ['NED', 'race', 41, 2],
-  ['ITA', 'race', 43, 2],
-  ['MAD', 'race', 45, 2],
-  ['AZE', 'race', 47, 2],
-  ['MAS', 'race', 49, 2],
-  ['SIN', 'sprint', 51, 1],
-  ['SIN', 'race', 52, 2],
-  ['USA', 'race', 54, 2],
-  ['MEX', 'race', 56, 2],
+  ['NED', 'race', 41, 1.5],
+  ['ITA', 'race', 42.5, 1.5],
+  ['MAD', 'race', 44, 1.5],
+  ['AZE', 'race', 45.5, 1.5],
+  ['MAS', 'race', 47, 1.5],
+  ['SIN', 'sprint', 48.5, 1],
+  ['SIN', 'race', 49.5, 1.5],
+  ['USA', 'race', 51, 1.5],
+  ['MEX', 'race', 52.5, 2],
+  ['BRA', 'race', 54.5, 1.5],
+  ['LVG', 'race', 56, 2],
 ];
 
 export const SLOTS: Slot[] = PLAN.map(([code, type, bar, bars]) => {

@@ -210,6 +210,17 @@
   ]
  },
  {
+  "id": "venue-bra",
+  "role": "venue",
+  "key": "BRA",
+  "title": "File:Grande Prêmio São Paulo de Fórmula 1 (52497080967).jpg",
+  "caption": "Interlagos from above · 2022 São Paulo GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
   "id": "finale-yas-marina",
   "role": "finale",
   "key": "FINALE",
@@ -537,6 +548,39 @@
   "focus": [
    0.45,
    0.5
+  ]
+ },
+ {
+  "id": "winner-bra-race",
+  "role": "winner",
+  "key": "BRA-race",
+  "title": "File:2026-08-23 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 3003.jpg",
+  "caption": "Norris · 2026 Dutch GP win",
+  "focus": [
+   0.56,
+   0.35
+  ]
+ },
+ {
+  "id": "winner-lvg-race",
+  "role": "winner",
+  "key": "LVG-race",
+  "title": "File:FIA F1 Austria 2026 Nr. 3 Verstappen (2).jpg",
+  "caption": "Verstappen · 2026 Austrian GP",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ {
+  "id": "driver-nor",
+  "role": "driver",
+  "key": "NOR",
+  "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2384.jpg",
+  "caption": "Norris · 2026 Dutch GP",
+  "focus": [
+   0.5,
+   0.3
   ]
  }
 ]

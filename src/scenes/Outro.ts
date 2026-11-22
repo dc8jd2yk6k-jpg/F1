@@ -100,7 +100,8 @@ export class Outro implements Act {
 /** Every photograph and recording used, on the closing card (the full list is in CREDITS.md). */
 function photoCredits(ui: Overlay, alpha: number) {
   const items = [
-    ...PHOTOS.map((p) => ({ label: p.caption, author: p.author, license: p.license })),
+    ...PHOTOS.filter((p, i) => PHOTOS.findIndex((q) => q.title === p.title) === i)
+      .map((p) => ({ label: p.caption, author: p.author, license: p.license })),
     ...SOUNDS.map((s) => ({ label: `Sound: ${s.caption.split(' · ')[0]}`, author: s.author, license: s.license })),
   ];
   if (!items.length || alpha <= 0) return;

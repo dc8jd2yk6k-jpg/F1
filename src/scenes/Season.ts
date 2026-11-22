@@ -1,6 +1,6 @@
 import type { Act, Engine, FrameCtx } from '../engine/Engine';
 import { clamp, easeOutCubic, smoothstep } from '../engine/math';
-import { CHAMPION, CLINCHED_AT, EVENTS, POINTS_LEFT, RACES_LEFT, SEASON, driver, driverColor } from '../leaderboard/data';
+import { CHAMPION, CLINCHED_AT, EVENTS, POINTS_LEFT, RACES_LEFT, RACES_TO_SPARE, SEASON, driver, driverColor } from '../leaderboard/data';
 import { FULL, drawBoard } from '../leaderboard/Board';
 import { drawTeamTile } from '../leaderboard/logos';
 import { LIGHTS_OUT, drawGantry, gridOffset, launch } from '../leaderboard/Opening';
@@ -101,7 +101,7 @@ export class Season implements Act {
     ui.text(`${SEASON.season} WORLD CHAMPION`, x + 32, y + 54, { font: 'mono', size: 18, weight: 700, tracking: 0.3, color: '#F5C542', alpha: a });
     ui.wipeText(`${d.first} ${d.last}`.toUpperCase(), x + 28, y + 134, p, { font: 'title', size: 62, weight: 900, tracking: 0.02, alpha: a });
     const where = ev.name.replace(' Grand Prix', '').toUpperCase();
-    ui.text(`${pos ? `P${pos} IN ${where} · ` : ''}${pts} PTS · ${RACES_LEFT} RACES TO SPARE`, x + 32, y + 186,
+    ui.text(`${pos ? `P${pos} IN ${where} · ` : ''}${pts} PTS · ${RACES_TO_SPARE} RACES TO SPARE`, x + 32, y + 186,
       { font: 'mono', size: 15, weight: 700, tracking: 0.12, color: '#d6dbe4', alpha: a * smoothstep(0.2, 0.5, age) });
   }
 

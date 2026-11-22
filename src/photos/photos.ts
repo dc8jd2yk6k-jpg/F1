@@ -21,6 +21,8 @@ export interface Photo {
   license: string;
   licenseUrl: string;
   page: string;
+  /** Commons file title ("File:…"): one file can serve more than one role. */
+  title: string;
   /** Point of interest in image coordinates (0..1, y down) used for cropping. */
   focus: [number, number];
 }

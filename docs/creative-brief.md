@@ -54,6 +54,14 @@ The countdown was silent. Now each lamp comes on with the F1 start-light tone, a
 
 A first version used a generic high beep (1.2 kHz) that sounded nothing like the start-light sound, so it was rebuilt from measurements of the real one.
 
+### Revision 7: up to Las Vegas
+
+Rounds 20 and 21 are in: Norris won in São Paulo, Verstappen in Las Vegas. To fit them before the "today" hold, Grands Prix after the summer break take 1.5 bars instead of 2. Mexico City keeps 2 for the title card, and so does Las Vegas, the newest round. That still leaves about a second and a half to read each settled table.
+
+Two corrections came with the update. Mexico City's classification changed after post-race penalties for Gasly and Colapinto, so its points now go to Lawson, Bortoleto, Hadjar and Hirakawa. Haas replaced Ocon with Rafael Câmara, so the table has 25 rows. The fight for second has a new shape: Verstappen 304, then Hamilton 267, Russell 264 and Norris 264, with 50 points left. Leclerc, on 250, can no longer reach second, so Norris takes his line in the chart.
+
+The new photos are a 2022 race-weekend aerial of Interlagos and, on the winner cards, Norris celebrating his Zandvoort win and Verstappen in Bahrain, captioned as such. Commons has no free photo from either race yet. It also has no usable photo of the Las Vegas circuit, only track maps and close-ups of cars, so that round plays over the plain backdrop instead of borrowing another venue.
+
 ## Structure: the season mapped onto the song
 
 | Bars | Song | Leaderboard |
@@ -62,10 +70,10 @@ A first version used a generic high beep (1.2 kHz) that sounded nothing like the
 | 6 | Bass drop | **Lights out.** The lamps cut on the downbeat, a real F1 car launches on the drop, and each grid slot launches into its row of the table. **Round 1, Australia** |
 | 6–36 | Verse → Hook 1 | Rounds 1–11 with their sprints. A Grand Prix takes 2–3 bars, a sprint 1. Bars grow first, then rows re-sort |
 | 36–40 | **The dip** | **Summer break.** The table holds; Grand Prix wins so far; Antonelli leads by 50 |
-| 40–58 | Hook 2 | Rounds 12–19: Zandvoort to Mexico City, including the Bahrain GP held at Sepang. In Mexico City a gold card marks the moment Antonelli clinches the title; from there his row is tagged CHAMPION |
-| 58–61 | Hook 2 end | **Today.** Antonelli is champion; the P2 places are bracketed: 4 drivers, 16 points. The 4 rounds still to run are listed |
-| 61–67 | Breakdown | **The fight for P2.** Russell, Hamilton, Verstappen and Leclerc, each with a strip of every score they made this season |
-| 67–83 | Breakdown | **Cumulative points, replayed.** The strips become four racing lines; the season replays one event per half bar, with portraits and live totals at the heads and gold dots for wins. On each bass pulse (67, 71, 75, 79) a card brings one driver forward. The view then closes in on the finish: 261 · 259 · 250 · 245, 16 points between P2 and P5 |
+| 40–58 | Hook 2 | Rounds 12–21: Zandvoort to Las Vegas, including the Bahrain GP held at Sepang, 1.5 bars a round. In Mexico City (bars 52.5–54.5) a gold card marks the moment Antonelli clinches the title; from there his row is tagged CHAMPION |
+| 58–61 | Hook 2 end | **Today.** Antonelli is champion; the P2 places are bracketed: 4 drivers, 40 points. The 2 rounds still to run are listed |
+| 61–67 | Breakdown | **The fight for P2.** Verstappen, Hamilton, Russell and Norris, each with a strip of every score they made this season |
+| 67–83 | Breakdown | **Cumulative points, replayed.** The strips become four racing lines; the season replays one event per half bar, with portraits and live totals at the heads and gold dots for wins. On each bass pulse (67, 71, 75, 79) a card brings one driver forward. Once the last event is in (bar 81) the view closes in on the finish: 304 · 267 · 264 · 264, 40 points between P2 and P5 |
 | 83–end | D-major outro | The full table as it stands. The background warms to gold. **P2 — ?** Title card |
 
 ## Data

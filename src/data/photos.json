@@ -529,6 +529,7 @@
    "categories": [
     "Buildings in Singapore photographed in 2019",
     "CC-BY-SA-4.0",
+    "Changes of XRay's photographs of the recent weeks",
     "Exposure time 1/320 sec",
     "F-number f/8",
     "FoP-Singapore",
@@ -627,6 +628,36 @@
    ]
   },
   {
+   "id": "venue-bra",
+   "role": "venue",
+   "key": "BRA",
+   "file": "venue-bra.jpg",
+   "width": 1600,
+   "height": 1067,
+   "caption": "Interlagos from above · 2022 São Paulo GP",
+   "author": "Governo do Estado de São Paulo",
+   "authorFull": "Governo do Estado de São Paulo",
+   "license": "CC BY 2.0",
+   "licenseFamily": "CC BY",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Grande_Pr%C3%AAmio_S%C3%A3o_Paulo_de_F%C3%B3rmula_1_(52497080967).jpg",
+   "title": "File:Grande Prêmio São Paulo de Fórmula 1 (52497080967).jpg",
+   "date": "2022-11-13 12:54",
+   "restrictions": "",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "changes": "resized; shown cropped, softened and colour-graded as a darkened backdrop",
+   "description": "Foto: Beto Issa/Fórmula 1",
+   "categories": [
+    "2022 São Paulo Grand Prix",
+    "Aerial photographs of Autódromo de Interlagos",
+    "CC-BY-2.0",
+    "Flickr images reviewed by FlickreviewR 2"
+   ]
+  },
+  {
    "id": "finale-yas-marina",
    "role": "finale",
    "key": "FINALE",
@@ -721,8 +752,6 @@
     "2026 Dutch Grand Prix",
     "CC-BY-SA-4.0",
     "Charles Leclerc in 2026",
-    "Creative Commons Attribution-Share Alike 4.0 missing SDC copyright license",
-    "Creative Commons Attribution-Share Alike missing SDC copyright status",
     "Files by User:Stepro",
     "Files with coordinates missing SDC location of creation (52° N, 4° E)",
     "Personality rights warning",
@@ -1614,6 +1643,108 @@
     "Flickr images reviewed by FlickreviewR 2",
     "Media lacking a description",
     "Red Bull Racing RB22 of Max Verstappen"
+   ]
+  },
+  {
+   "id": "winner-bra-race",
+   "role": "winner",
+   "key": "BRA-race",
+   "file": "winner-bra-race.jpg",
+   "width": 960,
+   "height": 640,
+   "caption": "Norris · 2026 Dutch GP win",
+   "author": "Steffen Prößdorf",
+   "authorFull": "Steffen Prößdorf",
+   "license": "CC BY-SA 4.0",
+   "licenseFamily": "CC BY-SA",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:2026-08-23_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2026_STP_3003.jpg",
+   "title": "File:2026-08-23 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 3003.jpg",
+   "date": "2026-08-23",
+   "restrictions": "personality",
+   "focus": [
+    0.56,
+    0.35
+   ],
+   "changes": "resized; shown cropped",
+   "description": "Motorsport, Formel 1, Großer Preis der Niederlande 2026: Lando Norris (GBR, McLaren); Sieger, Erstplatzierter, Goldmedaille",
+   "categories": [
+    "2026 Dutch Grand Prix",
+    "CC-BY-SA-4.0",
+    "Files by User:Stepro",
+    "Files with coordinates missing SDC location of creation (52° N, 4° E)",
+    "Lando Norris in 2026",
+    "Personality rights warning",
+    "Supported by Wikimedia Deutschland",
+    "Supported by Wikimedia Österreich in 2026",
+    "Uploaded with LrMediaWiki"
+   ]
+  },
+  {
+   "id": "winner-lvg-race",
+   "role": "winner",
+   "key": "LVG-race",
+   "file": "winner-lvg-race.jpg",
+   "width": 960,
+   "height": 641,
+   "caption": "Verstappen · 2026 Austrian GP",
+   "author": "Lukas Raich",
+   "authorFull": "Lukas Raich",
+   "license": "CC BY-SA 4.0",
+   "licenseFamily": "CC BY-SA",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._3_Verstappen_(2).jpg",
+   "title": "File:FIA F1 Austria 2026 Nr. 3 Verstappen (2).jpg",
+   "date": "2026-06-26 14:28:07",
+   "restrictions": "",
+   "focus": [
+    0.5,
+    0.5
+   ],
+   "changes": "resized; shown cropped",
+   "description": "FIA F1 Austria 2026 Nr. 3 Verstappen (2)",
+   "categories": [
+    "2026 Austrian Grand Prix",
+    "CC-BY-SA-4.0",
+    "Photographs by Lukas Raich",
+    "Red Bull Racing RB22 of Max Verstappen",
+    "Self-published work",
+    "Spielberg bei Knittelfeld photographs taken on 2026-06-26"
+   ]
+  },
+  {
+   "id": "driver-nor",
+   "role": "driver",
+   "key": "NOR",
+   "file": "driver-nor.jpg",
+   "width": 960,
+   "height": 1440,
+   "caption": "Norris · 2026 Dutch GP",
+   "author": "Steffen Prößdorf",
+   "authorFull": "Steffen Prößdorf",
+   "license": "CC BY-SA 4.0",
+   "licenseFamily": "CC BY-SA",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:2026-08-22_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2026_STP_2384.jpg",
+   "title": "File:2026-08-22 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 2384.jpg",
+   "date": "2026-08-22",
+   "restrictions": "personality",
+   "focus": [
+    0.5,
+    0.3
+   ],
+   "changes": "resized; shown cropped",
+   "description": "Motorsport, Formel 1, Großer Preis der Niederlande 2026: Lando Norris (GBR, McLaren); Drittplatzierter, Bronzemedaille Sprint",
+   "categories": [
+    "2026 Dutch Grand Prix",
+    "CC-BY-SA-4.0",
+    "Files by User:Stepro",
+    "Files with coordinates missing SDC location of creation (52° N, 4° E)",
+    "Lando Norris in 2026",
+    "Personality rights warning",
+    "Supported by Wikimedia Deutschland",
+    "Supported by Wikimedia Österreich in 2026",
+    "Uploaded with LrMediaWiki"
    ]
   }
  ]
